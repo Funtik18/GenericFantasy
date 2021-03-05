@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f20c1c54ed5008439dbb85896e36940, type: 3}
+  m_Name: StatsTranslation
+  m_EditorClassIdentifier: 
+  translations:
+  - languege: 0
+    stats:
+    - name: Level
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: Points
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: ST
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: DX
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: IQ
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: HT
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: HP
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: MOVE
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: SPEED
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: WILL
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: PER
+      icon: {fileID: 0}
+      description: 
+      annotation: 
+    - name: FP
+      icon: {fileID: 0}
+      description: 
+      annotation: 
