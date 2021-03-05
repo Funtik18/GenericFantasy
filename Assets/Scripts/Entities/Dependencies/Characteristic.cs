@@ -6,6 +6,8 @@ public abstract class Characteristic
 {
 	public virtual string CurrentStringValue { get; }
 
+	public abstract float StatValue { set; get; }
+
 	public UnityAction onValueChanged;
 	protected void UpdateChraracteristic()
 	{
@@ -63,11 +65,10 @@ public abstract class StatCharacteristic<T> : CharacteristicModifier where T : s
 	protected T statFormuleValue;
 	public abstract T StatFormuleValue { get; set; }
 	public abstract T StatModifieredValue { get; }
-	public abstract T StatCurrentValue { get; }
-
+	
 	public override string CurrentStringValue
 	{
-		get => StatCurrentValue.ToString();
+		get => StatValue.ToString();
 	}
 
 	public StatCharacteristic(T initValue)
@@ -101,12 +102,14 @@ public class StatCharacteristic : StatCharacteristic<float>
 		get => statFormuleValue;
 	}
 	public override float StatModifieredValue { get => GetModifierValue(); }
-	public override float StatCurrentValue 
-	{ get => isRound == true ? (int)(StatBaseValue + StatFormuleValue + StatModifieredValue) : StatBaseValue + StatFormuleValue + StatModifieredValue; }
+	public override float StatValue 
+	{
+		set { }
+		get => isRound == true ? (int)(StatBaseValue + StatFormuleValue + StatModifieredValue) : StatBaseValue + StatFormuleValue + StatModifieredValue; }
 
 	public override string CurrentStringValue
 	{
-		get => StatCurrentValue.ToString() + " (" + StatBaseValue + "+" + StatFormuleValue + "+" + StatModifieredValue + ")";
+		get => StatValue.ToString() + " (" + StatBaseValue + "+" + StatFormuleValue + "+" + StatModifieredValue + ")";
 	}
 
 	public StatCharacteristic(float initValue, bool isRound = true) : base(initValue) { this.isRound = isRound; }
@@ -118,32 +121,58 @@ public class StatCharacteristic : StatCharacteristic<float>
 	}
 }
 
-
 public class CharacteristicValue : Characteristic
 {
 	protected bool isRound = false;
 
-	public override string CurrentStringValue
+	public override string CurrentStringValue { get => StatValue.ToString(); }
+
+	private float statValue;
+	public override float StatValue
 	{
-		get => (isRound ? (int)value : value).ToString();
+		set => statValue = value;
+		get => (isRound? (int) statValue : statValue);
 	}
 
-	private float value;
-	public float Value
-	{
-		set
-		{
-			this.value = value;
-			UpdateChraracteristic();
-		}
-		get => isRound ? (int)value : value;
-	}
 	public CharacteristicValue(float initValue, bool isRound = true)
 	{
 		this.isRound = isRound;
-		Value = initValue;
+		statValue = initValue;
+
+		UpdateChraracteristic();
 	}
 }
+
+public class CharacteristicWeight : CharacteristicValue
+{
+	public Characteristic strength;
+
+	public override string CurrentStringValue { get => StatCurrentValue + "/" + StatValue; }
+	public override float StatValue { get => (int)(strength.StatValue * strength.StatValue); }//max
+
+	private float statCurrentValue;
+	public float StatCurrentValue
+	{
+		set
+		{
+			statCurrentValue = Mathf.Clamp(value, 0, StatValue);
+
+			UpdateChraracteristic();
+		}
+		get => (int)statCurrentValue;
+	}
+
+	public CharacteristicWeight(float currentValue, Characteristic strength) : base(strength.StatValue * strength.StatValue, true)
+	{
+		this.strength = strength;
+		this.strength.onValueChanged += UpdateChraracteristic;
+
+		StatCurrentValue = currentValue;
+	}
+}
+
+
+
 
 public class Bar
 {
@@ -190,7 +219,7 @@ public class Bar
 }
 public class BarPoints : Bar
 {
-	private StatCharacteristic stat;
+	private Characteristic characteristic;
 
 	public override float CurrentValue
 	{
@@ -202,23 +231,21 @@ public class BarPoints : Bar
 		}
 		get => base.CurrentValue;
 	}
-
 	public override float MaxValue
 	{
 		get => isRound ? (int)maxValue : maxValue;
 	}
 
-
-	public BarPoints(float currentValue, StatCharacteristic stat, bool isRound = true) 
-		: base(currentValue, stat.StatCurrentValue, isRound)
+	public BarPoints(float currentValue, Characteristic characteristic, bool isRound = true) 
+		: base(currentValue, characteristic.StatValue, isRound)
 	{
-		this.stat = stat;
-		this.stat.onValueChanged += StatChanged;
+		this.characteristic = characteristic;
+		this.characteristic.onValueChanged += StatChanged;
 	}
 
 	private void StatChanged()
 	{
-		maxValue = stat.StatCurrentValue;
+		maxValue = characteristic.StatValue;
 		CurrentValue = currenValue;
 	}
 }

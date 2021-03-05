@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BarsUI : MonoBehaviour
 {
-	[SerializeField] private List<BarUI> barsUI = new List<BarUI>();
+	[SerializeField] private List<BarPointsUI> barsUI = new List<BarPointsUI>();
 
 	public void Initialization(EntityStats entityStats)
 	{

@@ -23,6 +23,10 @@ MonoBehaviour:
       icon: {fileID: 0}
       description: 
       annotation: 
+    - name: Weight
+      icon: {fileID: 0}
+      description: 
+      annotation: 
     - name: ST
       icon: {fileID: 0}
       description: 
