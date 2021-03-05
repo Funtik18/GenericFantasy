@@ -15,6 +15,13 @@ public class TacticMove : MonoBehaviour
     public int move = 5;
     public float jumpHeight = 2;
     public float moveSpeed = 2;
+    public float jumpVelocity = 4.5f;
+
+    [Header("JumpState")]
+    bool fallingDown = false;
+    bool jumpingUp = false;
+    bool movingEdge = false;
+    Vector3 jumpTarget;
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
@@ -92,4 +99,179 @@ public class TacticMove : MonoBehaviour
             }
         }
     }
+
+    public void MoveToTile(Tile tile)
+    {
+        path.Clear();
+        tile.target = true;
+        moving = true;
+
+        Tile next = tile;
+        while (next != null)
+        {
+            path.Push(next);
+            next = next.parent;
+        }
+
+    }
+
+    public void Move()
+    {
+        if (path.Count > 0)
+        {
+            Tile t = path.Peek();
+            Vector3 target = t.transform.position;
+
+            target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
+
+            if (Vector3.Distance(transform.position, target) >= 0.05f)
+            {
+                bool jump = transform.position.y != target.y;
+                if (jump)
+                {
+                    Jump(target);
+                }
+                else
+                {
+                    CalculateHeading(target);
+                    SetHorizontalVelocity();
+                }
+
+
+                transform.forward = heading;
+                transform.position += velocity * Time.deltaTime;
+            }
+            else
+            {
+                transform.position = target;
+                path.Pop();
+            }
+        }
+        else
+        {
+            RemoveSelectableTiles();
+            moving = false;
+        }
+    }
+
+    protected void RemoveSelectableTiles()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+        foreach (Tile tile in selectableTiles)
+        {
+            tile.TileReset();
+        }
+        selectableTiles.Clear();
+    }
+
+    void CalculateHeading(Vector3 target)
+    {
+        heading = target - transform.position;
+        heading.Normalize();
+    }
+
+    void SetHorizontalVelocity()
+    {
+        velocity = heading * moveSpeed;
+    }
+
+    void Jump(Vector3 target)
+    {
+        if (fallingDown)
+        {
+            FallDownward(target);
+        }
+        else if (jumpingUp)
+        {
+            JumpUpward(target);
+        }
+        else if (movingEdge)
+        {
+            MoveToEdge();
+        }
+        else
+        {
+            PrepareJump(target);
+        }
+    }
+
+    void PrepareJump(Vector3 target)
+    {
+        float targetY = target.y;
+
+        target.y = transform.position.y;
+
+        CalculateHeading(target);
+
+        if (transform.position.y > targetY)
+        {
+            fallingDown = false;
+            jumpingUp = false;
+            movingEdge = true;
+
+            jumpTarget = transform.position + (target - transform.position) / 2f;
+        }
+        else
+        {
+            fallingDown = false;
+            jumpingUp = true;
+            movingEdge = false;
+
+            velocity = heading * moveSpeed / 3f;
+
+            float difference = targetY - transform.position.y;
+
+            velocity.y = jumpVelocity * (0.5f + difference / 2f);
+        }
+    }
+
+    void FallDownward(Vector3 target)
+    {
+        velocity += Physics.gravity * Time.deltaTime;
+        if (transform.position.y <= target.y)
+        {
+            fallingDown = false;
+            jumpingUp = false;
+            movingEdge = false;
+
+            Vector3 p = transform.position;
+
+            p.y = target.y;
+            transform.position = p;
+
+            velocity = new Vector3();
+        }
+    }
+
+    void JumpUpward(Vector3 target)
+    {
+        velocity += Physics.gravity * Time.deltaTime;
+        if (transform.position.y > target.y)
+        {
+            jumpingUp = false;
+            fallingDown = true;
+        }
+
+    }
+
+    void MoveToEdge()
+    {
+        if (Vector3.Distance(transform.position, jumpTarget) >= 0.05f)
+        {
+            SetHorizontalVelocity();
+        }
+        else
+        {
+            movingEdge = false;
+            fallingDown = true;
+
+            velocity /= 5f;
+            velocity.y = 1.5f;
+        }
+    }
+
 }

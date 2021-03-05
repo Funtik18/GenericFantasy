@@ -13,8 +13,10 @@ public class PlayerMov : TacticMove
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.DrawRay(transform.position, transform.forward);
+
         if (!moving)
         {
             FindSelectableTiles();
@@ -22,7 +24,7 @@ public class PlayerMov : TacticMove
         }
         else
         {
-
+            Move();
         }
 
     }
@@ -42,8 +44,7 @@ public class PlayerMov : TacticMove
                     Tile t = hit.collider.GetComponent<Tile>();
                     if (t.selectable)
                     {
-                        t.target = true;
-                        moving = true;
+                        MoveToTile(t);
                     }
                 }
             }
