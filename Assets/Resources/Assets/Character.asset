@@ -15,8 +15,8 @@ MonoBehaviour:
   data:
     statsData:
       level: 1
-      currentPoints: 100
-      experiencePoints: 0
+      experienceCurrentPoints: 0
+      currentWeight: 0
       statsPrimary:
         strength: 10
         dexterity: 10
@@ -32,3 +32,5 @@ MonoBehaviour:
         perception: 10
         fatiguePoints: 10
         fatigueCurrentPoints: 10
+    advantagesData:
+      advantages: []

@@ -14,11 +14,18 @@ public class EntityStatisticsData
 	[HideLabel]
 	public StatsData statsData;
 
+	[TabGroup("Entity Advantages")]
+	[HideLabel]
+	public AdvantagesData advantagesData;
+
 	public EntityStatisticsData(out EntityStatistics statistics, EntityStatisticsData data)
 	{
 		//копии данных
 		statsData = new StatsData();
 		statsData = data.statsData;
+
+		advantagesData = new AdvantagesData();
+		advantagesData = data.advantagesData;
 
 		statistics = new EntityStatistics(data);
 	}

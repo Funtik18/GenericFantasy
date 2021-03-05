@@ -16,12 +16,16 @@ public class EntityStats
 	public CharacteristicValue Level;
 	
 	public CharacteristicValue Points;
-	
+
 	public Bar EXP;
+
+	public Bar WEIGHT;
 	
 	public Bar HP;
 	public Bar MP;
 	public Bar FP;
+
+	public CharacteristicWeight Weight;
 
 	public StatCharacteristic Strength;
 	public StatCharacteristic Dexterity;
@@ -58,19 +62,18 @@ public class EntityStats
 		Perception.ResetStat(data.statsSecondary.perception);
 		Fatigue.ResetStat(data.statsSecondary.fatiguePoints);
 
-		Points.Value = totalPoints;
+		Points.StatValue = totalPoints;
 	}
 	public void RndStats()
 	{
 
 	}
 
-
 	public void IncreaseStrength()
 	{
-		if(Points.Value - 10 >= 0)
+		if(Points.StatValue - 10 >= 0)
 		{
-			Points.Value -= 10;
+			Points.StatValue -= 10;
 
 
 			Strength.StatBaseValue += 1;
@@ -83,7 +86,7 @@ public class EntityStats
 	{
 		if(Strength.StatBaseValue - 1 >= 5)
 		{
-			Points.Value += 10;
+			Points.StatValue += 10;
 
 			Strength.StatBaseValue -= 1;
 
@@ -93,9 +96,9 @@ public class EntityStats
 
 	public void IncreaseDexterity()
 	{
-		if(Points.Value - 20 >= 0)
+		if(Points.StatValue - 20 >= 0)
 		{
-			Points.Value -= 20;
+			Points.StatValue -= 20;
 
 
 			Dexterity.StatBaseValue += 1;
@@ -108,7 +111,7 @@ public class EntityStats
 	{
 		if(Dexterity.StatBaseValue - 1 >= 5)
 		{
-			Points.Value += 20;
+			Points.StatValue += 20;
 
 
 			Dexterity.StatBaseValue -= 1;
@@ -120,9 +123,9 @@ public class EntityStats
 
 	public void IncreaseIntelligence()
 	{
-		if(Points.Value - 20 >= 0)
+		if(Points.StatValue - 20 >= 0)
 		{
-			Points.Value -= 20;
+			Points.StatValue -= 20;
 
 
 			Intelligence.StatBaseValue += 1;
@@ -135,7 +138,7 @@ public class EntityStats
 	{
 		if(Intelligence.StatBaseValue - 1 >= 5)
 		{
-			Points.Value += 20;
+			Points.StatValue += 20;
 
 
 			Intelligence.StatBaseValue -= 1;
@@ -147,9 +150,9 @@ public class EntityStats
 
 	public void IncreaseVitality()
 	{
-		if(Points.Value - 20 >= 0)
+		if(Points.StatValue - 20 >= 0)
 		{
-			Points.Value -= 10;
+			Points.StatValue -= 10;
 
 
 			Vitality.StatBaseValue += 1;
@@ -163,7 +166,7 @@ public class EntityStats
 	{
 		if(Vitality.StatBaseValue - 1 >= 5)
 		{
-			Points.Value += 10;
+			Points.StatValue += 10;
 
 
 			Vitality.StatBaseValue -= 1;
@@ -176,27 +179,34 @@ public class EntityStats
 
 	public void IncreaseHealth()
 	{
-		if(Points.Value - 2 >= 0)
+		if(Points.StatValue - 2 >= 0)
 		{
-			Points.Value -= 2;
+			if((Health.StatValue + 1) <= (Strength.StatValue * 0.3f) + Strength.StatValue)
+			{
+				Points.StatValue -= 2;
 
-			Health.StatBaseValue += 1;
+				Health.StatBaseValue += 1;
+			}
 		}
 	}
 	public void DecreaseHealth()
 	{
 		if(Health.StatBaseValue - 1 >= 0)
 		{
-			Points.Value += 2;
+			if((Strength.StatValue * 0.7f) <= Health.StatValue - 1)
+			{
+				Points.StatValue += 2;
 
-			Health.StatBaseValue -= 1;
+				Health.StatBaseValue -= 1;
+			}
 		}
 	}
+
 	public void IncreaseMove()
 	{
-		if(Points.Value - 5 >= 0)
+		if(Points.StatValue - 5 >= 0)
 		{
-			Points.Value -= 5;
+			Points.StatValue -= 5;
 
 			Move.StatBaseValue += 1;
 		}
@@ -205,111 +215,124 @@ public class EntityStats
 	{
 		if(Move.StatBaseValue - 1 >= 0)
 		{
-			Points.Value += 5;
+			Points.StatValue += 5;
 
 			Move.StatBaseValue -= 1;
 		}
 	}
+
 	public void IncreaseSpeed()
 	{
-		if(Points.Value - 5 >= 0)
+		if(Points.StatValue - 5 >= 0)
 		{
-			Points.Value -= 5;
+			if(Speed.StatBaseValue + 0.25f <= 7)
+			{
+				Points.StatValue -= 5;
 
-			Speed.StatBaseValue += 0.25f;
+				Speed.StatBaseValue += 0.25f;
 
-			Move.StatFormuleValue += 0.25f;
+				Move.StatFormuleValue += 0.25f;
+			}
 		}
 	}
 	public void DecreaseSpeed()
 	{
 		if(Speed.StatBaseValue - 0.25f >= 0)
 		{
-			Points.Value += 5;
+			if(3 <= Speed.StatBaseValue - 0.25f)
+			{
+				Points.StatValue += 5;
 
-			Speed.StatBaseValue -= 0.25f;
+				Speed.StatBaseValue -= 0.25f;
 
-			Move.StatFormuleValue -= 0.25f;
+				Move.StatFormuleValue -= 0.25f;
+			}
 		}
 	}
 
 	public void IncreaseWill()
 	{
-		if(Points.Value - 5 >= 0)
+		if(Points.StatValue - 5 >= 0)
 		{
-			Points.Value -= 5;
+			if(Will.StatBaseValue + 1 <= 20)
+			{
+				Points.StatValue -= 5;
 
 
-			Will.StatBaseValue += 1;
+				Will.StatBaseValue += 1;
+			}
 		}
 	}
 	public void DecreaseWill()
 	{
 		if(Will.StatBaseValue - 1 >= 0)
 		{
-			Points.Value += 5;
+			if(4 <= Will.StatBaseValue - 1)
+			{
+				Points.StatValue += 5;
 
 
-			Will.StatBaseValue -= 1;
+				Will.StatBaseValue -= 1;
+			}
 		}
 	}
+
 	public void IncreasePerception()
 	{
-		if(Points.Value - 5 >= 0)
+		if(Points.StatValue - 5 >= 0)
 		{
-			Points.Value -= 5;
+			if(Perception.StatBaseValue + 1 <= 20)
+			{
+				Points.StatValue -= 5;
 
 
-			Perception.StatBaseValue += 1;
+				Perception.StatBaseValue += 1;
+			}
 		}
 	}
 	public void DecreasePerception()
 	{
 		if(Perception.StatBaseValue - 1 >= 0)
 		{
-			Points.Value += 5;
+			if(4 <= Perception.StatBaseValue - 1)
+			{
+				Points.StatValue += 5;
 
 
-			Perception.StatBaseValue -= 1;
+				Perception.StatBaseValue -= 1;
+			}
 		}
 	}
 
 	public void IncreaseFatigue()
 	{
-		if(Points.Value - 3 >= 0)
+		if(Points.StatValue - 3 >= 0)
 		{
-			Points.Value -= 3;
+			if((Fatigue.StatValue + 1) <= (Vitality.StatValue * 0.3f) + Vitality.StatValue)
+			{
+				Points.StatValue -= 3;
 
 
-			Fatigue.StatBaseValue += 1;
+				Fatigue.StatBaseValue += 1;
+			}
 		}
 	}
 	public void DecreaseFatigue()
 	{
 		if(Fatigue.StatBaseValue - 1 >= 0)
 		{
-			Points.Value += 3;
+			if((Vitality.StatValue * 0.7f) <= (Fatigue.StatValue - 1))
+			{
+				Points.StatValue += 3;
 
 
-			Fatigue.StatBaseValue -= 1;
+				Fatigue.StatBaseValue -= 1;
+			}
 		}
 	}
 
-	//public void LevelUp()
-	//{
-	//	Level.Value++;
-
 	//	EXP.MaxValue = (uint)(500 * ((Level.Value + 1) * (Level.Value + 1)) - (500 * (Level.Value + 1)));
-
-	//	Strength.StatBaseValue += 1;
-	//	Dexterity.StatBaseValue += 1;
-	//	Intelligence.StatBaseValue += 1;
-
-	//	HP.BaseValue = Mathf.Floor(38 + (Level.Value * 12) + ((float)Strength.StatCurrentValue / 2));
-	//	MP.BaseValue = Mathf.Floor(40 + (Level.Value * 6) + ((float)Intelligence.StatCurrentValue / 2));
-	////}
 	#endregion
-
 
 	private void InitializeStats()
 	{
@@ -337,6 +360,8 @@ public class EntityStats
 		Perception = new StatCharacteristic(data.statsSecondary.perception);
 		Fatigue = new StatCharacteristic(data.statsSecondary.fatiguePoints);
 
+		Weight = new CharacteristicWeight(data.currentWeight, Strength);
+
 		HP = new BarPoints(data.statsSecondary.healthCurrentPoints, Health);
 		MP = new BarPoints(data.statsSecondary.willCurrentPoints, Will);
 		FP = new BarPoints(data.statsSecondary.fatigueCurrentPoints, Fatigue);
@@ -348,6 +373,8 @@ public class EntityStats
 		statsAll.Add(Level);
 
 		statsAll.Add(Points);
+
+		statsAll.Add(Weight);
 
 		statsAll.Add(Strength);
 		statsAll.Add(Dexterity);
@@ -374,7 +401,9 @@ public struct StatsData
 {
 	[MinValue(1)] public int level;
 	[Space]
-	[ReadOnly] public int experiencePoints;
+	[ReadOnly] public int experienceCurrentPoints;
+
+	[ReadOnly] public int currentWeight;
 
 	[TabGroup("StatsPrimary")]
 	[HideLabel]
