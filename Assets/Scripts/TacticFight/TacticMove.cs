@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TacticMove : MonoBehaviour
 {
+    public bool turn = false;
+
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
 
@@ -33,6 +35,8 @@ public class TacticMove : MonoBehaviour
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
         halfHeight = GetComponent<Collider>().bounds.extents.y;
+
+        TurnManager.Instance.AddUnit(this);
 
     }
 
@@ -151,6 +155,8 @@ public class TacticMove : MonoBehaviour
         {
             RemoveSelectableTiles();
             moving = false;
+
+            TurnManager.Instance.EndTurn();
         }
     }
 
@@ -272,6 +278,16 @@ public class TacticMove : MonoBehaviour
             velocity /= 5f;
             velocity.y = 1.5f;
         }
+    }
+
+    public void BeginTurn()
+    {
+        turn = true;
+    }
+
+    public void EndTurn()
+    {
+        turn = false;
     }
 
 }

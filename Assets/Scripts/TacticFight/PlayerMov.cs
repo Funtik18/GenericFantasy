@@ -16,7 +16,10 @@ public class PlayerMov : TacticMove
     void FixedUpdate()
     {
         Debug.DrawRay(transform.position, transform.forward);
-
+        if (!turn)
+        {
+            return;
+        }
         if (!moving)
         {
             FindSelectableTiles();
