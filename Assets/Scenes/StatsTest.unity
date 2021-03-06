@@ -1950,8 +1950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highter: {fileID: 840715748}
-  advantagesUIPrefab: {fileID: 998445352158422655, guid: 4d6a65aea1cf6e547bc98e81dc26e9bf,
-    type: 3}
   advantagesRemoveUIPrefab: {fileID: 6325915028126518630, guid: 14582a0a5723b7b4eb539eff4d7e3490,
     type: 3}
   description: {fileID: 852681441}
@@ -2317,7 +2315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0044af987fd73c4d8b8e8d2b835beda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
   data: {fileID: 11400000, guid: ec4cfa0602600554fb88fdc2990e2a72, type: 2}
 --- !u!4 &652408485
 Transform:
