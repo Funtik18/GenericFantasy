@@ -15,44 +15,48 @@ public abstract class Characteristic
 	}
 }
 
-public abstract class CharacteristicModifier : Characteristic, IModifiable
+public abstract class CharacteristicModifier : Characteristic
 {
-	protected List<Modifier> statModifiers;
+	public List<Bind> binds;
 
 	public CharacteristicModifier()
 	{
-		statModifiers = new List<Modifier>();
+		binds = new List<Bind>();
 	}
 
-	public void AddModifier(Modifier addModifier)
+	public void AddBind(Bind bind)
 	{
-		if(!statModifiers.Contains(addModifier))
+		if(!binds.Contains(bind))
 		{
-			statModifiers.Add(addModifier);
-
+			binds.Add(bind);
 			UpdateChraracteristic();
 		}
 	}
-	public void RemoveModifier(Modifier addModifier)
-	{
-		if(statModifiers.Contains(addModifier))
-		{
-			statModifiers.Remove(addModifier);
 
+	public void RemoveRangeBind(List<Bind> binds)
+	{
+		for(int i = 0; i < binds.Count; i++)
+		{
+			RemoveBind(binds[i]);
+		}
+	}
+	public void RemoveBind(Bind bind)
+	{
+		if(binds.Contains(bind))
+		{
+			binds.Remove(bind);
 			UpdateChraracteristic();
 		}
 	}
+
 
 	protected float GetModifierValue()
 	{
 		float modifierValue = 0;
-		for(int i = 0; i < statModifiers.Count; i++)
+		for(int i = 0; i < binds.Count; i++)
 		{
-			if(statModifiers[i].modifierType == ModifierType.Add)
-			{
-				modifierValue += statModifiers[i].value;
-			}
-		}
+			modifierValue += binds[i].Value;
+		}	
 		return modifierValue;
 	}
 }
@@ -130,16 +134,19 @@ public class CharacteristicValue : Characteristic
 	private float statValue;
 	public override float StatValue
 	{
-		set => statValue = value;
+		set
+		{
+			statValue = value;
+
+			UpdateChraracteristic();
+		}
 		get => (isRound? (int) statValue : statValue);
 	}
 
 	public CharacteristicValue(float initValue, bool isRound = true)
 	{
 		this.isRound = isRound;
-		statValue = initValue;
-
-		UpdateChraracteristic();
+		StatValue = initValue;
 	}
 }
 
@@ -170,9 +177,6 @@ public class CharacteristicWeight : CharacteristicValue
 		StatCurrentValue = currentValue;
 	}
 }
-
-
-
 
 public class Bar
 {
@@ -249,54 +253,3 @@ public class BarPoints : Bar
 		CurrentValue = currenValue;
 	}
 }
-
-
-
-
-//public class StatBarEXP : Characteristic
-//{
-//	public UnityAction onLevelUp;
-
-//	public override string CurrentStringValue { get => CurrentValue + "/" + MaxValue; }
-
-//	private uint currenValue;
-//	public uint CurrentValue
-//	{
-//		set
-//		{
-//			if(value >= MaxValue)
-//			{
-//				uint diff = value - MaxValue;
-
-//				onLevelUp?.Invoke();
-
-//				currenValue = diff;
-//			}
-//			else
-//			{
-//				currenValue = value;
-//			}
-
-//			UpdateChraracteristic();
-//		}
-//		get => currenValue;
-//	}
-
-
-//	private uint maxValue;
-//	public uint MaxValue
-//	{
-//		set
-//		{
-//			maxValue = value;
-//			UpdateChraracteristic();
-//		}
-//		get => maxValue;
-//	}
-
-//	public StatBarEXP(uint currentExp, uint maxExp)
-//	{
-//		MaxValue = maxExp;
-//		CurrentValue = currentExp;
-//	}
-//}

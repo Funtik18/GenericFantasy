@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 209f93c903560f243ac24346cd2bf22d, type: 3}
-  m_Name: StrongEN
+  m_Script: {fileID: 11500000, guid: b933f31fb114a83408a0e1824bdcc5c8, type: 3}
+  m_Name: AdvantageStrong
   m_EditorClassIdentifier: 
-  information:
-    name: Strong
-    icon: {fileID: 21300000, guid: 817b05945e2f5b3408d41a23a4166c27, type: 3}
-    description: Be strong
-    annotation: 
+  data: {fileID: 11400000, guid: 18ad9bc34ac2188468c45547a9cba41e, type: 2}
+  properties:
+    advantageType: {r: 0, g: 0, b: 0, a: 0}
+    cost: 6

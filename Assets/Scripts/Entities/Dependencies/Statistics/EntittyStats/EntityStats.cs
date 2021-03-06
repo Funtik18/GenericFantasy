@@ -486,7 +486,6 @@ public struct StatsData
 [EnumPaging]
 public enum STATS
 {
-	POINTS,
 	STRENGTH,
 	DEXTERITY,
 	INTELLIGENCE,

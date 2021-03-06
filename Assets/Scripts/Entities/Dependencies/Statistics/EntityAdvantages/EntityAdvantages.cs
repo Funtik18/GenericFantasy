@@ -1,46 +1,58 @@
 ﻿using System.Collections.Generic;
-
-using UnityEngine;
 using UnityEngine.Events;
+
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 public class EntityAdvantages
 {
-    public List<Advantage> all;
+	private EntityStatistics statistics;
+
+	public List<Advantage> advantagesAll = new List<Advantage>();
 
 	public UnityAction onAdvantagesChanged;
 
-    public EntityAdvantages(AdvantagesData data)
+    public EntityAdvantages(EntityStatistics statistics, AdvantagesData data)
 	{
+		this.statistics = statistics;
+
 		List<Advantage> advantages = data.advantages;
 		
-		all = new List<Advantage>();
-
 		for(int i = 0; i < advantages.Count; i++)
 		{
 			AddAdvantage(advantages[i]);
 		}
     }
-    public void AddAdvantage(Advantage advantage)
+    public bool AddAdvantage(Advantage advantage)
 	{
-		if(!all.Contains(advantage))
+		if(!advantagesAll.Contains(advantage))//not work
 		{
-			all.Add(advantage);
+			advantagesAll.Add(advantage);
+
+			advantage.EnableAdvantage(statistics);
 
 			onAdvantagesChanged?.Invoke();
+			return true;
 		}
+		return false;
 	}
-    public void RemoveAdvantage(Advantage advantage)
+    public bool RemoveAdvantage(Advantage advantage)
 	{
-		if(all.Contains(advantage))
+		if(advantagesAll.Contains(advantage))
 		{
-			all.Remove(advantage);
+			advantagesAll.Remove(advantage);
+
+			advantage.DisableAdvantage(statistics);
 
 			onAdvantagesChanged?.Invoke();
+			return true;
 		}
+		return false;
 	}
 }
 [System.Serializable]
 public struct AdvantagesData
 {
+	[AssetList]
     public List<Advantage> advantages;
 }

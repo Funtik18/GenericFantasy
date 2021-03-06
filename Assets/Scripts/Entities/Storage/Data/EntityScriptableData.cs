@@ -18,7 +18,7 @@ public class EntityStatisticsData
 	[HideLabel]
 	public AdvantagesData advantagesData;
 
-	public EntityStatisticsData(out EntityStatistics statistics, EntityStatisticsData data)
+	public EntityStatisticsData(EntityStatisticsData data)
 	{
 		//копии данных
 		statsData = new StatsData();
@@ -26,10 +26,7 @@ public class EntityStatisticsData
 
 		advantagesData = new AdvantagesData();
 		advantagesData = data.advantagesData;
-
-		statistics = new EntityStatistics(data);
 	}
-
 
 	public EntityStatisticsData(EntityStatistics statistics)
 	{
