@@ -31,12 +31,9 @@ public class Bar
 		get => isRound ? (int)maxValue : maxValue;
 	}
 
-	public Bar()
+	public Bar(bool isRound = true)
 	{
-		//this.isRound = isRound;
-
-		//MaxValue = maxValue;
-		//CurrentValue = currentValue;
+		this.isRound = isRound;
 	}
 
 	protected virtual void UpdateBar()
@@ -52,7 +49,7 @@ public class BarPoints : Bar
 	{
 		set
 		{
-			currenValue = Mathf.Clamp((isRound ? (int)value : value), 0, MaxValue);
+			currenValue = Mathf.Clamp(value, 0, MaxValue);
 
 			UpdateBar();
 		}
@@ -60,19 +57,41 @@ public class BarPoints : Bar
 	}
 	public override float MaxValue
 	{
-		get => isRound ? (int)maxValue : maxValue;
+		get => characteristic.StatValue;
 	}
 
-	public BarPoints(Stat stat)
+	public BarPoints(float currentValue, Stat stat)
 	{
 		characteristic = stat;
 		characteristic.onValueChanged += StatChanged;
+
+		CurrentValue = currentValue;
+
+		UpdateBar();
 	}
-	public BarPoints(float cur, float max) { }
 
 	private void StatChanged()
 	{
 		maxValue = characteristic.StatValue;
 		CurrentValue = currenValue;
+	}
+}
+
+public class BarWeightPoints : Bar
+{
+	CharacteristicWeight weight;
+
+	public BarWeightPoints(float currentWeight, CharacteristicWeight weight) : base(false)
+	{
+		this.weight = weight;
+		this.weight = weight;
+	}
+}
+
+
+public class BarExPoints : Bar
+{
+	public BarExPoints(float cur, float max)
+	{
 	}
 }

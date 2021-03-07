@@ -19,6 +19,8 @@ public class EntityStats
 
 	public Bar EXP;
 
+	public Bar WEIGHT;
+
 	public Bar HP;
 	public Bar MP;
 	public Bar FP;
@@ -193,16 +195,17 @@ public class EntityStats
 		Perception = new StatCharacteristicPerception(this);
 		Fatigue = new StatCharacteristicFatigue(this);
 
-
 		Weight = new CharacteristicWeight(data.currentWeight, Strength);
 
 		Dodge = new StatCharacteristicDodge(this);
 
-		EXP = new BarPoints(5, 10);
+		EXP = new BarExPoints(5, 10);
 
-		HP = new BarPoints(Health);
-		MP = new BarPoints(Will);
-		FP = new BarPoints(Fatigue);
+		WEIGHT = new BarWeightPoints(10, Weight);
+
+		HP = new BarPoints(10, Health);
+		MP = new BarPoints(10, Will);
+		FP = new BarPoints(10, Fatigue);
 	}
 	private void SetupAllStats()
 	{
