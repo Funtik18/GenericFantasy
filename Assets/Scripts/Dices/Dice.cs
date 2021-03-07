@@ -18,10 +18,18 @@ public class Dice
 	{
 		Debug.LogError(Random.Range(0, MaxDiceValue));
 	}
+}
+[System.Serializable]
+public class DiceRoll
+{
+	[Min(1)]
+	public int throws = 1;
+	public DiceType dice = DiceType.Cube;
+	public int modifier = 0;
 
-	public void RollSuccess()
+	public override string ToString()
 	{
-
+		return throws + dice.ToString() + modifier;
 	}
 }
 public enum DiceType : int

@@ -14,9 +14,9 @@ public class EntityStatisticsData
 	[HideLabel]
 	public StatsData statsData;
 
-	[TabGroup("Entity Advantages")]
+	[TabGroup("Entity Attributes")]
 	[HideLabel]
-	public AdvantagesData advantagesData;
+	public AttributesData attributesData;
 
 	public EntityStatisticsData(EntityStatisticsData data)
 	{
@@ -24,8 +24,8 @@ public class EntityStatisticsData
 		statsData = new StatsData();
 		statsData = data.statsData;
 
-		advantagesData = new AdvantagesData();
-		advantagesData = data.advantagesData;
+		attributesData = new AttributesData();
+		attributesData = data.attributesData;
 	}
 
 	public EntityStatisticsData(EntityStatistics statistics)

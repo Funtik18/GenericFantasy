@@ -8,13 +8,13 @@ public class CharacterUI : MonoBehaviour
 	[Space]
 	public StatsUI statsUI;
 	public BarsUI barsUI;
-	public AdvantagesUI advantagesUI;
+	public AttributesUI advantagesUI;
 
 	private void Awake()
 	{
 		statsUI.Initialization(entity.Statistics.stats);
 		barsUI.Initialization(entity.Statistics.stats);
 
-		advantagesUI.Initialization(entity.Statistics.advantages);
+		advantagesUI.Initialization(entity.Statistics.attributes);
 	}
 }

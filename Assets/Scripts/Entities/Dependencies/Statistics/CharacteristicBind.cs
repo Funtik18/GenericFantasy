@@ -6,27 +6,17 @@
 
 public class CharacteristicBind : Bind
 {
-	public IModifier modifier;
+	public Attribute attribute;
 	public CharacteristicModifier characteristic;
 
 	private float value;
 	public override float Value { get => value; }
+	public override string StringValue { get; }
 
-	public CharacteristicBind(IModifier modifier, CharacteristicModifier characteristic, float value)
+	public CharacteristicBind(Attribute attribute, CharacteristicModifier characteristic, float value)
 	{
-		this.modifier = modifier;
+		this.attribute = attribute;
 		this.characteristic = characteristic;
 		this.value = value;
-
-	}
-	public CharacteristicBind AddBin()
-	{
-		characteristic.AddBind(this);
-		return this;
-	}
-
-	public override string StringValue
-	{
-		get => modifier.Value;
 	}
 }

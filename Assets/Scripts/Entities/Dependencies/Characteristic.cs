@@ -4,12 +4,16 @@ using UnityEngine.Events;
 
 public abstract class Characteristic
 {
-	public virtual string CurrentStringValue { get; }
+	/// <summary>
+	/// Округлять ли число до целого значения при выводе.
+	/// </summary>
+	protected bool isRound = false;
 
-	public abstract float StatValue { set; get; }
+	public abstract string CurrentStringValue { get; }
+	public abstract float StatValue { protected set; get; }
 
 	public UnityAction onValueChanged;
-	protected void UpdateChraracteristic()
+	protected virtual void UpdateChraracteristic()
 	{
 		onValueChanged?.Invoke();
 	}
@@ -17,38 +21,56 @@ public abstract class Characteristic
 
 public abstract class CharacteristicModifier : Characteristic
 {
-	public List<Bind> binds;
+	public List<CharacteristicBind> binds;
 
 	public CharacteristicModifier()
 	{
-		binds = new List<Bind>();
+		binds = new List<CharacteristicBind>();
 	}
 
-	public void AddBind(Bind bind)
+	public void AddBind(Attribute attribute, float value)
 	{
-		if(!binds.Contains(bind))
+		if(!ContainAttribute(attribute))
 		{
-			binds.Add(bind);
+			binds.Add(new CharacteristicBind(attribute, this, value));
+
 			UpdateChraracteristic();
 		}
 	}
-
-	public void RemoveRangeBind(List<Bind> binds)
+	public void RemoveBind(Attribute attribute)
 	{
-		for(int i = 0; i < binds.Count; i++)
-		{
-			RemoveBind(binds[i]);
-		}
-	}
-	public void RemoveBind(Bind bind)
-	{
-		if(binds.Contains(bind))
+		CharacteristicBind bind;
+		if(ContainAttribute(attribute, out bind))
 		{
 			binds.Remove(bind);
 			UpdateChraracteristic();
 		}
 	}
 
+	private bool ContainAttribute(Attribute attribute, out CharacteristicBind bind)
+	{
+		bind = null;
+		for(int i = 0; i < binds.Count; i++)
+		{
+			if(binds[i].attribute == attribute)
+			{
+				bind = binds[i];
+				return true;
+			}
+		}
+		return false;
+	}
+	private bool ContainAttribute(Attribute attribute)
+	{
+		for(int i = 0; i < binds.Count; i++)
+		{
+			if(binds[i].attribute == attribute)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	protected float GetModifierValue()
 	{
@@ -58,70 +80,6 @@ public abstract class CharacteristicModifier : Characteristic
 			modifierValue += binds[i].Value;
 		}	
 		return modifierValue;
-	}
-}
-public abstract class StatCharacteristic<T> : CharacteristicModifier where T : struct
-{
-	//StatCurrent = StatBaseValue + StatFormuleValue + StatModifierValue
-
-	protected T statBaseValue;
-	public abstract T StatBaseValue { get; set; }
-	protected T statFormuleValue;
-	public abstract T StatFormuleValue { get; set; }
-	public abstract T StatModifieredValue { get; }
-	
-	public override string CurrentStringValue
-	{
-		get => StatValue.ToString();
-	}
-
-	public StatCharacteristic(T initValue)
-	{
-		StatBaseValue = initValue;
-	}
-}
-public class StatCharacteristic : StatCharacteristic<float>
-{
-	private bool isRound = false;//округлять ли число до целого значения при выводе.
-
-	public override float StatBaseValue
-	{
-		set
-		{
-			statBaseValue = Mathf.Max(0, value);
-
-			UpdateChraracteristic();
-		}
-		get => statBaseValue;
-
-	}
-	public override float StatFormuleValue
-	{
-		set
-		{
-			statFormuleValue = value;
-
-			UpdateChraracteristic();
-		}
-		get => statFormuleValue;
-	}
-	public override float StatModifieredValue { get => GetModifierValue(); }
-	public override float StatValue 
-	{
-		set { }
-		get => isRound == true ? (int)(StatBaseValue + StatFormuleValue + StatModifieredValue) : StatBaseValue + StatFormuleValue + StatModifieredValue; }
-
-	public override string CurrentStringValue
-	{
-		get => StatValue.ToString() + " (" + StatBaseValue + "+" + StatFormuleValue + "+" + StatModifieredValue + ")";
-	}
-
-	public StatCharacteristic(float initValue, bool isRound = true) : base(initValue) { this.isRound = isRound; }
-
-	public void ResetStat(float baseValue)
-	{
-		StatBaseValue = baseValue;
-		StatFormuleValue = 0;
 	}
 }
 
@@ -134,122 +92,130 @@ public class CharacteristicValue : Characteristic
 	private float statValue;
 	public override float StatValue
 	{
-		set
+		protected set
 		{
 			statValue = value;
 
 			UpdateChraracteristic();
 		}
-		get => (isRound? (int) statValue : statValue);
+		get => (isRound ? (int)statValue : statValue);
 	}
 
+
+
+	/// <summary>
+	/// Характеристика, не модифицируемая.
+	/// </summary>
 	public CharacteristicValue(float initValue, bool isRound = true)
 	{
 		this.isRound = isRound;
 		StatValue = initValue;
 	}
 }
+public class StatValuePoints : CharacteristicValue
+{
+	public void SetValue(float value)
+	{
+		StatValue += value;
+	}
+
+	public StatValuePoints(float initValue) : base(initValue, true)
+	{
+	}
+}
 
 public class CharacteristicWeight : CharacteristicValue
 {
-	public Characteristic strength;
+	//http://mentor.gurps.ru/books/basic_set_4ed_rus.pdf#zoom=80&page=15
+	protected Characteristic strength;
 
-	public override string CurrentStringValue { get => StatCurrentValue + "/" + StatValue; }
-	public override float StatValue { get => (int)(strength.StatValue * strength.StatValue); }//max
+	public UnityAction<int> onWeightLevelChanged;
+
+	private bool isPound = true;
+
+	public override string CurrentStringValue { get => StatCurrentValue + "/" + StatValue + (isPound?"lbs":"kg"); }
+
+	public override float StatValue 
+	{ 
+		get
+		{
+			float value = (strength.StatValue * strength.StatValue) / 5;
+			if(value > 10) value = Mathf.Round(value);
+			return value;
+		}
+	}
 
 	private float statCurrentValue;
 	public float StatCurrentValue
 	{
 		set
 		{
-			statCurrentValue = Mathf.Clamp(value, 0, StatValue);
-
+			statCurrentValue = Mathf.Max(value, 0);
+			
 			UpdateChraracteristic();
 		}
-		get => (int)statCurrentValue;
+		get => statCurrentValue;
 	}
 
-	public CharacteristicWeight(float currentValue, Characteristic strength) : base(strength.StatValue * strength.StatValue, true)
+	private int weightLevel = 0;
+	public int WeightLevel
+	{
+		get => weightLevel;
+	}
+
+
+	/// <summary>
+	/// Штраф к Уклонению.
+	/// </summary>
+	public int Penalty
+	{
+		get => -WeightLevel;
+	}
+
+	public CharacteristicWeight(float currentValue, Characteristic strength) : base(0, true)
 	{
 		this.strength = strength;
 		this.strength.onValueChanged += UpdateChraracteristic;
 
+		onValueChanged += UpdateWeightLevel;
+
 		StatCurrentValue = currentValue;
 	}
-}
 
-public class Bar
-{
-	protected bool isRound = false;
-
-	public UnityAction onBarChanged;
-
-	protected float currenValue;
-	public virtual float CurrentValue
+	private void UpdateWeightLevel()
 	{
-		set
+		int newWeightLevel = CalculateWeightLevel();
+
+		if(WeightLevel != newWeightLevel)
 		{
-			currenValue = Mathf.Clamp(value, 0, MaxValue);
-
-			UpdateBar();
+			weightLevel = newWeightLevel;
+			onWeightLevelChanged?.Invoke(WeightLevel);
 		}
-		get => isRound ? (int)currenValue : currenValue;
 	}
 
-	protected float maxValue;
-	public virtual float MaxValue
+	private int CalculateWeightLevel()
 	{
-		set
+		float maxWeight = StatValue;
+		float currentWeight = StatCurrentValue;
+		if(currentWeight < maxWeight)
 		{
-			maxValue = Mathf.Max(0, value);
-
-			UpdateBar();
+			return 0;
 		}
-		get => isRound ? (int)maxValue : maxValue;
-	}
-
-	public Bar(float currentValue, float maxValue, bool isRound = true)
-	{
-		this.isRound = isRound;
-
-		MaxValue = maxValue;
-		CurrentValue = currentValue;
-	}
-
-	protected virtual void UpdateBar()
-	{
-		onBarChanged?.Invoke();
-	}
-}
-public class BarPoints : Bar
-{
-	private Characteristic characteristic;
-
-	public override float CurrentValue
-	{
-		set
+		else if(currentWeight < 2 * maxWeight)
 		{
-			currenValue = Mathf.Clamp((isRound ? (int)value : value), 0, MaxValue);
-
-			UpdateBar();
+			return 1;
 		}
-		get => base.CurrentValue;
-	}
-	public override float MaxValue
-	{
-		get => isRound ? (int)maxValue : maxValue;
-	}
-
-	public BarPoints(float currentValue, Characteristic characteristic, bool isRound = true) 
-		: base(currentValue, characteristic.StatValue, isRound)
-	{
-		this.characteristic = characteristic;
-		this.characteristic.onValueChanged += StatChanged;
-	}
-
-	private void StatChanged()
-	{
-		maxValue = characteristic.StatValue;
-		CurrentValue = currenValue;
+		else if(currentWeight < 3 * maxWeight)
+		{
+			return 2;
+		}
+		else if(currentWeight < 6 * maxWeight)
+		{
+			return 3;
+		}
+		else
+		{
+			return 4;
+		}
 	}
 }

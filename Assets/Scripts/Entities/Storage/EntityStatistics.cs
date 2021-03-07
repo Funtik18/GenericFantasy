@@ -6,7 +6,7 @@ public class EntityStatistics
 
 	public readonly EntityStats stats;
 
-	public readonly EntityAdvantages advantages;
+	public readonly EntityAttributes attributes;
 
 	public EntityStatistics(EntityStatisticsData data)
 	{
@@ -14,6 +14,6 @@ public class EntityStatistics
 
 		stats = new EntityStats(data.statsData);
 
-		advantages = new EntityAdvantages(this, data.advantagesData);
+		attributes = new EntityAttributes(this, data.attributesData);
 	}
 }
