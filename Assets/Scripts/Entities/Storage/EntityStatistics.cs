@@ -16,4 +16,9 @@ public class EntityStatistics
 
 		attributes = new EntityAttributes(this, data.attributesData);
 	}
+
+	public EntityStatisticsData GetData()
+	{
+		return new EntityStatisticsData(this);
+	}
 }

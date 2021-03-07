@@ -2,6 +2,7 @@
 using UnityEngine;
 
 using Sirenix.OdinInspector;
+using System;
 
 public class EntityStats
 {
@@ -10,6 +11,7 @@ public class EntityStats
 	private readonly int totalPoints = 100;
 
 	public List<Characteristic> statsAll;
+	public List<Characteristic> feelingsAll;
 	public List<Bar> barsAll;
 	public Dictionary<STATS, IModifiable> statsModifiable;
 
@@ -27,25 +29,34 @@ public class EntityStats
 
 	public CharacteristicWeight Weight;
 
+	//primary stats
 	public Stat Strength;
 	public Stat Dexterity;
 	public Stat Intelligence;
 	public Stat Vitality;
 
+	//secondary stats
 	public Stat Health;
+
+	
+
 	public Stat Move;
 	public Stat Speed;
 	public Stat Will;
 	public Stat Perception;
 	public Stat Fatigue;
 
-	public StatCharacteristicDodge Dodge;
+	//feels
+	public Stat Fear;
+
+	public Stat Touch;
+	public Stat Taste;
+	public Stat Smell;
+	public Stat Hear;
+	public Stat Vision;
 
 
-	public EntityDamages damages;
-
-
-	//public StatCharacteristic StepsCellular;
+	public Stat Dodge;
 
 	public EntityStats(StatsData statsData)
 	{
@@ -178,6 +189,7 @@ public class EntityStats
 	}
 	private void CreateFields()
 	{
+
 		Level = new CharacteristicValue(data.level);
 
 
@@ -195,9 +207,17 @@ public class EntityStats
 		Perception = new StatCharacteristicPerception(this);
 		Fatigue = new StatCharacteristicFatigue(this);
 
-		Weight = new CharacteristicWeight(data.currentWeight, Strength);
+		Weight = new CharacteristicWeight(data.currents.currentWeight, Strength);
+
+		Fear = new StatCharacteristicFear(this);
+		Touch = new StatCharacteristicTouch(this);
+		Taste = new StatCharacteristicTaste(this);
+		Smell = new StatCharacteristicSmell(this);
+		Hear = new StatCharacteristicHear(this);
+		Vision = new StatCharacteristicVision(this);
 
 		Dodge = new StatCharacteristicDodge(this);
+
 
 		EXP = new BarExPoints(5, 10);
 
@@ -210,7 +230,6 @@ public class EntityStats
 	private void SetupAllStats()
 	{
 		statsAll = new List<Characteristic>();
-
 		statsAll.Add(Level);
 
 		statsAll.Add(Points);
@@ -231,11 +250,42 @@ public class EntityStats
 
 		statsAll.Add(Dodge);
 
+		feelingsAll = new List<Characteristic>();
+
+
 		barsAll = new List<Bar>();
 		barsAll.Add(EXP);
 		barsAll.Add(HP);
 		barsAll.Add(MP);
 		barsAll.Add(FP);
+	}
+
+
+	public StatsData GetCurrentData()
+	{
+		StatsData stats = new StatsData()
+		{
+			level = (int)Level.StatValue,
+
+			statsPrimary = new StatsData.StatsPrimary()
+			{
+				strength = (int)Strength.StatBasePointValue,
+				dexterity = (int)Dexterity.StatBasePointValue,
+				intelligence = (int)Intelligence.StatBasePointValue,
+				vitality = (int)Vitality.StatBasePointValue,
+			},
+
+			currents = new StatsData.CurrentValues()
+			{
+				currentExperience = 5,
+				currentHealth = 5,
+				currentMana = 5,
+				currentFatigue = 5,
+				currentWeight = 1.8f,
+			}
+			
+		};
+		return stats;
 	}
 }
 
@@ -369,13 +419,11 @@ public struct StatsData
 {
 	[MinValue(1)] public int level;
 	[Space]
-	[ReadOnly] public int experienceCurrentPoints;
-
-	[ReadOnly] public int currentWeight;
-
 	[TabGroup("StatsPrimary")]
 	[HideLabel]
 	public StatsPrimary statsPrimary;
+	[Space]
+	public CurrentValues currents;
 
 	[Button]
 	private void Reset()
@@ -386,7 +434,6 @@ public struct StatsData
 	[System.Serializable]
 	public struct StatsPrimary
 	{
-		[Space]
 		[MinValue(0)] public int strength;
 		[MinValue(0)] public int dexterity;
 		[MinValue(0)] public int intelligence;
@@ -400,54 +447,17 @@ public struct StatsData
 			vitality = 10;
 		}
 	}
+
 	[System.Serializable]
-	public struct StatsSecondary
+	public struct CurrentValues 
 	{
-		[MinValue(0)] public int healthPoints;
-		[ReadOnly] public int healthCurrentPoints;
-
-		[MinValue(0)] public int move;
-		[ReadOnly] [MinValue(0)] public float speed;
-
-		[MinValue(0)] public int will;
-		[ReadOnly] public int willCurrentPoints;
-
-		[MinValue(0)] public int perception;
-
-		[MinValue(0)] public int fatiguePoints;
-		[ReadOnly] public int fatigueCurrentPoints;
-
-		public void Reset()
-		{
-			healthPoints = 10;
-			healthCurrentPoints = healthPoints;
-
-			move = 5;
-			speed = 5f;
-
-			will = 10;
-			willCurrentPoints = will;
-
-			perception = 10;
-
-			fatiguePoints = 10;
-			fatigueCurrentPoints = fatiguePoints;
-		}
-
-		[Button]
-		private void SpeedUp()
-		{
-			speed += 0.25f;
-		}
-		[Button]
-		private void SpeedDown()
-		{
-			speed -= 0.25f;
-		}
-	}
+		[ReadOnly] public int currentExperience;
+		[ReadOnly] public int currentHealth;
+		[ReadOnly] public int currentMana;
+		[ReadOnly] public int currentFatigue;
+		[ReadOnly] public float currentWeight;
+	} 
 }
-
-
 
 [EnumPaging]
 public enum STATS

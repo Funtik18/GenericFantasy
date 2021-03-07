@@ -14,7 +14,7 @@ public class Entity<DATA> : Entity
 	[Required]
 	[SerializeField] protected DATA data;
 
-	private EntityStatistics statistics;
+	protected EntityStatistics statistics;
 	public override EntityStatistics Statistics
 	{
 		get

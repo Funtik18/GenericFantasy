@@ -60,6 +60,7 @@ public abstract class Stat : CharacteristicModifier
 	}
 }
 
+#region StatsImplementation
 public class StatCharacteristicStrength : Stat
 {
 	public StatCharacteristicStrength(EntityStats stats, float initValue) : base(stats, initValue) { }
@@ -363,6 +364,69 @@ public class StatCharacteristicFatigue : Stat
 	}
 }
 
+
+public class StatCharacteristicFear: Stat
+{
+	public StatCharacteristicFear(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicTouch : Stat
+{
+	public StatCharacteristicTouch(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicTaste : Stat
+{
+	public StatCharacteristicTaste(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicSmell : Stat
+{
+	public StatCharacteristicSmell(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicHear : Stat
+{
+	public StatCharacteristicHear(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicVision : Stat
+{
+	public StatCharacteristicVision(EntityStats stats) : base(stats)
+	{
+	}
+}
+
+
+public class StatCharacteristicDamageThrust : Stat
+{
+	public StatCharacteristicDamageThrust(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicDamageSwing : Stat
+{
+	public StatCharacteristicDamageSwing(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicDamageFist : Stat
+{
+	public StatCharacteristicDamageFist(EntityStats stats) : base(stats)
+	{
+	}
+}
+public class StatCharacteristicDamageKick : Stat
+{
+	public StatCharacteristicDamageKick(EntityStats stats) : base(stats)
+	{
+	}
+}
 public class StatCharacteristicDodge : Stat
 {
 	private Characteristic speed;
@@ -382,3 +446,4 @@ public class StatCharacteristicDodge : Stat
 		weight.onValueChanged += UpdateChraracteristic;
 	}
 }
+#endregion

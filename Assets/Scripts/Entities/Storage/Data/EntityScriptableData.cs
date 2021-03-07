@@ -30,7 +30,7 @@ public class EntityStatisticsData
 
 	public EntityStatisticsData(EntityStatistics statistics)
 	{
-		//statsData = statistics.stats.GetCurrentData();
-		//abilitiesData = statistics.abilities.GetCurrentData();
+		statsData = statistics.stats.GetCurrentData();
+		attributesData = statistics.attributes.GetCurrentData();
 	}
 }

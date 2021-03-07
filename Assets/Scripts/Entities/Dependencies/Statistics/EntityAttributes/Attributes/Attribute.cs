@@ -30,6 +30,12 @@ public enum AttributeType
     All = Сommon | Mental | Physical | Social | SuperDuper | Exotic,
 }
 
+public enum AttributeLaunchType
+{
+    Automatically,//Означает, что после получения атрибутта его эффекты срабатывают мгновенно.
+    Mechanically,//Означает, что для запуска аттрибута сначала требуется выкинуть (3d6+-mod) с определёной проверкой.
+}
+
 //[System.Serializable]
 //public class Improvement
 //{

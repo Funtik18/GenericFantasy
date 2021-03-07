@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class EntityAttributes
 	{
 		this.statistics = statistics;
 
-		List<Attribute> attributes = data.attributes;
+		List<Attribute> attributes = data.attributes.ToList();
 		
 		for(int i = 0; i < attributes.Count; i++)
 		{
@@ -38,7 +39,10 @@ public class EntityAttributes
 		}
 		return false;
 	}
-    public bool RemoveAttribute(Attribute attribute)
+
+
+
+	public bool RemoveAttribute(Attribute attribute)
 	{
 		if(attributesAll.Contains(attribute))
 		{
@@ -70,10 +74,20 @@ public class EntityAttributes
 		if(attribute is DisAdvantage disAdvantage)
 			disAdvantagesAll.Remove(disAdvantage);
 	}
+
+
+	public AttributesData GetCurrentData()
+	{
+		AttributesData attributes = new AttributesData()
+		{
+			attributes = attributesAll.ToArray(),
+		};
+		return attributes;
+	}
 }
 [System.Serializable]
 public struct AttributesData
 {
 	[AssetList]
-    public List<Attribute> attributes;
+    public Attribute[] attributes;
 }
