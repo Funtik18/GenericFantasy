@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject[] tiles;
+
     private static TurnManager instance;
     public static TurnManager Instance
     {
@@ -23,9 +26,9 @@ public class TurnManager : MonoBehaviour
     static Queue<TacticMove> turnTeam = new Queue<TacticMove>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        tiles = GameObject.FindGameObjectsWithTag("Tile");
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void EndTurn()
+    public void EndTurn()//////Если скипаит ходы бот тупит
     {
         TacticMove unit = turnTeam.Dequeue();
         unit.EndTurn();
@@ -69,6 +72,20 @@ public class TurnManager : MonoBehaviour
             string team = turnKey.Dequeue();
             turnKey.Enqueue(team);
             InitTeamTurnQueue();
+        }
+
+        ClearCal();
+
+    }
+
+    public void ClearCal()///////////ПОЛНЫЙ
+    {
+        foreach (var item in units)////////КАЛ
+        {
+            foreach (var item2 in item.Value)
+            {
+                item2.canBeAttacked.SetActive(false);
+            }
         }
     }
 

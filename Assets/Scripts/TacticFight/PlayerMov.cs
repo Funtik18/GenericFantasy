@@ -27,9 +27,10 @@ public class PlayerMov : TacticMove
         }
         else
         {
-            Move();
+            TurnManager.Instance.ClearCal();
+            Move();        
         }
-
+        myAttack.CheckAttack();
     }
 
     void CheckClick()
@@ -45,6 +46,7 @@ public class PlayerMov : TacticMove
                 if (hit.collider.tag == "Tile")
                 {
                     Tile t = hit.collider.GetComponent<Tile>();
+                   
                     if (t.selectable)
                     {
                         MoveToTile(t);

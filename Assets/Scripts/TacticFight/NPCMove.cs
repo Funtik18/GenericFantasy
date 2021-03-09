@@ -25,17 +25,23 @@ public class NPCMove : TacticMove
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();
+
             actualTargetTile.target = true;
         }
         else
         {
             Move();
         }
+        if (myAttack.CheckAttack())
+        {
+            myAttack.Attack();
+        }
     }
 
     void CalculatePath()
     {
         Tile targetTile = GetTargetTile(target);
+
         FindPath(targetTile);
     }
 

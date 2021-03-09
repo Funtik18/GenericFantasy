@@ -12,12 +12,15 @@ public class TacticMove : MonoBehaviour
     Stack<Tile> path = new Stack<Tile>();
     Tile currentTile;
 
+    public GameObject canBeAttacked;
+
     [Header("Character Prefs")]
     public bool moving = false;
     public int move = 5;
     public float jumpHeight = 2;
     public float moveSpeed = 2;
     public float jumpVelocity = 4.5f;
+    public TacticAttack myAttack;
 
     [Header("JumpState")]
     bool fallingDown = false;
@@ -34,18 +37,24 @@ public class TacticMove : MonoBehaviour
 
     protected void Init()
     {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
+        canBeAttacked.SetActive(false);
+
+        tiles = TurnManager.Instance.tiles;
 
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
         TurnManager.Instance.AddUnit(this);
 
+        GetCurrentTile();
     }
 
     public void GetCurrentTile()
     {
         currentTile = GetTargetTile(gameObject);
         currentTile.current = true;
+
+        currentTile.haveCharOnIt = true;
+        currentTile.character = this;
     }
 
     public Tile GetTargetTile(GameObject target)
@@ -53,7 +62,7 @@ public class TacticMove : MonoBehaviour
         RaycastHit hit;
         Tile tile = null;
 
-        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 1) )
+        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 1))
         {
             tile = hit.collider.GetComponent<Tile>();
         }
@@ -81,25 +90,33 @@ public class TacticMove : MonoBehaviour
 
         process.Enqueue(currentTile);
         currentTile.visited = true;
-        //currentTile.parent = ??  leave as null 
 
         while (process.Count > 0)
         {
+
             Tile t = process.Dequeue();
-
-            selectableTiles.Add(t);
-            t.selectable = true;
-
+            if (!t.haveCharOnIt || t.current)
+            {
+                selectableTiles.Add(t);
+                t.selectable = true;
+            }
             if (t.distance < move)
             {
                 foreach (Tile tile in t.adjacencyList)
                 {
                     if (!tile.visited)
                     {
-                        tile.parent = t;
-                        tile.visited = true;
-                        tile.distance = 1 + t.distance;
-                        process.Enqueue(tile);
+                        if (!t.haveCharOnIt || t.current)
+                        {
+                            tile.parent = t;
+                            tile.visited = true;
+                            tile.distance = 1 + t.distance;
+                            process.Enqueue(tile);
+                        }
+                        else
+                        {
+                            tile.distance = 1 + t.distance;
+                        }
                     }
                 }
             }
@@ -119,10 +136,13 @@ public class TacticMove : MonoBehaviour
             next = next.parent;
         }
 
+
     }
 
     public void Move()
     {
+        currentTile.haveCharOnIt = false;
+        currentTile.character = null;
         if (path.Count > 0)
         {
             Tile t = path.Peek();
@@ -157,7 +177,7 @@ public class TacticMove : MonoBehaviour
         {
             RemoveSelectableTiles();
             moving = false;
-
+            GetCurrentTile();
             TurnManager.Instance.EndTurn();
         }
     }
@@ -384,6 +404,7 @@ public class TacticMove : MonoBehaviour
     public void BeginTurn()
     {
         turn = true;
+        
     }
 
     public void EndTurn()
