@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class CharacterAvatar : MonoBehaviour
 {
+    public Material characterMaterial;
+
     [Title("Head")]
     public Transform maleHeads;
     public Transform femaleHeads;
@@ -17,6 +19,8 @@ public class CharacterAvatar : MonoBehaviour
     public Transform femaleEyebrows;
     [Space]
     public Transform maleFacialHairs;
+    [Space]
+    public Transform ears;
 
     [Space]
     [Title("Torso")]
@@ -51,6 +55,11 @@ public class CharacterAvatar : MonoBehaviour
     public Transform femaleLegRight;
 
     [Title("Extra")]
+    public Transform sholderAttachmentLeft;
+    public Transform sholderAttachmentRight;
     public Transform elbowAttachmentLeft;
     public Transform elbowAttachmentRight;
+
+    public Transform kneeAttachementLeft;
+    public Transform kneeAttachementRight;
 }

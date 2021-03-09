@@ -1,18 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 using Sirenix.OdinInspector;
 
-using UnityEngine;
-
 public class CharacterCustomization : MonoBehaviour
 {
-    [OnValueChanged("ReBuild")]
-    [SerializeField] private CharacterGender gender = CharacterGender.Female;
 
     [SerializeField] private CharacterAvatar avatar;
 
-    [HideLabel]
+
+    [OnValueChanged("ReBuild")]
+    [SerializeField] private CharacterGender gender = CharacterGender.Female;
+    [OnValueChanged("ReBuild")]
+    [SerializeField] private CharacterRace race = CharacterRace.Human;
+
+	#region Colors
+	[TabGroup("Colors")]
+    [ColorPalette("Country")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color hairColor;
+
+    [TabGroup("Colors")]
+    [ColorPalette("Eyes")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color eyesColor;
+
+    [TabGroup("Colors")]
+    [ColorPalette("Skins")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color skinColor;
+
+    [TabGroup("Colors")]
+    [ColorPalette("Stubbles")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color stubbleColor;
+
+    [TabGroup("Colors")]
+    [ColorPalette("Scars")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color scarColor;
+
+    [TabGroup("Colors")]
+    [ColorPalette("Underwater")]
+    [OnValueChanged("UpdateColor")]
+    [SerializeField] private Color artColor;
+	#endregion
+
+	[HideLabel]
     [TabGroup("Head")]
     [Title("Base")]
     [SerializeField] private CharacterPart heads;
@@ -26,6 +61,12 @@ public class CharacterCustomization : MonoBehaviour
 	[TabGroup("Head")]
     [Title("Eyebrows")]
     [SerializeField] private CharacterPart eyebrows;
+
+    [HideLabel]
+    [TabGroup("Head")]
+    [Title("Ears")]
+    [ShowIf("race", CharacterRace.Elf)]
+    [SerializeField] private CharacterPart ears;
 
 
     [ShowIf("CheckFacialHair")]
@@ -56,13 +97,9 @@ public class CharacterCustomization : MonoBehaviour
     [TabGroup("Hips")]
     [SerializeField] private CharacterLegs legs;
 
-    private bool CheckFacialHair()
-    {
-        return (gender == CharacterGender.Male || gender == CharacterGender.TransNigga);
-    }
 
     [Button]
-    private void ReBuild()
+    public void ReBuild()
 	{
         heads.ClearObjects();
         hairs.ClearObjects();
@@ -78,45 +115,64 @@ public class CharacterCustomization : MonoBehaviour
         UpdateLists();
     }
 
-
-
-    [Button]
-    [TabGroup("Torso")]
-    private void LeftArms()
-    {
-        arms.armLeft.Left();
-        arms.armRight.Left();
-    }
-    [Button]
-    [TabGroup("Torso")]
-    private void RightArms()
-    {
-        arms.armLeft.Right();
-        arms.armRight.Right();
-    }
-
-
-    [Button]
-    [TabGroup("Hips")]
-    private void LeftLegs()
-	{
-        legs.legLeft.Left();
-        legs.legRight.Left();
-    }
-    [Button]
-    [TabGroup("Hips")]
-    private void RightLegs()
-	{
-        legs.legLeft.Right();
-        legs.legRight.Right();
-    }
-
     private void UpdateLists()
 	{
         hairs.UpdateList(new Transform[1] { avatar.hairs });
 
         arms.armLeft.hand.UpdateList(new Transform[1] { avatar.handLeft });
         arms.armRight.hand.UpdateList(new Transform[1] { avatar.handRight });
+
+		#region extra
+
+		if(arms.armLeft.useExtra)
+		{
+            arms.armLeft.sholderAttachment.UpdateList(new Transform[1] { avatar.sholderAttachmentLeft });
+            arms.armLeft.elbowAttachment.UpdateList(new Transform[1] { avatar.elbowAttachmentLeft });
+		}
+		else
+		{
+            arms.armLeft.sholderAttachment.ClearObjects();
+            arms.armLeft.elbowAttachment.ClearObjects();
+        }
+
+		if(arms.armRight.useExtra)
+		{
+            arms.armRight.sholderAttachment.UpdateList(new Transform[1] { avatar.sholderAttachmentRight });
+            arms.armRight.elbowAttachment.UpdateList(new Transform[1] { avatar.elbowAttachmentRight });
+		}
+		else
+		{
+            arms.armRight.sholderAttachment.ClearObjects();
+            arms.armRight.elbowAttachment.ClearObjects();
+        }
+
+
+		if(legs.legLeft.useExtra)
+		{
+            legs.legLeft.kneeAttachement.UpdateList(new Transform[1] { avatar.kneeAttachementLeft });
+        }
+        else
+		{
+            legs.legLeft.kneeAttachement.ClearObjects();
+        }
+        if(legs.legRight.useExtra)
+        {
+            legs.legRight.kneeAttachement.UpdateList(new Transform[1] { avatar.kneeAttachementRight });
+        }
+        else
+        {
+            legs.legRight.kneeAttachement.ClearObjects();
+        }
+		#endregion
+
+		if(race == CharacterRace.Elf)
+        {
+            ears.UpdateList(new Transform[1] { avatar.ears });
+		}
+		else
+		{
+            ears.ClearObjects();
+		}
 
         if(gender == CharacterGender.Male)
 		{
@@ -138,8 +194,8 @@ public class CharacterCustomization : MonoBehaviour
 
             hips.UpdateList(new Transform[1] { avatar.maleHips });
 
-            legs.legLeft.UpdateList(new Transform[1] { avatar.maleLegLeft });
-            legs.legRight.UpdateList(new Transform[1] { avatar.maleLegRight });
+            legs.legLeft.leg.UpdateList(new Transform[1] { avatar.maleLegLeft });
+            legs.legRight.leg.UpdateList(new Transform[1] { avatar.maleLegRight });
         }
         else if(gender == CharacterGender.Female)
 		{
@@ -159,8 +215,8 @@ public class CharacterCustomization : MonoBehaviour
 
             hips.UpdateList(new Transform[1] { avatar.femaleHips });
 
-            legs.legLeft.UpdateList(new Transform[1] { avatar.femaleLegLeft });
-            legs.legRight.UpdateList(new Transform[1] { avatar.femaleLegRight });
+            legs.legLeft.leg.UpdateList(new Transform[1] { avatar.femaleLegLeft });
+            legs.legRight.leg.UpdateList(new Transform[1] { avatar.femaleLegRight });
         }
         else
 		{
@@ -182,11 +238,56 @@ public class CharacterCustomization : MonoBehaviour
 
 			hips.UpdateList(new Transform[2] { avatar.maleHips, avatar.femaleHips });
 
-            legs.legLeft.UpdateList(new Transform[2] { avatar.maleLegLeft, avatar.femaleLegLeft });
-            legs.legRight.UpdateList(new Transform[2] { avatar.maleLegRight, avatar.femaleLegRight });
+            legs.legLeft.leg.UpdateList(new Transform[2] { avatar.maleLegLeft, avatar.femaleLegLeft });
+            legs.legRight.leg.UpdateList(new Transform[2] { avatar.maleLegRight, avatar.femaleLegRight });
         }
     }
 
+    private void UpdateColor()
+	{
+        Material mat = avatar.characterMaterial;
+        mat.SetColor("_Color_Hair", hairColor);
+        mat.SetColor("_Color_Eyes", eyesColor);
+        mat.SetColor("_Color_Skin", skinColor);
+        mat.SetColor("_Color_Stubble", stubbleColor);
+        mat.SetColor("_Color_Scar", scarColor);
+        mat.SetColor("_Color_BodyArt", artColor);
+    }
+
+    private bool CheckFacialHair()
+    {
+        return (gender == CharacterGender.Male || gender == CharacterGender.TransNigga) && race != CharacterRace.Elf;
+    }
+
+    [Button]
+    [TabGroup("Torso")]
+    private void LeftArms()
+    {
+        arms.armLeft.Left();
+        arms.armRight.Left();
+    }
+    [Button]
+    [TabGroup("Torso")]
+    private void RightArms()
+    {
+        arms.armLeft.Right();
+        arms.armRight.Right();
+    }
+
+    [Button]
+    [TabGroup("Hips")]
+    private void LeftLegs()
+    {
+        legs.legLeft.leg.Left();
+        legs.legRight.leg.Left();
+    }
+    [Button]
+    [TabGroup("Hips")]
+    private void RightLegs()
+    {
+        legs.legLeft.leg.Right();
+        legs.legRight.leg.Right();
+    }
 
     [System.Serializable]
     public class CharacterArms
@@ -216,12 +317,29 @@ public class CharacterCustomization : MonoBehaviour
         [Space]
         public CharacterPart hand;
 
+        [OnValueChanged("UPD")]
+        public bool useExtra = false;
+
+        [Title("Extra")]
+        [ShowIf("useExtra")]
+        public CharacterPart sholderAttachment;
+        [ShowIf("useExtra")]
+        public CharacterPart elbowAttachment;
+
+
+        private void UPD()
+		{
+            FindObjectOfType<CharacterCustomization>().ReBuild();
+        }
 
         public void ClearObjects()
 		{
             armUpper.ClearObjects();
             armLower.ClearObjects();
             hand.ClearObjects();
+
+            sholderAttachment.ClearObjects();
+            elbowAttachment.ClearObjects();
         }
 
         [ButtonGroup]
@@ -243,19 +361,42 @@ public class CharacterCustomization : MonoBehaviour
     [System.Serializable]
     public class CharacterLegs
 	{
+
         [TitleGroup("Legs")]
         [HorizontalGroup("Legs/Split", Width = 0.5f)]
         [TabGroup("Legs/Split/Arms", "LegLeft")]
         [HideLabel]
-        public CharacterPart legLeft;
+        public CharacterLeg legLeft;
         [TabGroup("Legs/Split/Arm", "LegRight")]
         [HideLabel]
-        public CharacterPart legRight;
+        public CharacterLeg legRight;
 
         public void ClearObjects()
 		{
             legLeft.ClearObjects();
             legRight.ClearObjects();
+        }
+    }
+    [System.Serializable]
+    public class CharacterLeg
+	{
+        [OnValueChanged("UPD")]
+        public bool useExtra = false;
+
+        public CharacterPart leg;
+
+        [ShowIf("useExtra")]
+        public CharacterPart kneeAttachement;
+
+        private void UPD()
+		{
+            FindObjectOfType<CharacterCustomization>().ReBuild();
+		}
+
+        public void ClearObjects()
+		{
+            leg.ClearObjects();
+            kneeAttachement.ClearObjects();
         }
     }
 
@@ -345,3 +486,4 @@ public class CharacterCustomization : MonoBehaviour
     }
 }
 public enum CharacterGender { Male, Female, TransNigga }
+public enum CharacterRace { Human, Elf }
