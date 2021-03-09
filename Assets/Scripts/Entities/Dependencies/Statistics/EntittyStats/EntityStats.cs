@@ -291,70 +291,15 @@ public class EntityStats
 
 public class EntityDamages
 {
-	public DiceRoll damageThrust;
-	public DiceRoll damageSwing;
+	//p//ublic DiceRoll damageThrust;
+	//public DiceRoll damageSwing;
 
 	public EntityDamages()
 	{
 	
 	}
 
-	private string DamageThrust(float ST)
-	{
-		if(ST <= 1) return "1d-6";
-		if(ST <= 2) return "1d-6";
-		if(ST <= 3) return "1d-5";
-		if(ST <= 4) return "1d-5";
-		if(ST <= 5) return "1d-4";
-		if(ST <= 6) return "1d-4";
-		if(ST <= 7) return "1d-3";
-		if(ST <= 8) return "1d-3";
-		if(ST <= 9) return "1d-2";
-		if(ST <= 10) return "1d-2";
-		if(ST <= 11) return "1d-1";
-		if(ST <= 12) return "1d-1";
-		if(ST <= 13) return "1d";
-		if(ST <= 14) return "1d";
-		if(ST <= 15) return "1d+1";
-		if(ST <= 16) return "1d+1";
-		if(ST <= 17) return "1d+2";
-		if(ST <= 18) return "1d+2";
-		if(ST <= 19) return "2d-1";
-		if(ST <= 20) return "2d-1";
-		if(ST <= 21) return "2d";
-		if(ST <= 22) return "2d";
-		if(ST <= 23) return "2d+1";
-		if(ST <= 24) return "2d+1";
-		if(ST <= 25) return "2d+2";
-		if(ST <= 26) return "2d+2";
-		if(ST <= 27) return "3d-1";
-		if(ST <= 28) return "3d-1";
-		if(ST <= 29) return "3d";
-		if(ST <= 30) return "3d";
-		if(ST <= 31) return "3d+1";
-		if(ST <= 32) return "3d+1";
-		if(ST <= 33) return "3d+2";
-		if(ST <= 34) return "3d+2";
-		if(ST <= 35) return "4d-1";
-		if(ST <= 36) return "4d-1";
-		if(ST <= 37) return "4d";
-		if(ST <= 38) return "4d";
-		if(ST <= 39) return "4d+1";
-		if(ST <= 40) return "4d+1";
-		if(ST <= 45) return "5d";
-		if(ST <= 50) return "5d+2";
-		if(ST <= 55) return "6d";
-		if(ST <= 60) return "7d-1";
-		if(ST <= 65) return "7d+1";
-		if(ST <= 70) return "8d";
-		if(ST <= 75) return "8d+2";
-		if(ST <= 80) return "9d";
-		if(ST <= 85) return "9d+2";
-		if(ST <= 90) return "10d";
-		if(ST <= 95) return "10d+2";
-		if(ST <= 100) return "11d";
-		return ((Mathf.Floor((ST - 100) / 10) + 11) + "d");
-	}
+
 
 	private string DamageSwing(float ST)
 	{

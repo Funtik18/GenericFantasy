@@ -43,7 +43,7 @@ public class Bar
 }
 public class BarPoints : Bar
 {
-	private Characteristic characteristic;
+	private CharacteristicValue characteristic;
 
 	public override float CurrentValue
 	{
