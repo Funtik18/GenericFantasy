@@ -15,7 +15,16 @@ public class StatsAdapter : MonoBehaviour
 	{
 		entity.Statistics.stats.RndStats();
 	}
+	
+	public void AddWeight()
+	{
+		entity.Statistics.stats.Weight.StatCurrentValue += Random.Range(1f, 5f);
+	}
 
+	public void RemoveWeight()
+	{
+		entity.Statistics.stats.Weight.StatCurrentValue -= Random.Range(1f, 5f);
+	}
 
 	public void IncreaseStrength()
 	{

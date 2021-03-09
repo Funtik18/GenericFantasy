@@ -2,16 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : Entity<CharacterScriptableData>
+using Sirenix.OdinInspector;
+
+public class Character : Entity<CharacterScriptableData> 
 {
-	public StatsUI statsUI;
-	public BarsUI barsUI;
-
-	protected override void Awake()
+	public override EntityStatistics Statistics
 	{
-		base.Awake();
+		get
+		{
+			if(statistics == null)
+			{
+				//if(SaveLoaderManager.IsFirstTime)
+				{
+					statistics = new EntityStatistics(new EntityStatisticsData(data.data));//базовые значения
 
-		statsUI.Initialization(Statistics.stats);
-		barsUI.Initialization(Statistics.stats);
+					//SaveLoaderManager.SavePlayerStatistics(statistics.GetData());//сохраняем
+
+					//SaveLoaderManager.IsFirstTime = false;
+				}
+				//else
+				{
+					//statistics = new EntityStatistics(SaveLoaderManager.LoadPlayerStatistics());//загрузка базы
+				}
+			}
+			return statistics;
+		}
+	}
+
+
+	[Button]
+	private void Save()
+	{
+		SaveLoaderManager.SavePlayerStatistics(statistics.GetData());//сохраняем
+	}
+
+	[Button]
+	private void ClearSaves()
+	{
+		SaveLoaderManager.IsFirstTime = true;
+		SaveLoaderManager.DestroyDirectory();
 	}
 }

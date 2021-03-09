@@ -32,5 +32,6 @@ MonoBehaviour:
         perception: 10
         fatiguePoints: 10
         fatigueCurrentPoints: 10
-    advantagesData:
-      advantages: []
+    attributesData:
+      attributes:
+      - {fileID: 11400000, guid: 027e6dc09caa9654b811b35c1bf915a9, type: 2}

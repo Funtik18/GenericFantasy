@@ -14,26 +14,23 @@ public class EntityStatisticsData
 	[HideLabel]
 	public StatsData statsData;
 
-	[TabGroup("Entity Advantages")]
+	[TabGroup("Entity Attributes")]
 	[HideLabel]
-	public AdvantagesData advantagesData;
+	public AttributesData attributesData;
 
-	public EntityStatisticsData(out EntityStatistics statistics, EntityStatisticsData data)
+	public EntityStatisticsData(EntityStatisticsData data)
 	{
 		//копии данных
 		statsData = new StatsData();
 		statsData = data.statsData;
 
-		advantagesData = new AdvantagesData();
-		advantagesData = data.advantagesData;
-
-		statistics = new EntityStatistics(data);
+		attributesData = new AttributesData();
+		attributesData = data.attributesData;
 	}
-
 
 	public EntityStatisticsData(EntityStatistics statistics)
 	{
-		//statsData = statistics.stats.GetCurrentData();
-		//abilitiesData = statistics.abilities.GetCurrentData();
+		statsData = statistics.stats.GetCurrentData();
+		attributesData = statistics.attributes.GetCurrentData();
 	}
 }

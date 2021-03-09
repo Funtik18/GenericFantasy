@@ -2,6 +2,7 @@
 using UnityEngine;
 
 using Sirenix.OdinInspector;
+using System;
 
 public class EntityStats
 {
@@ -10,35 +11,52 @@ public class EntityStats
 	private readonly int totalPoints = 100;
 
 	public List<Characteristic> statsAll;
+	public List<Characteristic> feelingsAll;
 	public List<Bar> barsAll;
 	public Dictionary<STATS, IModifiable> statsModifiable;
 
 	public CharacteristicValue Level;
 	
-	public CharacteristicValue Points;
+	public StatValuePoints Points;
 
 	public Bar EXP;
 
 	public Bar WEIGHT;
-	
+
 	public Bar HP;
 	public Bar MP;
 	public Bar FP;
 
 	public CharacteristicWeight Weight;
 
-	public StatCharacteristic Strength;
-	public StatCharacteristic Dexterity;
-	public StatCharacteristic Intelligence;
-	public StatCharacteristic Vitality;
+	//primary stats
+	public Stat Strength;
+	public Stat Dexterity;
+	public Stat Intelligence;
+	public Stat Vitality;
 
-	public StatCharacteristic Health;
-	public StatCharacteristic Move;
-	public StatCharacteristic Speed;
-	public StatCharacteristic Will;
-	public StatCharacteristic Perception;
-	public StatCharacteristic Fatigue;
+	//secondary stats
+	public Stat Health;
+
 	
+
+	public Stat Move;
+	public Stat Speed;
+	public Stat Will;
+	public Stat Perception;
+	public Stat Fatigue;
+
+	//feels
+	public Stat Fear;
+
+	public Stat Touch;
+	public Stat Taste;
+	public Stat Smell;
+	public Stat Hear;
+	public Stat Vision;
+
+
+	public Stat Dodge;
 
 	public EntityStats(StatsData statsData)
 	{
@@ -50,19 +68,19 @@ public class EntityStats
 	#region Behavior
 	public void ResetStats()
 	{
-		Strength.ResetStat(data.statsPrimary.strength);
-		Dexterity.ResetStat(data.statsPrimary.dexterity);
-		Intelligence.ResetStat(data.statsPrimary.intelligence);
-		Vitality.ResetStat(data.statsPrimary.vitality);
+		//Strength;
+		//Dexterity.ResetStat(data.statsPrimary.dexterity);
+		//Intelligence.ResetStat(data.statsPrimary.intelligence);
+		//Vitality.ResetStat(data.statsPrimary.vitality);
 
-		Health.ResetStat(data.statsSecondary.healthPoints);
-		Move.ResetStat(data.statsSecondary.move);
-		Speed.ResetStat(data.statsSecondary.speed);
-		Will.ResetStat(data.statsSecondary.will);
-		Perception.ResetStat(data.statsSecondary.perception);
-		Fatigue.ResetStat(data.statsSecondary.fatiguePoints);
+		//Health.ResetStat(data.statsSecondary.healthPoints);
+		//Move.ResetStat(data.statsSecondary.move);
+		//Speed.ResetStat(data.statsSecondary.speed);
+		//Will.ResetStat(data.statsSecondary.will);
+		//Perception.ResetStat(data.statsSecondary.perception);
+		//Fatigue.ResetStat(data.statsSecondary.fatiguePoints);
 
-		Points.StatValue = totalPoints;
+		//Points.StatValue = totalPoints;
 	}
 	public void RndStats()
 	{
@@ -71,264 +89,93 @@ public class EntityStats
 
 	public void IncreaseStrength()
 	{
-		if(Points.StatValue - 10 >= 0)
-		{
-			Points.StatValue -= 10;
-
-
-			Strength.StatBaseValue += 1;
-
-			Health.StatFormuleValue += 1;
-			//грузоподъёмность = Strength*Strength
-		}
+		Strength.IncreaseStat(Points);
 	}
 	public void DecreaseStrength()
 	{
-		if(Strength.StatBaseValue - 1 >= 5)
-		{
-			Points.StatValue += 10;
-
-			Strength.StatBaseValue -= 1;
-
-			Health.StatFormuleValue -= 1;
-		}
+		Strength.DecreaseStat(Points);
 	}
 
 	public void IncreaseDexterity()
 	{
-		if(Points.StatValue - 20 >= 0)
-		{
-			Points.StatValue -= 20;
+		Dexterity.IncreaseStat(Points);
 
-
-			Dexterity.StatBaseValue += 1;
-
-			Speed.StatFormuleValue += 0.25f;
-			Move.StatFormuleValue += 0.25f;
-		}
 	}
 	public void DecreaseDexterity()
 	{
-		if(Dexterity.StatBaseValue - 1 >= 5)
-		{
-			Points.StatValue += 20;
-
-
-			Dexterity.StatBaseValue -= 1;
-
-			Speed.StatFormuleValue -= 0.25f;
-			Move.StatFormuleValue -= 0.25f;
-		}
+		Dexterity.DecreaseStat(Points);
 	}
 
 	public void IncreaseIntelligence()
 	{
-		if(Points.StatValue - 20 >= 0)
-		{
-			Points.StatValue -= 20;
-
-
-			Intelligence.StatBaseValue += 1;
-
-			Will.StatFormuleValue += 1;
-			Perception.StatFormuleValue += 1;
-		}
+		Intelligence.IncreaseStat(Points);
 	}
 	public void DecreaseIntelligence()
 	{
-		if(Intelligence.StatBaseValue - 1 >= 5)
-		{
-			Points.StatValue += 20;
-
-
-			Intelligence.StatBaseValue -= 1;
-
-			Will.StatFormuleValue -= 1;
-			Perception.StatFormuleValue -= 1;
-		}
+		Intelligence.DecreaseStat(Points);
 	}
 
 	public void IncreaseVitality()
 	{
-		if(Points.StatValue - 20 >= 0)
-		{
-			Points.StatValue -= 10;
-
-
-			Vitality.StatBaseValue += 1;
-
-			Move.StatFormuleValue += 0.25f;
-			Speed.StatFormuleValue += 0.25f;
-			Fatigue.StatFormuleValue += 1;
-		}
+		Vitality.IncreaseStat(Points);
 	}
 	public void DecreaseVitality()
 	{
-		if(Vitality.StatBaseValue - 1 >= 5)
-		{
-			Points.StatValue += 10;
-
-
-			Vitality.StatBaseValue -= 1;
-
-			Move.StatFormuleValue -= 0.25f;
-			Speed.StatFormuleValue -= 0.25f;
-			Fatigue.StatFormuleValue -= 1;
-		}
+		Vitality.DecreaseStat(Points);
 	}
 
 	public void IncreaseHealth()
 	{
-		if(Points.StatValue - 2 >= 0)
-		{
-			if((Health.StatValue + 1) <= (Strength.StatValue * 0.3f) + Strength.StatValue)
-			{
-				Points.StatValue -= 2;
-
-				Health.StatBaseValue += 1;
-			}
-		}
+		Health.IncreaseStat(Points);
 	}
 	public void DecreaseHealth()
 	{
-		if(Health.StatBaseValue - 1 >= 0)
-		{
-			if((Strength.StatValue * 0.7f) <= Health.StatValue - 1)
-			{
-				Points.StatValue += 2;
-
-				Health.StatBaseValue -= 1;
-			}
-		}
+		Health.DecreaseStat(Points);
 	}
 
 	public void IncreaseMove()
 	{
-		if(Points.StatValue - 5 >= 0)
-		{
-			Points.StatValue -= 5;
-
-			Move.StatBaseValue += 1;
-		}
+		Move.IncreaseStat(Points);
 	}
 	public void DecreaseMove()
 	{
-		if(Move.StatBaseValue - 1 >= 0)
-		{
-			Points.StatValue += 5;
-
-			Move.StatBaseValue -= 1;
-		}
+		Move.DecreaseStat(Points);
 	}
 
 	public void IncreaseSpeed()
 	{
-		if(Points.StatValue - 5 >= 0)
-		{
-			if(Speed.StatBaseValue + 0.25f <= 7)
-			{
-				Points.StatValue -= 5;
-
-				Speed.StatBaseValue += 0.25f;
-
-				Move.StatFormuleValue += 0.25f;
-			}
-		}
+		Speed.IncreaseStat(Points);
 	}
 	public void DecreaseSpeed()
 	{
-		if(Speed.StatBaseValue - 0.25f >= 0)
-		{
-			if(3 <= Speed.StatBaseValue - 0.25f)
-			{
-				Points.StatValue += 5;
-
-				Speed.StatBaseValue -= 0.25f;
-
-				Move.StatFormuleValue -= 0.25f;
-			}
-		}
+		Speed.DecreaseStat(Points);
 	}
 
 	public void IncreaseWill()
 	{
-		if(Points.StatValue - 5 >= 0)
-		{
-			if(Will.StatBaseValue + 1 <= 20)
-			{
-				Points.StatValue -= 5;
-
-
-				Will.StatBaseValue += 1;
-			}
-		}
+		Will.IncreaseStat(Points);
 	}
 	public void DecreaseWill()
 	{
-		if(Will.StatBaseValue - 1 >= 0)
-		{
-			if(4 <= Will.StatBaseValue - 1)
-			{
-				Points.StatValue += 5;
-
-
-				Will.StatBaseValue -= 1;
-			}
-		}
+		Will.DecreaseStat(Points);
 	}
 
 	public void IncreasePerception()
 	{
-		if(Points.StatValue - 5 >= 0)
-		{
-			if(Perception.StatBaseValue + 1 <= 20)
-			{
-				Points.StatValue -= 5;
-
-
-				Perception.StatBaseValue += 1;
-			}
-		}
+		Perception.IncreaseStat(Points);
 	}
 	public void DecreasePerception()
 	{
-		if(Perception.StatBaseValue - 1 >= 0)
-		{
-			if(4 <= Perception.StatBaseValue - 1)
-			{
-				Points.StatValue += 5;
-
-
-				Perception.StatBaseValue -= 1;
-			}
-		}
+		Perception.DecreaseStat(Points);
 	}
 
 	public void IncreaseFatigue()
 	{
-		if(Points.StatValue - 3 >= 0)
-		{
-			if((Fatigue.StatValue + 1) <= (Vitality.StatValue * 0.3f) + Vitality.StatValue)
-			{
-				Points.StatValue -= 3;
-
-
-				Fatigue.StatBaseValue += 1;
-			}
-		}
+		Fatigue.IncreaseStat(Points);
 	}
 	public void DecreaseFatigue()
 	{
-		if(Fatigue.StatBaseValue - 1 >= 0)
-		{
-			if((Vitality.StatValue * 0.7f) <= (Fatigue.StatValue - 1))
-			{
-				Points.StatValue += 3;
-
-
-				Fatigue.StatBaseValue -= 1;
-			}
-		}
+		Fatigue.DecreaseStat(Points);
 	}
 
 	//	EXP.MaxValue = (uint)(500 * ((Level.Value + 1) * (Level.Value + 1)) - (500 * (Level.Value + 1)));
@@ -342,34 +189,47 @@ public class EntityStats
 	}
 	private void CreateFields()
 	{
+
 		Level = new CharacteristicValue(data.level);
 
-		EXP = new Bar(5, 10);
 
-		Points = new CharacteristicValue(totalPoints);
+		Points = new StatValuePoints(totalPoints);
 
-		Strength = new StatCharacteristic(data.statsPrimary.strength);
-		Dexterity = new StatCharacteristic(data.statsPrimary.dexterity);
-		Intelligence = new StatCharacteristic(data.statsPrimary.intelligence);
-		Vitality = new StatCharacteristic(data.statsPrimary.vitality);
+		Strength = new StatCharacteristicStrength(this, data.statsPrimary.strength);
+		Dexterity = new StatCharacteristicDexterity(this, data.statsPrimary.dexterity);
+		Intelligence = new StatCharacteristicIntelligence(this, data.statsPrimary.intelligence);
+		Vitality = new StatCharacteristicVitality(this, data.statsPrimary.vitality);
 
-		Health = new StatCharacteristic(data.statsSecondary.healthPoints);
-		Move = new StatCharacteristic(data.statsSecondary.move);
-		Speed = new StatCharacteristic(data.statsSecondary.speed, false);
-		Will = new StatCharacteristic(data.statsSecondary.will);
-		Perception = new StatCharacteristic(data.statsSecondary.perception);
-		Fatigue = new StatCharacteristic(data.statsSecondary.fatiguePoints);
+		Health = new StatCharacteristicHealth(this);
+		Speed = new StatCharacteristicSpeed(this);
+		Move = new StatCharacteristicMove(this);
+		Will = new StatCharacteristicWill(this);
+		Perception = new StatCharacteristicPerception(this);
+		Fatigue = new StatCharacteristicFatigue(this);
 
-		Weight = new CharacteristicWeight(data.currentWeight, Strength);
+		Weight = new CharacteristicWeight(data.currents.currentWeight, Strength);
 
-		HP = new BarPoints(data.statsSecondary.healthCurrentPoints, Health);
-		MP = new BarPoints(data.statsSecondary.willCurrentPoints, Will);
-		FP = new BarPoints(data.statsSecondary.fatigueCurrentPoints, Fatigue);
+		Fear = new StatCharacteristicFear(this);
+		Touch = new StatCharacteristicTouch(this);
+		Taste = new StatCharacteristicTaste(this);
+		Smell = new StatCharacteristicSmell(this);
+		Hear = new StatCharacteristicHear(this);
+		Vision = new StatCharacteristicVision(this);
+
+		Dodge = new StatCharacteristicDodge(this);
+
+
+		EXP = new BarExPoints(5, 10);
+
+		WEIGHT = new BarWeightPoints(10, Weight);
+
+		HP = new BarPoints(10, Health);
+		MP = new BarPoints(10, Will);
+		FP = new BarPoints(10, Fatigue);
 	}
 	private void SetupAllStats()
 	{
 		statsAll = new List<Characteristic>();
-
 		statsAll.Add(Level);
 
 		statsAll.Add(Points);
@@ -388,11 +248,169 @@ public class EntityStats
 		statsAll.Add(Perception);
 		statsAll.Add(Fatigue);
 
+		statsAll.Add(Dodge);
+
+		feelingsAll = new List<Characteristic>();
+
+
 		barsAll = new List<Bar>();
 		barsAll.Add(EXP);
 		barsAll.Add(HP);
 		barsAll.Add(MP);
 		barsAll.Add(FP);
+	}
+
+
+	public StatsData GetCurrentData()
+	{
+		StatsData stats = new StatsData()
+		{
+			level = (int)Level.StatValue,
+
+			statsPrimary = new StatsData.StatsPrimary()
+			{
+				strength = (int)Strength.StatBasePointValue,
+				dexterity = (int)Dexterity.StatBasePointValue,
+				intelligence = (int)Intelligence.StatBasePointValue,
+				vitality = (int)Vitality.StatBasePointValue,
+			},
+
+			currents = new StatsData.CurrentValues()
+			{
+				currentExperience = 5,
+				currentHealth = 5,
+				currentMana = 5,
+				currentFatigue = 5,
+				currentWeight = 1.8f,
+			}
+			
+		};
+		return stats;
+	}
+}
+
+public class EntityDamages
+{
+	public DiceRoll damageThrust;
+	public DiceRoll damageSwing;
+
+	public EntityDamages()
+	{
+	
+	}
+
+	private string DamageThrust(float ST)
+	{
+		if(ST <= 1) return "1d-6";
+		if(ST <= 2) return "1d-6";
+		if(ST <= 3) return "1d-5";
+		if(ST <= 4) return "1d-5";
+		if(ST <= 5) return "1d-4";
+		if(ST <= 6) return "1d-4";
+		if(ST <= 7) return "1d-3";
+		if(ST <= 8) return "1d-3";
+		if(ST <= 9) return "1d-2";
+		if(ST <= 10) return "1d-2";
+		if(ST <= 11) return "1d-1";
+		if(ST <= 12) return "1d-1";
+		if(ST <= 13) return "1d";
+		if(ST <= 14) return "1d";
+		if(ST <= 15) return "1d+1";
+		if(ST <= 16) return "1d+1";
+		if(ST <= 17) return "1d+2";
+		if(ST <= 18) return "1d+2";
+		if(ST <= 19) return "2d-1";
+		if(ST <= 20) return "2d-1";
+		if(ST <= 21) return "2d";
+		if(ST <= 22) return "2d";
+		if(ST <= 23) return "2d+1";
+		if(ST <= 24) return "2d+1";
+		if(ST <= 25) return "2d+2";
+		if(ST <= 26) return "2d+2";
+		if(ST <= 27) return "3d-1";
+		if(ST <= 28) return "3d-1";
+		if(ST <= 29) return "3d";
+		if(ST <= 30) return "3d";
+		if(ST <= 31) return "3d+1";
+		if(ST <= 32) return "3d+1";
+		if(ST <= 33) return "3d+2";
+		if(ST <= 34) return "3d+2";
+		if(ST <= 35) return "4d-1";
+		if(ST <= 36) return "4d-1";
+		if(ST <= 37) return "4d";
+		if(ST <= 38) return "4d";
+		if(ST <= 39) return "4d+1";
+		if(ST <= 40) return "4d+1";
+		if(ST <= 45) return "5d";
+		if(ST <= 50) return "5d+2";
+		if(ST <= 55) return "6d";
+		if(ST <= 60) return "7d-1";
+		if(ST <= 65) return "7d+1";
+		if(ST <= 70) return "8d";
+		if(ST <= 75) return "8d+2";
+		if(ST <= 80) return "9d";
+		if(ST <= 85) return "9d+2";
+		if(ST <= 90) return "10d";
+		if(ST <= 95) return "10d+2";
+		if(ST <= 100) return "11d";
+		return ((Mathf.Floor((ST - 100) / 10) + 11) + "d");
+	}
+
+	private string DamageSwing(float ST)
+	{
+		if(ST <= 1) return "1d-5";
+		if(ST <= 2) return "1d-5";
+		if(ST <= 3) return "1d-4";
+		if(ST <= 4) return "1d-4";
+		if(ST <= 5) return "1d-3";
+		if(ST <= 6) return "1d-3";
+		if(ST <= 7) return "1d-2";
+		if(ST <= 8) return "1d-2";
+		if(ST <= 9) return "1d-1";
+		if(ST <= 10) return "1d";
+		if(ST <= 11) return "1d+1";
+		if(ST <= 12) return "1d+2";
+		if(ST <= 13) return "2d-1";
+		if(ST <= 14) return "2d";
+		if(ST <= 15) return "2d+1";
+		if(ST <= 16) return "2d+2";
+		if(ST <= 17) return "3d-1";
+		if(ST <= 18) return "3d";
+		if(ST <= 19) return "3d+1";
+		if(ST <= 20) return "3d+2";
+		if(ST <= 21) return "4d-1";
+		if(ST <= 22) return "4d";
+		if(ST <= 23) return "4d+1";
+		if(ST <= 24) return "4d+2";
+		if(ST <= 25) return "5d-1";
+		if(ST <= 26) return "5d";
+		if(ST <= 27) return "5d+1";
+		if(ST <= 28) return "5d+1";
+		if(ST <= 29) return "5d+2";
+		if(ST <= 30) return "5d+2";
+		if(ST <= 31) return "6d-1";
+		if(ST <= 32) return "6d-1";
+		if(ST <= 33) return "6d";
+		if(ST <= 34) return "6d";
+		if(ST <= 35) return "6d+1";
+		if(ST <= 36) return "6d+1";
+		if(ST <= 37) return "6d+2";
+		if(ST <= 38) return "6d+2";
+		if(ST <= 39) return "7d-1";
+		if(ST <= 40) return "7d-1";
+		if(ST <= 45) return "7d+1";
+		if(ST <= 50) return "8d-1";
+		if(ST <= 55) return "8d+1";
+		if(ST <= 60) return "9d";
+		if(ST <= 65) return "9d+2";
+		if(ST <= 70) return "10d";
+		if(ST <= 75) return "10d+2";
+		if(ST <= 80) return "11d";
+		if(ST <= 85) return "11d+2";
+		if(ST <= 90) return "12d";
+		if(ST <= 95) return "12d+2";
+		if(ST <= 100) return "13d";
+		return ((Mathf.Floor((ST - 100) / 10) + 13) + "d");
 	}
 }
 
@@ -401,29 +419,21 @@ public struct StatsData
 {
 	[MinValue(1)] public int level;
 	[Space]
-	[ReadOnly] public int experienceCurrentPoints;
-
-	[ReadOnly] public int currentWeight;
-
 	[TabGroup("StatsPrimary")]
 	[HideLabel]
 	public StatsPrimary statsPrimary;
-
-	[TabGroup("StatsSecondary")]
-	[HideLabel]
-	public StatsSecondary statsSecondary;
+	[Space]
+	public CurrentValues currents;
 
 	[Button]
 	private void Reset()
 	{
 		statsPrimary.Reset();
-		statsSecondary.Reset();
 	}
 
 	[System.Serializable]
 	public struct StatsPrimary
 	{
-		[Space]
 		[MinValue(0)] public int strength;
 		[MinValue(0)] public int dexterity;
 		[MinValue(0)] public int intelligence;
@@ -437,56 +447,21 @@ public struct StatsData
 			vitality = 10;
 		}
 	}
+
 	[System.Serializable]
-	public struct StatsSecondary
+	public struct CurrentValues 
 	{
-		[MinValue(0)] public int healthPoints;
-		[ReadOnly] public int healthCurrentPoints;
-
-		[MinValue(0)] public int move;
-		[ReadOnly] [MinValue(0)] public float speed;
-
-		[MinValue(0)] public int will;
-		[ReadOnly] public int willCurrentPoints;
-
-		[MinValue(0)] public int perception;
-
-		[MinValue(0)] public int fatiguePoints;
-		[ReadOnly] public int fatigueCurrentPoints;
-
-		public void Reset()
-		{
-			healthPoints = 10;
-			healthCurrentPoints = healthPoints;
-
-			move = 5;
-			speed = 5f;
-
-			will = 10;
-			willCurrentPoints = will;
-
-			perception = 10;
-
-			fatiguePoints = 10;
-			fatigueCurrentPoints = fatiguePoints;
-		}
-
-		[Button]
-		private void SpeedUp()
-		{
-			speed += 0.25f;
-		}
-		[Button]
-		private void SpeedDown()
-		{
-			speed -= 0.25f;
-		}
-	}
+		[ReadOnly] public int currentExperience;
+		[ReadOnly] public int currentHealth;
+		[ReadOnly] public int currentMana;
+		[ReadOnly] public int currentFatigue;
+		[ReadOnly] public float currentWeight;
+	} 
 }
+
 [EnumPaging]
 public enum STATS
 {
-	POINTS,
 	STRENGTH,
 	DEXTERITY,
 	INTELLIGENCE,

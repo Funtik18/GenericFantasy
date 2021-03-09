@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80292aca908c9a488daa17e61a2a8a6, type: 3}
+  m_Name: AdvatantagesData
+  m_EditorClassIdentifier: 
+  attributesAll:
+  - {fileID: 11400000, guid: 027e6dc09caa9654b811b35c1bf915a9, type: 2}
+  - {fileID: 11400000, guid: 2144a377a3e3fa445839ca49e83beef2, type: 2}
+  advantagesAll:
+  - {fileID: 11400000, guid: 027e6dc09caa9654b811b35c1bf915a9, type: 2}
+  disAdvantagesAll:
+  - {fileID: 11400000, guid: 2144a377a3e3fa445839ca49e83beef2, type: 2}
+  languagesAll: []
+  perksAll: []
+  quirksAll: []
+  TalentsAll: []
