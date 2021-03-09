@@ -22,6 +22,7 @@ public class Dice
 		return LastValue;
 	}
 }
+
 [System.Serializable]
 public class DiceFormule
 {

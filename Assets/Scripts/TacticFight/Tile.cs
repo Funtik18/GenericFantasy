@@ -9,7 +9,11 @@ public class Tile : MonoBehaviour
     public bool target = false;
     public bool selectable = false;
 
+    public bool haveCharOnIt = false;
+    public TacticMove character;
+
     public List<Tile> adjacencyList = new List<Tile>();
+    public List<Tile> tilsWithChars = new List<Tile>();
 
     [Header("Nav Algorithm BFS")]
     public bool visited = false;
@@ -51,6 +55,8 @@ public class Tile : MonoBehaviour
     public void TileReset()
     {
         adjacencyList.Clear();
+        tilsWithChars.Clear();
+
 
         current = false;
         target = false;
@@ -88,6 +94,15 @@ public class Tile : MonoBehaviour
                 {
                     adjacencyList.Add(tile);
                 }
+                else
+                {
+                    if (tile.haveCharOnIt)
+                    {
+                        //tilsWithChars.Add(tile);
+                        adjacencyList.Add(tile);
+                    }
+                }
+
             }
         }
     }
