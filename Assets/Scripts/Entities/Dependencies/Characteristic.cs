@@ -10,7 +10,6 @@ public abstract class Characteristic
 	protected bool isRound = false;
 
 	public abstract string CurrentStringValue { get; }
-	public abstract float StatValue { protected set; get; }
 
 	public UnityAction onValueChanged;
 	protected virtual void UpdateChraracteristic()
@@ -18,12 +17,38 @@ public abstract class Characteristic
 		onValueChanged?.Invoke();
 	}
 }
+public class CharacteristicValue : Characteristic
+{
+	public override string CurrentStringValue { get => StatValue.ToString(); }
 
-public abstract class CharacteristicModifier : Characteristic
+	private float statValue;
+	public virtual float StatValue
+	{
+		protected set
+		{
+			statValue = value;
+
+			UpdateChraracteristic();
+		}
+		get => (isRound ? (int)statValue : statValue);
+	}
+
+
+	/// <summary>
+	/// Характеристика, не модифицируемая.
+	/// </summary>
+	public CharacteristicValue(float initValue, bool isRound = true)
+	{
+		this.isRound = isRound;
+		StatValue = initValue;
+	}
+}
+
+public abstract class CharacteristicModifier : CharacteristicValue
 {
 	public List<CharacteristicBind> binds;
 
-	public CharacteristicModifier()
+	public CharacteristicModifier(float initValue, bool isRound = true) : base(initValue, isRound)
 	{
 		binds = new List<CharacteristicBind>();
 	}
@@ -83,35 +108,6 @@ public abstract class CharacteristicModifier : Characteristic
 	}
 }
 
-public class CharacteristicValue : Characteristic
-{
-	protected bool isRound = false;
-
-	public override string CurrentStringValue { get => StatValue.ToString(); }
-
-	private float statValue;
-	public override float StatValue
-	{
-		protected set
-		{
-			statValue = value;
-
-			UpdateChraracteristic();
-		}
-		get => (isRound ? (int)statValue : statValue);
-	}
-
-
-
-	/// <summary>
-	/// Характеристика, не модифицируемая.
-	/// </summary>
-	public CharacteristicValue(float initValue, bool isRound = true)
-	{
-		this.isRound = isRound;
-		StatValue = initValue;
-	}
-}
 public class StatValuePoints : CharacteristicValue
 {
 	public void SetValue(float value)
@@ -127,7 +123,7 @@ public class StatValuePoints : CharacteristicValue
 public class CharacteristicWeight : CharacteristicValue
 {
 	//http://mentor.gurps.ru/books/basic_set_4ed_rus.pdf#zoom=80&page=15
-	protected Characteristic strength;
+	protected CharacteristicValue strength;
 
 	public UnityAction<int> onWeightLevelChanged;
 
@@ -172,7 +168,7 @@ public class CharacteristicWeight : CharacteristicValue
 		get => -WeightLevel;
 	}
 
-	public CharacteristicWeight(float currentValue, Characteristic strength) : base(0, true)
+	public CharacteristicWeight(float currentValue, CharacteristicValue strength) : base(0, true)
 	{
 		this.strength = strength;
 		this.strength.onValueChanged += UpdateChraracteristic;

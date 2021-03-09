@@ -7,6 +7,11 @@ public class StatsAdapter : MonoBehaviour
 	[SerializeField] private Entity entity;
 
 
+	public void Roll()
+	{
+		DiceFormule d = new DiceFormule(2, DiceType.Cube, -3);
+	}
+
 	public void ResetStats()
 	{
 		entity.Statistics.stats.ResetStats();
