@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+using Sirenix.OdinInspector;
+
 using UnityEngine;
 
 public class CharacterAvatar : MonoBehaviour
 {
+    [Title("Head")]
     public Transform maleHeads;
     public Transform femaleHeads;
     [Space]
@@ -13,11 +17,14 @@ public class CharacterAvatar : MonoBehaviour
     public Transform femaleEyebrows;
     [Space]
     public Transform maleFacialHairs;
+
     [Space]
-    [Space]
+    [Title("Torso")]
     public Transform maleTorso;
     public Transform femaleTorso;
+
     [Space]
+    [Title("Arms")]
     public Transform maleArmUpperLeft;
     public Transform femaleArmUpperLeft; 
     public Transform maleArmUpperRight;
@@ -32,12 +39,18 @@ public class CharacterAvatar : MonoBehaviour
     public Transform handRight;
 
     [Space]
+    [Title("Hips")]
     public Transform maleHips;
     public Transform femaleHips;
 
     [Space]
+    [Title("Legs")]
     public Transform maleLegLeft;
     public Transform femaleLegLeft;
     public Transform maleLegRight;
     public Transform femaleLegRight;
+
+    [Title("Extra")]
+    public Transform elbowAttachmentLeft;
+    public Transform elbowAttachmentRight;
 }

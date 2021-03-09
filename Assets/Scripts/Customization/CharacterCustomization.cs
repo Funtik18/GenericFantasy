@@ -64,6 +64,8 @@ public class CharacterCustomization : MonoBehaviour
     [Button]
     private void ReBuild()
 	{
+        Clear();
+
         heads.CheckObjects();
         hairs.CheckObjects();
         eyebrows.CheckObjects();
@@ -77,6 +79,20 @@ public class CharacterCustomization : MonoBehaviour
 
         UpdateLists();
     }
+    private void Clear()
+	{
+        heads.ClearObjects();
+        hairs.ClearObjects();
+        eyebrows.ClearObjects();
+        facialHair.ClearObjects();
+        torso.ClearObjects();
+
+        arms.ClearObjects();
+
+        hips.ClearObjects();
+        legs.ClearObjects();
+    }
+
 
     [Button]
     [TabGroup("Torso")]
@@ -109,8 +125,6 @@ public class CharacterCustomization : MonoBehaviour
         legs.legRight.Right();
     }
 
-
-    [PropertyOrder(-1)]
     private void UpdateLists()
 	{
         hairs.UpdateList(new Transform[1] { avatar.hairs });
@@ -205,6 +219,12 @@ public class CharacterCustomization : MonoBehaviour
             armLeft.CheckObjects();
             armRight.CheckObjects();
         }
+
+        public void ClearObjects()
+		{
+            armLeft.ClearObjects();
+            armRight.ClearObjects();
+        }
     }
 
     [System.Serializable]
@@ -223,6 +243,13 @@ public class CharacterCustomization : MonoBehaviour
             hand.CheckObjects();
         }
 
+        public void ClearObjects()
+		{
+            armUpper.ClearObjects();
+            armLower.ClearObjects();
+            hand.ClearObjects();
+        }
+
         [ButtonGroup]
         public void Left()
         {
@@ -238,7 +265,6 @@ public class CharacterCustomization : MonoBehaviour
             hand.Right();
         }
     }
-
 
     [System.Serializable]
     public class CharacterLegs
@@ -256,6 +282,11 @@ public class CharacterCustomization : MonoBehaviour
 		{
             legLeft.CheckObjects();
             legRight.CheckObjects();
+        }
+        public void ClearObjects()
+		{
+            legLeft.ClearObjects();
+            legRight.ClearObjects();
         }
     }
 
@@ -335,10 +366,17 @@ public class CharacterCustomization : MonoBehaviour
         public void ClearObjects()
 		{
             CurrentIndex = 0;
+
+            if(objects.Count > 0)
+			{
+				for(int i = 0; i < objects.Count; i++)
+				{
+                    objects[i].SetActive(false);
+				}
+			}
+
             objects.Clear();
         }
     }
-
-    
 }
 public enum CharacterGender { Male, Female, TransNigga }
