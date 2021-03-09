@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CharacterCustomization : MonoBehaviour
 {
-    [OnValueChanged("UpdateLists")]
+    [OnValueChanged("ReBuild")]
     [SerializeField] private CharacterGender gender = CharacterGender.Female;
 
     [SerializeField] private CharacterAvatar avatar;
@@ -64,23 +64,6 @@ public class CharacterCustomization : MonoBehaviour
     [Button]
     private void ReBuild()
 	{
-        Clear();
-
-        heads.CheckObjects();
-        hairs.CheckObjects();
-        eyebrows.CheckObjects();
-        facialHair.CheckObjects();
-        torso.CheckObjects();
-
-        arms.CheckObjects();
-
-        hips.CheckObjects();
-        legs.CheckObjects();
-
-        UpdateLists();
-    }
-    private void Clear()
-	{
         heads.ClearObjects();
         hairs.ClearObjects();
         eyebrows.ClearObjects();
@@ -91,7 +74,10 @@ public class CharacterCustomization : MonoBehaviour
 
         hips.ClearObjects();
         legs.ClearObjects();
+
+        UpdateLists();
     }
+
 
 
     [Button]
@@ -140,7 +126,7 @@ public class CharacterCustomization : MonoBehaviour
             if(isHaveFacialHair)
                 facialHair.UpdateList(new Transform[1] { avatar.maleFacialHairs });
             else
-                facialHair.CheckObjects();
+                facialHair.ClearObjects();
 
             torso.UpdateList(new Transform[1] { avatar.maleTorso });
 
@@ -161,7 +147,7 @@ public class CharacterCustomization : MonoBehaviour
             eyebrows.UpdateList(new Transform[1] { avatar.femaleEyebrows });
 
             isHaveFacialHair = false;
-            facialHair.CheckObjects();
+            facialHair.ClearObjects();
 
             torso.UpdateList(new Transform[1] { avatar.femaleTorso });
 
@@ -184,17 +170,17 @@ public class CharacterCustomization : MonoBehaviour
             if(isHaveFacialHair)
                 facialHair.UpdateList(new Transform[1] { avatar.maleFacialHairs });
             else
-                facialHair.CheckObjects();
+                facialHair.ClearObjects();
 
             torso.UpdateList(new Transform[2] { avatar.maleTorso, avatar.femaleTorso });
 
-            //armLeft.armUpper.UpdateList(new Transform[2] { avatar.maleArmUpperLeft, avatar.femaleArmUpperLeft });
-            //armRight.armUpper.UpdateList(new Transform[2] { avatar.maleArmUpperRight, avatar.femaleArmUpperRight });
+			arms.armLeft.armUpper.UpdateList(new Transform[2] { avatar.maleArmUpperLeft, avatar.femaleArmUpperLeft });
+            arms.armRight.armUpper.UpdateList(new Transform[2] { avatar.maleArmUpperRight, avatar.femaleArmUpperRight });
 
-            //armLeft.armLower.UpdateList(new Transform[2] { avatar.maleArmLowerLeft, avatar.femaleArmLowerLeft });
-            //armRight.armLower.UpdateList(new Transform[2] { avatar.maleArmLowerRight, avatar.femaleArmLowerRight });
-		
-            hips.UpdateList(new Transform[2] { avatar.maleHips, avatar.femaleHips });
+            arms.armLeft.armLower.UpdateList(new Transform[2] { avatar.maleArmLowerLeft, avatar.femaleArmLowerLeft });
+            arms.armRight.armLower.UpdateList(new Transform[2] { avatar.maleArmLowerRight, avatar.femaleArmLowerRight });
+
+			hips.UpdateList(new Transform[2] { avatar.maleHips, avatar.femaleHips });
 
             legs.legLeft.UpdateList(new Transform[2] { avatar.maleLegLeft, avatar.femaleLegLeft });
             legs.legRight.UpdateList(new Transform[2] { avatar.maleLegRight, avatar.femaleLegRight });
@@ -214,12 +200,6 @@ public class CharacterCustomization : MonoBehaviour
         [HideLabel]
         public CharacterArm armRight;
 
-        public void CheckObjects()
-        {
-            armLeft.CheckObjects();
-            armRight.CheckObjects();
-        }
-
         public void ClearObjects()
 		{
             armLeft.ClearObjects();
@@ -236,12 +216,6 @@ public class CharacterCustomization : MonoBehaviour
         [Space]
         public CharacterPart hand;
 
-        public void CheckObjects()
-		{
-            armUpper.CheckObjects();
-            armLower.CheckObjects();
-            hand.CheckObjects();
-        }
 
         public void ClearObjects()
 		{
@@ -278,11 +252,6 @@ public class CharacterCustomization : MonoBehaviour
         [HideLabel]
         public CharacterPart legRight;
 
-        public void CheckObjects()
-		{
-            legLeft.CheckObjects();
-            legRight.CheckObjects();
-        }
         public void ClearObjects()
 		{
             legLeft.ClearObjects();
@@ -293,17 +262,18 @@ public class CharacterCustomization : MonoBehaviour
     [System.Serializable]
     public class CharacterPart
 	{
-        private List<GameObject> objects;
+        private List<GameObject> objects = new List<GameObject>();
 
         private int currentIndex = 0;
         private int CurrentIndex
 		{
-			set
-			{
+			set {
+			
                 if(value >= objects.Count)
 				{
                     currentIndex = objects.Count - value;
-				}else if(value < 0)
+				}
+                else if(value < 0)
 				{
                     currentIndex = value + objects.Count;
 				}
@@ -315,20 +285,25 @@ public class CharacterCustomization : MonoBehaviour
             get => currentIndex;
 		}
 
-
         [ButtonGroup]
         public void Left()
         {
-            DeselectObject();
-            CurrentIndex--;
-            SelectObject();
+            if(objects.Count > 0)
+			{
+                DeselectObject();
+                CurrentIndex--;
+                SelectObject();
+            }
         }
         [ButtonGroup]
         public void Right()
         {
-            DeselectObject();
-            CurrentIndex++;
-            SelectObject();
+            if(objects.Count > 0)
+			{
+                DeselectObject();
+                CurrentIndex++;
+                SelectObject();
+            }
         }
 
         private void SelectObject()
@@ -342,8 +317,6 @@ public class CharacterCustomization : MonoBehaviour
 
         public void UpdateList(Transform[] roots)
         {
-            CheckObjects();
-
             for(int i = 0; i < roots.Length; i++)
 			{
                 for(int j = 0; j < roots[i].childCount; j++)
@@ -353,14 +326,6 @@ public class CharacterCustomization : MonoBehaviour
                 }
             }
             SelectObject();
-        }
-        public void CheckObjects()
-		{
-            if(objects != null)
-                if(objects.Count > 0)
-                    DeselectObject();
-
-            ClearObjects();
         }
 
         public void ClearObjects()
