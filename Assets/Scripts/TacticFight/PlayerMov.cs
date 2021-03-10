@@ -22,15 +22,15 @@ public class PlayerMov : TacticMove
         }
         if (!moving)
         {
-            FindSelectableTiles();
             CheckClick();
         }
         else
         {
-            TurnManager.Instance.ClearCal();
-            Move();        
+            Move();
+            
         }
-        myAttack.CheckAttack();
+        
+        
     }
 
     void CheckClick()
@@ -55,4 +55,17 @@ public class PlayerMov : TacticMove
             }
         }
     }
+
+    public override void Think()
+    {
+        UIController.Instance.DisableSelections();
+        myAttack.CheckAttack();
+        myAttack.ShowUnitsToAttack();
+    }
+
+    public override void EndThink()
+    {
+        myAttack.DeleteShownUnits();
+    }
+
 }

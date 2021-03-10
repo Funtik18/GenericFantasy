@@ -22,19 +22,11 @@ public class NPCMove : TacticMove
         }
         if (!moving)
         {
-            FindNearestTarget();
-            CalculatePath();
-            FindSelectableTiles();
 
-            actualTargetTile.target = true;
         }
         else
         {
             Move();
-        }
-        if (myAttack.CheckAttack())
-        {
-            myAttack.Attack();
         }
     }
 
@@ -64,5 +56,18 @@ public class NPCMove : TacticMove
         }
 
         target = nearest;
+    }
+
+    public override void Think()
+    {
+        FindNearestTarget();
+        CalculatePath();
+        FindSelectableTiles();
+        actualTargetTile.target = true;
+    }
+
+    public override void EndThink()
+    {
+
     }
 }

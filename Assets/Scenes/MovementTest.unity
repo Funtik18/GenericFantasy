@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5145183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.011893, y: 0, z: 4.1957355}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312791100}
@@ -160,8 +160,8 @@ Transform:
   - {fileID: 2011380436}
   - {fileID: 1437434513}
   - {fileID: 209008619}
-  m_Father: {fileID: 1930192855}
-  m_RootOrder: 10
+  m_Father: {fileID: 1279592716}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6620495
 GameObject:
@@ -356,10 +356,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -476,10 +477,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -596,10 +598,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -716,10 +719,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -858,6 +862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 1
   hp: 10
+  unitsToAttack: []
 --- !u!1 &60387378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,10 +1015,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1130,10 +1136,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1395,10 +1402,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1515,10 +1523,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1635,10 +1644,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1755,10 +1765,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1875,10 +1886,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -1995,10 +2007,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2115,10 +2128,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2235,10 +2249,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2484,10 +2499,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2604,10 +2620,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2724,10 +2741,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -2844,16 +2862,94 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &227438148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227438149}
+  - component: {fileID: 227438151}
+  - component: {fileID: 227438150}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &227438149
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227438148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 887994458}
+  - {fileID: 1394395508}
+  - {fileID: 1215495449}
+  m_Father: {fileID: 484213471}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 310}
+  m_SizeDelta: {x: 500, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &227438150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227438148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &227438151
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227438148}
+  m_CullTransparentMesh: 0
 --- !u!1 &234603045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,10 +3060,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3084,10 +3181,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3204,10 +3302,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3324,10 +3423,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3444,10 +3544,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3564,10 +3665,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3684,10 +3786,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3804,10 +3907,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -3924,10 +4028,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4088,10 +4193,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4208,10 +4314,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4328,10 +4435,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4448,10 +4556,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4568,10 +4677,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4796,10 +4906,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -4916,10 +5027,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5036,10 +5148,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5156,10 +5269,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5270,6 +5384,7 @@ GameObject:
   - component: {fileID: 484213470}
   - component: {fileID: 484213469}
   - component: {fileID: 484213468}
+  - component: {fileID: 484213472}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5353,6 +5468,8 @@ RectTransform:
   - {fileID: 434857137}
   - {fileID: 1636964046}
   - {fileID: 83336865}
+  - {fileID: 1784896762}
+  - {fileID: 227438149}
   m_Father: {fileID: 1082640774}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5361,6 +5478,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &484213472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484213467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01541be9ec19161498aca56e7ee937c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySign: {fileID: 1955846824669952428, guid: a498c42a76debf048bb0731056eb1de6,
+    type: 3}
+  enemySignsTP: {fileID: 1784896762}
+  AttackInfo: {fileID: 227438148}
+  enemies: []
 --- !u!1 &488587199
 GameObject:
   m_ObjectHideFlags: 0
@@ -5402,6 +5536,139 @@ Transform:
   - {fileID: 524283975}
   m_Father: {fileID: 1930192855}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &490505460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490505466}
+  - component: {fileID: 490505465}
+  - component: {fileID: 490505464}
+  - component: {fileID: 490505463}
+  - component: {fileID: 490505462}
+  - component: {fileID: 490505461}
+  m_Layer: 0
+  m_Name: NPC (2)
+  m_TagString: NPC
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &490505461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca3e0d85d904934d91a5c7b5b6ee580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  hp: 10
+  unitsToAttack: []
+--- !u!114 &490505462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb12cf84724399f43bd5d68e7f823181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  canBeAttacked: {fileID: 1803610929}
+  moving: 0
+  move: 5
+  jumpHeight: 2
+  moveSpeed: 2
+  jumpVelocity: 4.5
+  myAttack: {fileID: 490505461}
+  actualTargetTile: {fileID: 0}
+--- !u!136 &490505463
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &490505464
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a40ff7d2cc7d74b41af9611de57f6bda, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &490505465
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &490505466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490505460}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.50423, y: 1, z: 1.690466}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children:
+  - {fileID: 1803610933}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509640745
 GameObject:
@@ -5513,10 +5780,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5675,10 +5943,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5795,10 +6064,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -5915,10 +6185,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6035,10 +6306,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6155,10 +6427,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6275,10 +6548,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6395,10 +6669,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6515,10 +6790,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6635,10 +6911,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6755,10 +7032,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6875,10 +7153,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -6995,10 +7274,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7115,10 +7395,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7235,10 +7516,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7355,10 +7637,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7451,6 +7734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiles: []
+  selectedEnemy: {fileID: 0}
 --- !u!1 &701185883
 GameObject:
   m_ObjectHideFlags: 0
@@ -7561,10 +7845,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7681,10 +7966,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7801,10 +8087,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -7921,10 +8208,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8041,10 +8329,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8161,10 +8450,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8281,10 +8571,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8401,10 +8692,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8521,10 +8813,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8641,10 +8934,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8761,10 +9055,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -8881,10 +9176,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9001,10 +9297,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9121,10 +9418,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9241,10 +9539,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9361,10 +9660,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9481,10 +9781,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9601,10 +9902,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9721,10 +10023,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -9970,10 +10273,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10090,16 +10394,162 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &887994457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887994458}
+  - component: {fileID: 887994462}
+  - component: {fileID: 887994461}
+  - component: {fileID: 887994460}
+  - component: {fileID: 887994459}
+  m_Layer: 5
+  m_Name: 'OkButton '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &887994458
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887994457}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 227438149}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &887994459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887994457}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &887994460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887994457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 887994461}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1146576036}
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &887994461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887994457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3960f0306b6077240b3bdf65b34e8b8d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &887994462
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887994457}
+  m_CullTransparentMesh: 0
 --- !u!1 &895244353
 GameObject:
   m_ObjectHideFlags: 0
@@ -10252,10 +10702,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10372,10 +10823,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10534,10 +10986,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10654,10 +11107,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10774,10 +11228,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -10936,10 +11391,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11056,10 +11512,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11176,10 +11633,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11330,10 +11788,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11450,10 +11909,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11570,10 +12030,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11616,7 +12077,7 @@ MonoBehaviour:
   turn: 0
   canBeAttacked: {fileID: 1821589918}
   moving: 0
-  move: 5
+  move: 6
   jumpHeight: 2
   moveSpeed: 2
   jumpVelocity: 4.5
@@ -11691,7 +12152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146576030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.49577, y: 1, z: -0.309534}
+  m_LocalPosition: {x: -0.50423, y: 1, z: 1.690466}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1821589922}
@@ -11712,6 +12173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 1
   hp: 10
+  unitsToAttack: []
 --- !u!1 &1149653906
 GameObject:
   m_ObjectHideFlags: 0
@@ -11822,10 +12284,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -11942,10 +12405,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12062,10 +12526,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12182,16 +12647,113 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1215495448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215495449}
+  - component: {fileID: 1215495452}
+  - component: {fileID: 1215495451}
+  - component: {fileID: 1215495450}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1215495449
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215495448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 227438149}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 12.511505, y: -95}
+  m_SizeDelta: {x: -24.97699, y: 107.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1215495450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215495448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.6}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1215495451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215495448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Damage
+
+    1d6-2'
+--- !u!222 &1215495452
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215495448}
+  m_CullTransparentMesh: 0
 --- !u!1 &1218227249
 GameObject:
   m_ObjectHideFlags: 0
@@ -12302,10 +12864,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12515,10 +13078,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12635,10 +13199,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12755,10 +13320,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12875,10 +13441,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -12924,8 +13491,9 @@ Transform:
   - {fileID: 1395875318}
   - {fileID: 1922622801}
   - {fileID: 737191466}
+  - {fileID: 5145184}
   m_Father: {fileID: 1930192855}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332136969
 GameObject:
@@ -13037,10 +13605,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13157,10 +13726,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13277,10 +13847,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13397,16 +13968,150 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1352278677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352278683}
+  - component: {fileID: 1352278682}
+  - component: {fileID: 1352278681}
+  - component: {fileID: 1352278680}
+  - component: {fileID: 1352278679}
+  - component: {fileID: 1352278678}
+  m_Layer: 0
+  m_Name: NPC (1)
+  m_TagString: NPC
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1352278678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca3e0d85d904934d91a5c7b5b6ee580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  hp: 10
+  unitsToAttack: []
+--- !u!114 &1352278679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb12cf84724399f43bd5d68e7f823181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  canBeAttacked: {fileID: 1778959844}
+  moving: 0
+  move: 5
+  jumpHeight: 2
+  moveSpeed: 2
+  jumpVelocity: 4.5
+  myAttack: {fileID: 1352278678}
+  actualTargetTile: {fileID: 0}
+--- !u!136 &1352278680
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1352278681
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a40ff7d2cc7d74b41af9611de57f6bda, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1352278682
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1352278683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352278677}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.50423, y: 1, z: 0.690466}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children:
+  - {fileID: 1778959848}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1368771021
 GameObject:
   m_ObjectHideFlags: 0
@@ -13517,10 +14222,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13637,10 +14343,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13757,16 +14464,113 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1394395507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394395508}
+  - component: {fileID: 1394395511}
+  - component: {fileID: 1394395510}
+  - component: {fileID: 1394395509}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1394395508
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394395507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 227438149}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 12.511505, y: 21.25}
+  m_SizeDelta: {x: -24.97699, y: 107.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1394395509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394395507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.6}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1394395510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394395507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Chance of hit
+
+    10>3d6-2'
+--- !u!222 &1394395511
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394395507}
+  m_CullTransparentMesh: 0
 --- !u!1 &1395875317
 GameObject:
   m_ObjectHideFlags: 0
@@ -13877,10 +14681,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -13997,10 +14802,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14117,10 +14923,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14237,10 +15044,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14357,10 +15165,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14477,10 +15286,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14597,10 +15407,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14717,10 +15528,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14837,10 +15649,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -14957,10 +15770,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15077,10 +15891,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15197,10 +16012,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15317,10 +16133,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15437,10 +16254,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15557,10 +16375,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15677,10 +16496,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15797,10 +16617,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -15917,10 +16738,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16079,10 +16901,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16186,8 +17009,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1146576036}
-        m_MethodName: Attack
+      - m_Target: {fileID: 484213472}
+        m_MethodName: ShowDefaultAttackInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16344,10 +17167,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16464,10 +17288,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16584,10 +17409,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16704,10 +17530,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16824,10 +17651,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -16944,10 +17772,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -17064,10 +17893,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -17184,10 +18014,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -17304,16 +18135,110 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1778959844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778959848}
+  - component: {fileID: 1778959847}
+  - component: {fileID: 1778959846}
+  - component: {fileID: 1778959845}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1778959845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778959844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1778959846
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778959844}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7a07c61d1ae789245be27cd71b29fb47, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1778959847
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778959844}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1778959848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778959844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.66, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 1352278683}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1781418796
 GameObject:
   m_ObjectHideFlags: 0
@@ -17424,16 +18349,52 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1784896761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1784896762}
+  m_Layer: 5
+  m_Name: EnemySingsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1784896762
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784896761}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 484213471}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1080.0002, y: -520}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1785528304
 GameObject:
   m_ObjectHideFlags: 0
@@ -17544,16 +18505,110 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
   f: 0
   g: 0
   h: 0
+--- !u!1 &1803610929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803610933}
+  - component: {fileID: 1803610932}
+  - component: {fileID: 1803610931}
+  - component: {fileID: 1803610930}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1803610930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803610929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1803610931
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803610929}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7a07c61d1ae789245be27cd71b29fb47, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1803610932
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803610929}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1803610933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803610929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.66, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 490505466}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1817487431
 GameObject:
   m_ObjectHideFlags: 0
@@ -17664,10 +18719,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -17877,10 +18933,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -17997,10 +19054,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18117,10 +19175,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18164,7 +19223,6 @@ Transform:
   - {fileID: 60387379}
   - {fileID: 1949648833}
   - {fileID: 992473720}
-  - {fileID: 5145184}
   - {fileID: 1279592716}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -18279,10 +19337,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18441,10 +19500,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18561,10 +19621,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18681,10 +19742,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18801,10 +19863,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -18921,10 +19984,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -19041,10 +20105,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -19161,10 +20226,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -19281,10 +20347,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0
@@ -19401,10 +20468,11 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  canBeAttacked: 0
   haveCharOnIt: 0
   character: {fileID: 0}
   adjacencyList: []
-  tilsWithChars: []
+  tilesWithCharsList: []
   visited: 0
   parent: {fileID: 0}
   distance: 0

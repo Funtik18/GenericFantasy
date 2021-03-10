@@ -9,11 +9,12 @@ public class Tile : MonoBehaviour
     public bool target = false;
     public bool selectable = false;
 
+    public bool canBeAttacked = false;
     public bool haveCharOnIt = false;
     public TacticMove character;
 
     public List<Tile> adjacencyList = new List<Tile>();
-    public List<Tile> tilsWithChars = new List<Tile>();
+    public List<Tile> tilesWithCharsList = new List<Tile>();
 
     [Header("Nav Algorithm BFS")]
     public bool visited = false;
@@ -55,8 +56,9 @@ public class Tile : MonoBehaviour
     public void TileReset()
     {
         adjacencyList.Clear();
-        tilsWithChars.Clear();
+        tilesWithCharsList.Clear();
 
+        canBeAttacked = false;
 
         current = false;
         target = false;
@@ -76,6 +78,11 @@ public class Tile : MonoBehaviour
         CheckTile(-Vector3.forward, jumpHeight,target);
         CheckTile(Vector3.right, jumpHeight,target);
         CheckTile(-Vector3.right, jumpHeight,target);
+
+        /*CheckTile(Vector3.forward+ Vector3.right, jumpHeight, target);//ЧТОБЫ ПО ГОРИЗОНТАЛИ ХОДИТЬ
+        CheckTile(Vector3.forward + -Vector3.right, jumpHeight, target);
+        CheckTile(-Vector3.forward + Vector3.right, jumpHeight, target);
+        CheckTile(-Vector3.forward + -Vector3.right, jumpHeight, target);*/
     }
 
     public void CheckTile(Vector3 direction, float jumpHeight,Tile target)
@@ -96,10 +103,10 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    if (tile.haveCharOnIt)
+                    if (tile.haveCharOnIt && !tilesWithCharsList.Contains(tile))
                     {
-                        //tilsWithChars.Add(tile);
-                        adjacencyList.Add(tile);
+                        tilesWithCharsList.Add(tile);
+
                     }
                 }
 

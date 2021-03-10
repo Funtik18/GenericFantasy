@@ -119,6 +119,16 @@ public class TacticMove : MonoBehaviour
                         }
                     }
                 }
+
+            }
+            foreach (Tile tile in t.tilesWithCharsList)
+            {
+                if (!tile.visited)
+                {
+                    tile.visited = true;
+                    tile.distance = 1 + t.distance;
+
+                }
             }
         }
     }
@@ -307,7 +317,7 @@ public class TacticMove : MonoBehaviour
 
         foreach (Tile t in list)
         {
-            if (t.f < lowest.f)
+            if (t.f < lowest.f && !t.haveCharOnIt)
             {
                 lowest = t;
             }
@@ -355,11 +365,14 @@ public class TacticMove : MonoBehaviour
 
         openList.Add(currentTile);
         //currentTile.parent
+
         currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
         currentTile.f = currentTile.h;
         while (openList.Count > 0)
         {
+
             Tile t = FindLowestF(openList);
+
             closedList.Add(t);
             if (t == target)
             {
@@ -384,16 +397,22 @@ public class TacticMove : MonoBehaviour
                         item.g = tempG;
                         item.f = item.g + item.h;
                     }
+                    /*if (item.haveCharOnIt)
+                    {
+                        item.g = Mathf.Infinity;
+                    }*/
                 }
                 else
                 {
                     item.parent = t;
 
                     item.g = t.g + Vector3.Distance(item.transform.position, t.transform.position);
+
                     item.h = Vector3.Distance(item.transform.position, target.transform.position);
                     item.f = item.h + item.g;
 
                     openList.Add(item);
+
                 }
             }
         }
@@ -401,15 +420,27 @@ public class TacticMove : MonoBehaviour
         Debug.LogError("Path not found");
     }
 
+    public virtual void Think()
+    {
+
+    }
+
+    public virtual void EndThink()
+    {
+
+    }
+
     public void BeginTurn()
     {
         turn = true;
-        
+        FindSelectableTiles();
+        Think();
     }
 
     public void EndTurn()
     {
         turn = false;
+        EndThink();
     }
 
 }

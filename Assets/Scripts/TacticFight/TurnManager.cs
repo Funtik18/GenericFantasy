@@ -6,6 +6,8 @@ public class TurnManager : MonoBehaviour
 {
     [HideInInspector]
     public GameObject[] tiles;
+    //[HideInInspector]
+    public GameObject selectedEnemy;
 
     private static TurnManager instance;
     public static TurnManager Instance
@@ -43,7 +45,6 @@ public class TurnManager : MonoBehaviour
     public void InitTeamTurnQueue()
     {
         List<TacticMove> teamList = units[turnKey.Peek()];
-
         foreach (TacticMove item in teamList)
         {
             turnTeam.Enqueue(item);
@@ -74,19 +75,7 @@ public class TurnManager : MonoBehaviour
             InitTeamTurnQueue();
         }
 
-        ClearCal();
 
-    }
-
-    public void ClearCal()///////////ПОЛНЫЙ
-    {
-        foreach (var item in units)////////КАЛ
-        {
-            foreach (var item2 in item.Value)
-            {
-                item2.canBeAttacked.SetActive(false);
-            }
-        }
     }
 
     public void AddUnit(TacticMove unit)
