@@ -29,17 +29,20 @@ public class Character : Entity<CharacterScriptableData>
 		}
 	}
 
-
-	[Button]
-	private void Save()
+	public CharacterData GetData()
 	{
-		SaveLoaderManager.SavePlayerStatistics(statistics.GetData());//сохраняем
-	}
+		CharacterData characterData = new CharacterData()
+		{
+			character = this,
+			statisticsData = Statistics.GetData(),
+		};
 
-	[Button]
-	private void ClearSaves()
-	{
-		SaveLoaderManager.IsFirstTime = true;
-		SaveLoaderManager.DestroyDirectory();
+		return characterData;
 	}
+}
+[System.Serializable]
+public struct CharacterData
+{
+	public Character character;
+	public EntityStatisticsData statisticsData;
 }

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1dbdab28726b849978a965d3e9a4c3, type: 3}
+  m_Name: Character2
+  m_EditorClassIdentifier: 
+  data:
+    colorsData:
+      portraitColor: {r: 0.3372549, g: 1, b: 0, a: 1}
+      hairColor: {r: 0.776, g: 0.651, b: 0.349, a: 1}
+      eyesColor: {r: 0, g: 0, b: 0, a: 1}
+      skinColor: {r: 0.92156863, g: 0.8, b: 0.67058825, a: 1}
+      stubbleColor: {r: 0.41568628, g: 0.4117647, b: 0.47058824, a: 1}
+      scarColor: {r: 0.6509804, g: 0.5647059, b: 0.4745098, a: 1}
+      artColor: {r: 0.2, g: 0.6, b: 0.698, a: 1}
+    statsData:
+      level: 1
+      statsPrimary:
+        strength: 10
+        dexterity: 10
+        intelligence: 10
+        vitality: 10
+      currents:
+        currentExperience: 0
+        currentHealth: 0
+        currentMana: 0
+        currentFatigue: 0
+        currentWeight: 0
+    attributesData:
+      attributes: []

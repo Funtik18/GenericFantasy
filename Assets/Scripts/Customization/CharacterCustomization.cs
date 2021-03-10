@@ -6,13 +6,13 @@ using Sirenix.OdinInspector;
 
 public class CharacterCustomization : MonoBehaviour
 {
-
+    [Required]
     [SerializeField] private CharacterAvatar avatar;
 
 
     [OnValueChanged("ReBuild")]
     [SerializeField] private CharacterGender gender = CharacterGender.Female;
-    [OnValueChanged("ReBuild")]
+    [OnValueChanged("UpdateRace")]
     [SerializeField] private CharacterRace race = CharacterRace.Human;
 
 	#region Colors
@@ -115,6 +115,18 @@ public class CharacterCustomization : MonoBehaviour
         UpdateLists();
     }
 
+    private void UpdateRace()
+	{
+        if(race == CharacterRace.Elf)
+        {
+            ears.UpdateList(new Transform[1] { avatar.ears });
+        }
+        else
+        {
+            ears.ClearObjects();
+        }
+    }
+
     private void UpdateLists()
 	{
         hairs.UpdateList(new Transform[1] { avatar.hairs });
@@ -165,14 +177,7 @@ public class CharacterCustomization : MonoBehaviour
         }
 		#endregion
 
-		if(race == CharacterRace.Elf)
-        {
-            ears.UpdateList(new Transform[1] { avatar.ears });
-		}
-		else
-		{
-            ears.ClearObjects();
-		}
+		
 
         if(gender == CharacterGender.Male)
 		{

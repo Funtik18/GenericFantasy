@@ -4,6 +4,8 @@ public class EntityStatistics
 {
 	public readonly string id;
 
+	public readonly EntityCustomColors colors;
+
 	public readonly EntityStats stats;
 
 	public readonly EntityAttributes attributes;
@@ -11,6 +13,8 @@ public class EntityStatistics
 	public EntityStatistics(EntityStatisticsData data)
 	{
 		id = Guid.NewGuid().ToString();
+
+		colors = new EntityCustomColors(data.colorsData);
 
 		stats = new EntityStats(data.statsData);
 

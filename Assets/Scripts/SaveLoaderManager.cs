@@ -31,6 +31,10 @@ public class SaveLoaderManager
 	}
 
 
+	public static void SavePlayerQuartet(Quartet quartet)
+	{
+		SaveDataToJson(quartet, directorySaves, fileNamePlayerStatistics);
+	}
 
 	public static void SavePlayerStatistics(EntityStatisticsData statistics)
 	{
