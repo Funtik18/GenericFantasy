@@ -18,8 +18,3 @@ public class StatsTranslationData : ScriptableObject
 	}
 }
 
-[EnumPaging]
-public enum Languages
-{
-	EN,
-}

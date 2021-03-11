@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "RPG/Attributes/Languages", fileName = "Language")]
-public abstract class Language : Advantage
+public abstract class LanguageAdvantage : Advantage
 {
 	public Linguistic linguistic;
 }

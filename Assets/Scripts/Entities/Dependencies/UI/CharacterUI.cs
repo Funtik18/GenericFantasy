@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterUI : MonoBehaviour
 {
-    public Entity entity;
+    public Entity<EntityStatistics> entity;
 	[Space]
 	public StatsUI statsUI;
 	public BarsUI barsUI;

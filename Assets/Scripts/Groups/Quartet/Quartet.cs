@@ -10,7 +10,7 @@ public class Quartet
 {
 	[HideInInspector] public readonly int maxCharacters = 4;
 
-	public List<CharacterData> characters = new List<CharacterData>();
+	public List<CharacterStatisticsData> characters = new List<CharacterStatisticsData>();
 
 	public UnityAction onQuartetChanged;
 
@@ -45,7 +45,7 @@ public class Quartet
 	{
 		for(int i = 0; i < characters.Count; i++)
 		{
-			if(characters[i].character == character) 
+			//if(characters[i].character == character) 
 				return true;
 		}
 		return false;
@@ -55,21 +55,21 @@ public class Quartet
 		index = -1;
 		for(int i = 0; i < characters.Count; i++)
 		{
-			if(characters[i].character == character)
-			{
-				index = i;
+			//if(characters[i].character == character)
+			//{
+			//	index = i;
 				return true;
-			}
+			//}
 		}
 		return false;
 	}
 
 	public Character GetCharacter(int index)
 	{
-		if(index >= 0 && index < characters.Count)
-		{
-			return characters[index].character;
-		}
+		//if(index >= 0 && index < characters.Count)
+		//{
+		//	return characters[index].character;
+		//}
 		return null;
 	}
 }

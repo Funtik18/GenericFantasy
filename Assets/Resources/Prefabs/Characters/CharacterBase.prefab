@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ec4cfa0602600554fb88fdc2990e2a72, type: 2}
+  avatar: {fileID: 8354155202580649166}
 --- !u!1 &8352202652711420570
 GameObject:
   m_ObjectHideFlags: 0
@@ -32856,9 +32857,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8351580912605448843}
   - component: {fileID: 8267098235143816831}
-  - component: {fileID: 8353430845482872146}
   m_Layer: 0
-  m_Name: ModularCharacters
+  m_Name: ModularCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32899,38 +32899,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8353430845482872146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8353430845482872145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8315fa660c2b90f44a08df37365e8ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatar: {fileID: 8354155202580649166}
-  gender: 1
-  race: 0
-  hairColor: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-  eyesColor: {r: 0, g: 0, b: 0, a: 1}
-  skinColor: {r: 0.92156863, g: 0.8, b: 0.67058825, a: 1}
-  stubbleColor: {r: 0.41441682, g: 0.41162336, b: 0.4716981, a: 1}
-  scarColor: {r: 0.6509804, g: 0.5647059, b: 0.47450984, a: 1}
-  artColor: {r: 0, g: 0, b: 0, a: 0}
-  isHaveFacialHair: 0
-  arms:
-    armLeft:
-      useExtra: 0
-    armRight:
-      useExtra: 0
-  legs:
-    legLeft:
-      useExtra: 0
-    legRight:
-      useExtra: 0
 --- !u!1 &8353435018091463723
 GameObject:
   m_ObjectHideFlags: 0

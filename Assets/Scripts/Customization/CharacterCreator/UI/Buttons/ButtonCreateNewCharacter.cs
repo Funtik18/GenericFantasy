@@ -16,8 +16,13 @@ public class ButtonCreateNewCharacter : MonoBehaviour
 
     public void CreateNew()
 	{
+        CharacterCustomizator customizator = FindObjectOfType<CharacterCustomizator>();
+
         currentCharacter = stand.ReplaceCharacter(characterBase);
-        FindObjectOfType<ButtonSaveNewCharacter>().SetCharacter(currentCharacter);
-        FindObjectOfType<CharacterCustomizator>().SetCharacter(currentCharacter);
+
+        FindObjectOfType<ButtonSaveNewCharacter>().SetCustomizator(customizator);
+        FindObjectOfType<ButtonLoadNewCharacter>().SetCustomizator(customizator);
+
+        customizator.SetCharacter(currentCharacter);
     }
 }

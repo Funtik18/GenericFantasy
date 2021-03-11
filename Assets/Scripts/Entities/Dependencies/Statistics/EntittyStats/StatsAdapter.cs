@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatsAdapter : MonoBehaviour
 {
-	[SerializeField] private Entity entity;
+	[SerializeField] private Entity<EntityStatistics> entity;
 
 
 	public void Roll()

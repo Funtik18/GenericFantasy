@@ -11,9 +11,9 @@ public class CharacterCustomization : MonoBehaviour
 
 
     [OnValueChanged("ReBuild")]
-    [SerializeField] private CharacterGender gender = CharacterGender.Female;
+    [SerializeField] private CharacterGenders gender = CharacterGenders.Female;
     [OnValueChanged("UpdateRace")]
-    [SerializeField] private CharacterRace race = CharacterRace.Human;
+    [SerializeField] private CharacterRaces race = CharacterRaces.Human;
 
 	#region Colors
 	[TabGroup("Colors")]
@@ -65,7 +65,7 @@ public class CharacterCustomization : MonoBehaviour
     [HideLabel]
     [TabGroup("Head")]
     [Title("Ears")]
-    [ShowIf("race", CharacterRace.Elf)]
+    [ShowIf("race", CharacterRaces.Elf)]
     [SerializeField] private CharacterPart ears;
 
 
@@ -117,7 +117,7 @@ public class CharacterCustomization : MonoBehaviour
 
     private void UpdateRace()
 	{
-        if(race == CharacterRace.Elf)
+        if(race == CharacterRaces.Elf)
         {
             ears.UpdateList(new Transform[1] { avatar.ears });
         }
@@ -179,7 +179,7 @@ public class CharacterCustomization : MonoBehaviour
 
 		
 
-        if(gender == CharacterGender.Male)
+        if(gender == CharacterGenders.Male)
 		{
             heads.UpdateList(new Transform[1] { avatar.maleHeads });
             eyebrows.UpdateList(new Transform[1] { avatar.maleEyebrows });
@@ -202,7 +202,7 @@ public class CharacterCustomization : MonoBehaviour
             legs.legLeft.leg.UpdateList(new Transform[1] { avatar.maleLegLeft });
             legs.legRight.leg.UpdateList(new Transform[1] { avatar.maleLegRight });
         }
-        else if(gender == CharacterGender.Female)
+        else if(gender == CharacterGenders.Female)
 		{
             heads.UpdateList(new Transform[1] {avatar.femaleHeads });
             eyebrows.UpdateList(new Transform[1] { avatar.femaleEyebrows });
@@ -261,7 +261,7 @@ public class CharacterCustomization : MonoBehaviour
 
     private bool CheckFacialHair()
     {
-        return (gender == CharacterGender.Male || gender == CharacterGender.TransNigga) && race != CharacterRace.Elf;
+        return (gender == CharacterGenders.Male) && race != CharacterRaces.Elf;
     }
 
     [Button]
@@ -490,5 +490,3 @@ public class CharacterCustomization : MonoBehaviour
         }
     }
 }
-public enum CharacterGender { Male, Female, TransNigga }
-public enum CharacterRace { Human, Elf }

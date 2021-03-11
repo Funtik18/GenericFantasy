@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using Sirenix.OdinInspector;
-
-public class Character : Entity<CharacterScriptableData> 
+﻿public class Character : Entity<CharacterStatistics> 
 {
-	public override EntityStatistics Statistics
+	public CharacterAvatar avatar;
+
+	public override CharacterStatistics Statistics
 	{
 		get
 		{
 			if(statistics == null)
 			{
+
+				statistics = new CharacterStatistics(new CharacterStatisticsData());
+
+				//statistics = new CharacterStatistics(SaveLoaderManager.LoadPlayerStatistics());//загрузка базы
+
+
 				//if(SaveLoaderManager.IsFirstTime)
 				{
-					statistics = new EntityStatistics(new EntityStatisticsData(data.data));//базовые значения
+					//statistics = new EntityStatistics(new EntityStatisticsData(data.data));//базовые значения
 
 					//SaveLoaderManager.SavePlayerStatistics(statistics.GetData());//сохраняем
 
@@ -22,27 +24,20 @@ public class Character : Entity<CharacterScriptableData>
 				}
 				//else
 				{
-					//statistics = new EntityStatistics(SaveLoaderManager.LoadPlayerStatistics());//загрузка базы
 				}
 			}
 			return statistics;
 		}
 	}
 
-	public CharacterData GetData()
-	{
-		CharacterData characterData = new CharacterData()
-		{
-			character = this,
-			statisticsData = Statistics.GetData(),
-		};
 
-		return characterData;
+	public void SetStatistics(CharacterStatisticsData data)
+	{
+		statistics = new CharacterStatistics(data);
 	}
-}
-[System.Serializable]
-public struct CharacterData
-{
-	public Character character;
-	public EntityStatisticsData statisticsData;
+
+	public CharacterStatisticsData GetData()
+	{
+		return Statistics.GetData();
+	}
 }

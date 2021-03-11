@@ -1,31 +1,9 @@
 ﻿using UnityEngine;
-
-using Sirenix.OdinInspector;
-
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour { }
+public abstract class Entity<STATISTICS> : Entity where STATISTICS : EntityStatistics
 {
-	//[ShowInInspector]//for debug
-	//[NonSerialized]
-	public virtual EntityStatistics Statistics { get; }
-}
-public class Entity<DATA> : Entity
-	where DATA : EntityScriptableData
-{
-	[Required]
-	[SerializeField] protected DATA data;
-
-	protected EntityStatistics statistics;
-	public override EntityStatistics Statistics
-	{
-		get
-		{
-			if(statistics == null)
-			{
-				statistics = new EntityStatistics(new EntityStatisticsData(data.data));
-			}
-			return statistics;
-		}
-	}
+	protected STATISTICS statistics;
+	public abstract STATISTICS Statistics { get; }
 
 	protected virtual void Awake()
 	{

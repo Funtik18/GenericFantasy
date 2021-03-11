@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonSaveNewCharacter : MonoBehaviour
 {
-	private Character character;
+	private CharacterCustomizator customizator;
 
 	[SerializeField] private Button buttonSave;
 
@@ -14,15 +14,15 @@ public class ButtonSaveNewCharacter : MonoBehaviour
 		buttonSave.interactable = false;
 	}
 
-	public void SetCharacter(Character character)
+	public void SetCustomizator(CharacterCustomizator customizator)
 	{
-		this.character = character;
+		this.customizator = customizator;
 
-		buttonSave.interactable = true;
+		buttonSave.interactable = this.customizator != null;
 	}
 
     public void Save()
 	{
-
+		SaveLoaderManager.SaveCharacter(customizator.GetData());
 	}
 }

@@ -18,7 +18,7 @@ public class AttributesScriptableData : ScriptableObject
 	public DisAdvantage[] disAdvantagesAll;
 
 	[AssetList(AutoPopulate = true)]
-	public Language[] languagesAll;
+	public LanguageAdvantage[] languagesAll;
 
 	[AssetList(AutoPopulate = true)]
 	public Perk[] perksAll;

@@ -31,6 +31,16 @@ public class SaveLoaderManager
 	}
 
 
+	public static void SaveCharacter(CharacterStatisticsData data)
+	{
+		SaveDataToJson(data, directorySaves, fileNamePlayerStatistics);
+	}
+	public static CharacterStatisticsData LoadCharacter()
+	{
+		return LoadDataFromJson<CharacterStatisticsData>(directorySaves, fileNamePlayerStatistics);
+	}
+
+
 	public static void SavePlayerQuartet(Quartet quartet)
 	{
 		SaveDataToJson(quartet, directorySaves, fileNamePlayerStatistics);
