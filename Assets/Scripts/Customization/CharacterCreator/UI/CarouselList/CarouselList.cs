@@ -11,9 +11,7 @@ public class CarouselList : MonoBehaviour
     [SerializeField] private TMPro.TMP_InputField inputField;
     [SerializeField] private Button buttonRight;
 
-	private List<GameObject> gameObjects = new List<GameObject>();
-
-	public UnityAction<int> onIndexChanged;
+	private CharacterPiece piece;
 
 	private bool isEnable;
 	public bool IsEnable
@@ -22,75 +20,30 @@ public class CarouselList : MonoBehaviour
 		private set
 		{
 			isEnable = value;
-			
-			UpdateList();
 		}
 	}
 
-
-	private int currentIndex;
-	public int CurrentIndex
+	private void Awake()
 	{
-		set
-		{
-			if(value < 0) value += gameObjects.Count;
-
-			currentIndex = value % gameObjects.Count;
-			inputField.text = currentIndex.ToString();
-
-			onIndexChanged?.Invoke(currentIndex);
-
-			UpdateList();
-		}
-		get
-		{
-			return currentIndex;
-		}
+		buttonLeft.onClick.AddListener(delegate { this.piece.CurrentIndex--; });
+		inputField.onValueChanged.AddListener((x) => { this.piece.CurrentIndex = Convert.ToInt32(x); });
+		buttonRight.onClick.AddListener(delegate { this.piece.CurrentIndex++; });
 	}
 
-	private bool once = true;
-
-	public void SetCarousel(List<GameObject> gameObjects, bool enebled = true, int initIndex = 0)
+	public void SetCarousel(CharacterPiece piece, bool enebled = true)
 	{
-		if(this.gameObjects.Count > 0)
-		{
-			DisableAll();
-			this.gameObjects.Clear();
-		}
+		this.piece = piece;
 
-		if(once)
-		{
-			buttonLeft.onClick.AddListener(delegate { CurrentIndex--; });
-			inputField.onValueChanged.AddListener((x) => { CurrentIndex = Convert.ToInt32(x); });
-			buttonRight.onClick.AddListener(delegate { CurrentIndex++; });
-
-			once = false;
-		}
-	
-
-		this.gameObjects.AddRange(gameObjects);
-
-		CurrentIndex = initIndex;
+		this.piece.onIndexChanged += SetText;
+		SetText(this.piece.CurrentIndex);
 
 		IsEnable = enebled;
-
-		UpdateList();
 	}
 
-	private void UpdateList()
+	private void SetText(int value)
 	{
-		DisableAll();
-
-
-		if(IsEnable)
-			gameObjects[CurrentIndex].SetActive(true);
-	}
-	private void DisableAll()
-	{
-		for(int i = 0; i < gameObjects.Count; i++)
-		{
-			gameObjects[i].SetActive(false);
-		}
+		if(value >= 0)
+			inputField.text = value.ToString();
 	}
 
 	public void Enable()

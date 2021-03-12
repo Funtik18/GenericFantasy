@@ -11,14 +11,14 @@
 [System.Serializable]
 public struct CharacterModelData
 {
-    public CharacterModelHead head;
-    public CharacterModelTorso torso;
-    public CharacterModelHips hips;
+    public CharacterModelHeadData head;
+    public CharacterModelBodyData body;
 }
 [System.Serializable]
-public struct CharacterModelHead
+public struct CharacterModelHeadData
 {
     public int headIndex;
+    public bool isCustomEars;
     public int earsIndex;
     public int hairIndex;
     public int eyebrowIndex;
@@ -26,17 +26,24 @@ public struct CharacterModelHead
     public int facialhairIndex;
 }
 
+[System.Serializable]
+public struct CharacterModelBodyData
+{
+    public CharacterModelTorsoData torso;
+    public CharacterModelHipsData hips;
+}
+
 
 [System.Serializable]
-public struct CharacterModelTorso
+public struct CharacterModelTorsoData
 {
     public int torsoIndex;
 
-    public CharacterModelArm leftArm;
-    public CharacterModelArm rightArm;
+    public CharacterModelArmData leftArm;
+    public CharacterModelArmData rightArm;
 }
 [System.Serializable]
-public struct CharacterModelArm
+public struct CharacterModelArmData
 {
     public int armUpperIndex;
     public int armLowerIndex;
@@ -50,15 +57,15 @@ public struct CharacterModelArm
 
 
 [System.Serializable]
-public struct CharacterModelHips
+public struct CharacterModelHipsData
 {
     public int hipsIndex;
 
-    public CharacterModelLeg leftLeg;
-    public CharacterModelLeg rightLeg;
+    public CharacterModelLegData leftLeg;
+    public CharacterModelLegData rightLeg;
 }
 [System.Serializable]
-public struct CharacterModelLeg
+public struct CharacterModelLegData
 {
     public int legIndex;
     public bool useExtra;

@@ -2,29 +2,19 @@
 {
 	public CharacterAvatar avatar;
 
+	public CharacterInformation Information => Statistics.information;
+	public CharacterModel Model => Statistics.model;
+
+
 	public override CharacterStatistics Statistics
 	{
 		get
 		{
 			if(statistics == null)
 			{
+				CharacterStatisticsData data = new CharacterStatisticsData();
 
-				statistics = new CharacterStatistics(new CharacterStatisticsData());
-
-				//statistics = new CharacterStatistics(SaveLoaderManager.LoadPlayerStatistics());//загрузка базы
-
-
-				//if(SaveLoaderManager.IsFirstTime)
-				{
-					//statistics = new EntityStatistics(new EntityStatisticsData(data.data));//базовые значения
-
-					//SaveLoaderManager.SavePlayerStatistics(statistics.GetData());//сохраняем
-
-					//SaveLoaderManager.IsFirstTime = false;
-				}
-				//else
-				{
-				}
+				SetStatistics(data);
 			}
 			return statistics;
 		}
@@ -34,10 +24,14 @@
 	public void SetStatistics(CharacterStatisticsData data)
 	{
 		statistics = new CharacterStatistics(data);
+		avatar.UpdateCharacter(data);
 	}
 
 	public CharacterStatisticsData GetData()
 	{
-		return Statistics.GetData();
+		CharacterStatisticsData data = Statistics.GetData();
+		data.modelData = avatar.persona.GetData();
+		
+		return data;
 	}
 }

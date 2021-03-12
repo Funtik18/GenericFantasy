@@ -8,7 +8,7 @@ public class CharacterStand : MonoBehaviour
 
     public Character ReplaceCharacter(Character character)
 	{
-		DisposeAllUI();
+		DisposeAll();
 		if(character != null)
 		{
 			this.character = Instantiate(character, transform);
@@ -16,7 +16,7 @@ public class CharacterStand : MonoBehaviour
 
 		return this.character;
 	}
-	private void DisposeAllUI()
+	private void DisposeAll()
 	{
 		foreach(Transform child in transform)
 		{

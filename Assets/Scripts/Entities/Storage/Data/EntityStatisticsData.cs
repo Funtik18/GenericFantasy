@@ -87,7 +87,7 @@ public class CharacterStatisticsData : EntityStatisticsData
 
 	public CharacterStatisticsData(CharacterStatistics statistics) : base(statistics)
 	{
-		informationData = statistics.information.GetCurrentData();
+		informationData = statistics.information.data;
 		modelData = statistics.model.data;
 	}
 }

@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 using UnityEngine;
 
@@ -6,6 +9,8 @@ public class SaveLoaderManager
 {
 	private readonly static string expansion = ".txt";
 	private readonly static string directorySaves = "/saves/";
+	private readonly static string directoryCharacters = directorySaves + "Characters/";
+	private readonly static string directoryDefalutCharacters = directoryCharacters + "defaults/";
 	private readonly static string fileNamePlayerStatistics = "playerStatistics" + expansion;
 
 	private static int isFirstTime = -1;
@@ -30,14 +35,48 @@ public class SaveLoaderManager
 		}
 	}
 
-
-	public static void SaveCharacter(CharacterStatisticsData data)
+	public static void SaveCharacter(CharacterStatisticsData data, string fileName)
 	{
-		SaveDataToJson(data, directorySaves, fileNamePlayerStatistics);
+		SaveDataToJson(data, directoryCharacters, fileName);
 	}
 	public static CharacterStatisticsData LoadCharacter()
 	{
 		return LoadDataFromJson<CharacterStatisticsData>(directorySaves, fileNamePlayerStatistics);
+	}
+
+
+	public static void SaveAsDefaultCharacter(CharacterStatisticsData data)
+	{
+		SaveDataToJson(data, directoryDefalutCharacters, "default");
+	}
+	public static CharacterStatisticsData LoadDefaultCharacter()
+	{
+		return LoadDataFromJson<CharacterStatisticsData>(directoryDefalutCharacters, "default");
+	}
+
+	
+	public static List<CharacterStatisticsData> LoadAllCharacters()
+	{
+		DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + directoryCharacters);
+		List<FileInfo> filesInfo = new List<FileInfo>();
+		
+		try
+		{
+			filesInfo = info.GetFiles().ToList();
+		}
+		catch(Exception e)
+		{
+			Debug.LogError("Empty characters folder");
+		}
+
+		List<CharacterStatisticsData> files = new List<CharacterStatisticsData>();
+
+		for(int i = 0; i < filesInfo.Count; i++)
+		{
+			files.Add(LoadDataFromJson<CharacterStatisticsData>(filesInfo[i].FullName));
+		}
+
+		return files;
 	}
 
 
@@ -71,6 +110,7 @@ public class SaveLoaderManager
 		string jsonData = JsonUtility.ToJson(data, true);
 		File.WriteAllText(dir + fileName, jsonData);
 	}
+
 	/// <summary>
 	/// Загрузка объекта из Json в объект.
 	/// </summary>
@@ -78,6 +118,20 @@ public class SaveLoaderManager
 	{
 		string fullPath = Application.persistentDataPath + directory + fileName;
 
+		if(File.Exists(fullPath))
+		{
+			string json = File.ReadAllText(fullPath);
+			return JsonUtility.FromJson<T>(json);
+		}
+		else
+		{
+			Debug.LogError("File doesn't exist");
+		}
+
+		return default;
+	}
+	private static T LoadDataFromJson<T>(string fullPath)
+	{
 		if(File.Exists(fullPath))
 		{
 			string json = File.ReadAllText(fullPath);

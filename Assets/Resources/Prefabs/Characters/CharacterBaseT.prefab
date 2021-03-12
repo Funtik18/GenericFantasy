@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0044af987fd73c4d8b8e8d2b835beda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: ec4cfa0602600554fb88fdc2990e2a72, type: 2}
   avatar: {fileID: 8354155202580649166}
 --- !u!1 &8352202652711420570
 GameObject:
@@ -9873,7 +9872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356910235099519909
 Transform:
   m_ObjectHideFlags: 0
@@ -11400,7 +11399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356660804022560005
 Transform:
   m_ObjectHideFlags: 0
@@ -12793,7 +12792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356476925336334831
 Transform:
   m_ObjectHideFlags: 0
@@ -19008,7 +19007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351502776492057447
 Transform:
   m_ObjectHideFlags: 0
@@ -32608,7 +32607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351572880426271143
 Transform:
   m_ObjectHideFlags: 0
@@ -37155,7 +37154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356912385233289279
 Transform:
   m_ObjectHideFlags: 0
@@ -43211,7 +43210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351706145167340027
 Transform:
   m_ObjectHideFlags: 0
@@ -45290,7 +45289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351728126821747039
 Transform:
   m_ObjectHideFlags: 0
@@ -47479,7 +47478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351394751516531479
 Transform:
   m_ObjectHideFlags: 0
@@ -48961,7 +48960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351849118024700851
 Transform:
   m_ObjectHideFlags: 0
@@ -49388,7 +49387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351855997487967579
 Transform:
   m_ObjectHideFlags: 0
@@ -54552,7 +54551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351664488220988515
 Transform:
   m_ObjectHideFlags: 0
@@ -61654,7 +61653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351719606418519649
 Transform:
   m_ObjectHideFlags: 0
@@ -61938,37 +61937,150 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMaterial: {fileID: 2100000, guid: ea128b040f8b0af4c9d2de400aaff30a, type: 2}
-  maleHeads: {fileID: 8351539186355288153}
-  femaleHeads: {fileID: 8356986421422164741}
-  hairs: {fileID: 8351867198678966787}
-  maleEyebrows: {fileID: 8351460527072260307}
-  femaleEyebrows: {fileID: 8356578589854302097}
-  maleFacialHairs: {fileID: 8351400839782300083}
-  ears: {fileID: 8351806970849407055}
-  maleTorso: {fileID: 8356507220521394747}
-  femaleTorso: {fileID: 8356906732824169931}
-  maleArmUpperLeft: {fileID: 8351830773967465015}
-  femaleArmUpperLeft: {fileID: 8351740683195633495}
-  maleArmUpperRight: {fileID: 8351917515384581175}
-  femaleArmUpperRight: {fileID: 8356561476565183093}
-  maleArmLowerLeft: {fileID: 8356936982336830843}
-  femaleArmLowerLeft: {fileID: 8351681146293578847}
-  maleArmLowerRight: {fileID: 8351906828615465431}
-  femaleArmLowerRight: {fileID: 8356575990629533763}
-  handLeft: {fileID: 8351870281076814943}
-  handRight: {fileID: 8356981221730906405}
-  maleHips: {fileID: 8356915788613385461}
-  femaleHips: {fileID: 8351495412684312547}
-  maleLegLeft: {fileID: 8351717870710213111}
-  femaleLegLeft: {fileID: 8356977185558332239}
-  maleLegRight: {fileID: 8356585219420365525}
-  femaleLegRight: {fileID: 8356611409710728439}
-  sholderAttachmentLeft: {fileID: 8356966791780931819}
-  sholderAttachmentRight: {fileID: 8356526712342578399}
-  elbowAttachmentLeft: {fileID: 8356842781260361051}
-  elbowAttachmentRight: {fileID: 8351580452212665633}
-  kneeAttachementLeft: {fileID: 8351546194460618367}
-  kneeAttachementRight: {fileID: 8356588641678837375}
+  male:
+    headPiece:
+      headsPiece:
+        root: {fileID: 8351539186355288153}
+        rootPices: []
+      hairsPiece:
+        root: {fileID: 8351867198678966787}
+        rootPices: []
+      eyebrowsPiece:
+        root: {fileID: 8351460527072260307}
+        rootPices: []
+      facialHairsPiece:
+        root: {fileID: 0}
+        rootPices: []
+      earsPiece:
+        root: {fileID: 0}
+        rootPices: []
+    bodyPiece:
+      torsoPiece:
+        torsoPiece:
+          root: {fileID: 0}
+          rootPices: []
+        armLeftPiece:
+          armUpperPiece:
+            root: {fileID: 0}
+            rootPices: []
+          armLowerPiece:
+            root: {fileID: 0}
+            rootPices: []
+          handPiece:
+            root: {fileID: 0}
+            rootPices: []
+          sholderAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+          elbowAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+        armRightPiece:
+          armUpperPiece:
+            root: {fileID: 0}
+            rootPices: []
+          armLowerPiece:
+            root: {fileID: 0}
+            rootPices: []
+          handPiece:
+            root: {fileID: 0}
+            rootPices: []
+          sholderAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+          elbowAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+      hipsPiece:
+        hipsPiece:
+          root: {fileID: 0}
+          rootPices: []
+        legLeftPiece:
+          legPiece:
+            root: {fileID: 0}
+            rootPices: []
+          kneeAttachementPiece:
+            root: {fileID: 0}
+            rootPices: []
+        legRightPiece:
+          legPiece:
+            root: {fileID: 0}
+            rootPices: []
+          kneeAttachementPiece:
+            root: {fileID: 0}
+            rootPices: []
+  female:
+    headPiece:
+      headsPiece:
+        root: {fileID: 0}
+        rootPices: []
+      hairsPiece:
+        root: {fileID: 0}
+        rootPices: []
+      eyebrowsPiece:
+        root: {fileID: 0}
+        rootPices: []
+      facialHairsPiece:
+        root: {fileID: 0}
+        rootPices: []
+      earsPiece:
+        root: {fileID: 0}
+        rootPices: []
+    bodyPiece:
+      torsoPiece:
+        torsoPiece:
+          root: {fileID: 0}
+          rootPices: []
+        armLeftPiece:
+          armUpperPiece:
+            root: {fileID: 0}
+            rootPices: []
+          armLowerPiece:
+            root: {fileID: 0}
+            rootPices: []
+          handPiece:
+            root: {fileID: 0}
+            rootPices: []
+          sholderAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+          elbowAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+        armRightPiece:
+          armUpperPiece:
+            root: {fileID: 0}
+            rootPices: []
+          armLowerPiece:
+            root: {fileID: 0}
+            rootPices: []
+          handPiece:
+            root: {fileID: 0}
+            rootPices: []
+          sholderAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+          elbowAttachmentPiece:
+            root: {fileID: 0}
+            rootPices: []
+      hipsPiece:
+        hipsPiece:
+          root: {fileID: 0}
+          rootPices: []
+        legLeftPiece:
+          legPiece:
+            root: {fileID: 0}
+            rootPices: []
+          kneeAttachementPiece:
+            root: {fileID: 0}
+            rootPices: []
+        legRightPiece:
+          legPiece:
+            root: {fileID: 0}
+            rootPices: []
+          kneeAttachementPiece:
+            root: {fileID: 0}
+            rootPices: []
 --- !u!1 &8354155429062800873
 GameObject:
   m_ObjectHideFlags: 0
