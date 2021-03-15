@@ -6,9 +6,11 @@ public class NPCMove : TacticMove
 {
     GameObject target;
 
+    private Character myStats;
     // Start is called before the first frame update
     void Start()
     {
+        myStats = GetComponent<PlayerStats>();
         Init();
     }
 

@@ -62,7 +62,7 @@ public class TacticMove : MonoBehaviour
         RaycastHit hit;
         Tile tile = null;
 
-        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 1))
+        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 10))
         {
             tile = hit.collider.GetComponent<Tile>();
         }

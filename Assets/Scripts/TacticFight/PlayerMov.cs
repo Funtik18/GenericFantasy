@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerMov : TacticMove
 {
     private Camera cam;
+    private Character myStats;
     // Start is called before the first frame update
     void Start()
     {
+        myStats = GetComponent<PlayerStats>();
         Init();
         cam = Camera.main;
     }

@@ -16,11 +16,11 @@ public class EntityStatistics
 	{
 		NewId();
 
-		//colors = new EntityCustomColors(data.colorsData);
+		colors = new EntityCustomColors(data.colorsData);
 
-		//stats = new EntityStats(data.statsData);
+		stats = new EntityStats(data.statsData);
 
-		//attributes = new EntityAttributes(this, data.attributesData);
+		attributes = new EntityAttributes(this, data.attributesData);
 	}
 
 	public string NewId()
