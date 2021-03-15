@@ -22,7 +22,7 @@ public class Quartet
 		{
 			if(!Contains(character))
 			{
-				characters.Add(character.GetData());
+				//characters.Add(character.GetData());
 				onQuartetChanged?.Invoke();
 				return true;
 			}

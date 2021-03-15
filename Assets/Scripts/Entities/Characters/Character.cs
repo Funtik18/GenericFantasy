@@ -4,8 +4,7 @@ public class Character : Entity<CharacterStatistics>
 {
 	public CharacterAvatar avatar;
 
-	public CharacterInformation Information => Statistics.information;
-	public CharacterModel Model => Statistics.model;
+	public CharacterData data;
 
     [Header("Basic attributes")]
     public float myStrength;
@@ -21,16 +20,19 @@ public class Character : Entity<CharacterStatistics>
     public float myFatiguePoints;
     public float myDodge;
 
+	public CharacterInformationData Information => data.information;
+
     public override CharacterStatistics Statistics
 	{
 		get
 		{
 			if(statistics == null)
 			{
-				CharacterStatisticsData data = new CharacterStatisticsData();
 
-				SetStatistics(data);
+                statistics = new CharacterStatistics(data.statistics);
+
                 SetStats();
+
 			}
 			return statistics;
 		}
@@ -43,6 +45,7 @@ public class Character : Entity<CharacterStatistics>
         myIntelligence = statistics.stats.Intelligence.StatValue;
         myHealth = statistics.stats.Vitality.StatValue;
 
+
         myHP = statistics.stats.Health.StatValue;
         myMove = statistics.stats.Move.StatValue;
         mySpeed = statistics.stats.Speed.StatValue;
@@ -53,25 +56,36 @@ public class Character : Entity<CharacterStatistics>
         myDodge=statistics.stats.Dodge.StatValue;
     }
 
-	public void SetStatistics(CharacterStatisticsData data)
+	public void Save()
 	{
-		statistics = new CharacterStatistics(data);
-		avatar.UpdateCharacter(data);
+		avatar.SaveModel();
+		SaveLoaderManager.SaveCharacter(data, Statistics.ID);
 	}
 
-	public CharacterStatisticsData GetData()
-	{
-		Debug.LogError(avatar.persona.bodyPiece.torsoPiece.armRightPiece.sholderAttachmentPiece.currentIndex);
-		CharacterStatisticsData data = Statistics.GetData();
-		data.modelData = avatar.persona.GetData();
-		Debug.LogError(data.modelData.body.torso.rightArm.sholderAttachmentIndex);
 
-		return data;
+	public void SetCharacter(CharacterData characterData)
+	{
+		data = characterData;
+
+		avatar.LoadModel();
+		statistics = new CharacterStatistics(data.statistics);
 	}
 }
-
 [System.Serializable]
-public struct test
+public class CharacterData
 {
-	public int b;
+	public CharacterInformationData information;
+	public CharacterStatisticsData statistics;
+	public CharacterModelData model;
 }
+[System.Serializable]
+public class CharacterInformationData
+{
+	public string firstName;
+	public string secondName;
+	public string nickName;
+	public CharacterGenders gender;
+	public CharacterRaces race;
+}
+public enum CharacterGenders { Male, Female }
+public enum CharacterRaces { Human, Elf }

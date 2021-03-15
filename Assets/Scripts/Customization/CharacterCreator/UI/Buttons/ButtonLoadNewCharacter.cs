@@ -10,7 +10,7 @@ public class ButtonLoadNewCharacter : MonoBehaviour
 	[SerializeField] private Button buttonLoad;
 	[SerializeField] private TMPro.TMP_Dropdown dropdown;
 
-	private List<CharacterStatisticsData> allCharacters;
+	private List<CharacterData> allCharacters;
 
 	private void Awake()
 	{
@@ -33,7 +33,7 @@ public class ButtonLoadNewCharacter : MonoBehaviour
 
 			for(int i = 0; i < allCharacters.Count; i++)
 			{
-				options.Add(allCharacters[i].informationData.firstName + "_" + allCharacters[i].informationData.secondName);
+				options.Add(allCharacters[i].information.firstName + "_" + allCharacters[i].information.secondName);
 			}
 
 			if(dropdown.options.Count > 0)

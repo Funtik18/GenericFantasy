@@ -6,13 +6,13 @@ public class CharacterStand : MonoBehaviour
 {
     private Character character;
 
-    public Character ReplaceCharacter(Character character)
+    public Character ReplaceCharacter(Character charact)
 	{
 		DisposeAll();
 
-		if(character != null)
+		if(charact != null)
 		{
-			this.character = Instantiate(character, transform);
+			character = Instantiate(charact, transform);
 		}
 		return this.character;
 	}

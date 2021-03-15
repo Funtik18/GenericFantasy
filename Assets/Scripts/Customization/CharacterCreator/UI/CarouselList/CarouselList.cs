@@ -23,40 +23,48 @@ public class CarouselList : MonoBehaviour
 		{
 			isEnable = value;
 
-			if(piece != null)
-				if(isEnable == false)
+			if(isEnable == false)
+			{
+				piece.CurrentIndex = -1;
+			}
+			else
+			{
+				if(piece.CurrentIndex == -1)
 				{
-					piece.DisableAllObjects();
+					if(!isCanBeMinus)
+						piece.CurrentIndex = 0;
 				}
 				else
 				{
-					if(piece.CurrentIndex == -1)
-					{
-						if(!isCanBeMinus)
-							piece.CurrentIndex = 0;
-					}
-					else
-					{
-						piece.CurrentIndex = piece.CurrentIndex;
-					}
+					piece.CurrentIndex = piece.CurrentIndex;
 				}
+			}
 		}
 	}
 
 	private void Awake()
 	{
 		buttonLeft.onClick.AddListener(delegate {
-			if(isCanBeMinus)
+			if(!isCanBeMinus)
 			{
-				if(piece.CurrentIndex - 1 == -1) piece.DisableAllObjects();
-				else piece.CurrentIndex--;
+				if(piece.CurrentIndex >= 1)
+				{
+					piece.Left();
+				}
+				else
+				{
+					piece.Left();
+					piece.Left();
+				}
 			}
 			else
-				piece.CurrentIndex--;
-		
+			{
+				piece.Left();
+			}
+
 		});
 		//inputField.onValueChanged.AddListener((x) => { piece.CurrentIndex = Convert.ToInt32(x); });
-		buttonRight.onClick.AddListener(delegate { piece.CurrentIndex++; });
+		buttonRight.onClick.AddListener(delegate { piece.Right(); });
 	}
 
 	public void SetCarousel(CharacterPiece piece, bool isCanBeMinus = false, bool enebled = true)

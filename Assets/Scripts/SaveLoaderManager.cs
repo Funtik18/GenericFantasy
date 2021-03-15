@@ -35,27 +35,11 @@ public class SaveLoaderManager
 		}
 	}
 
-	public static void SaveCharacter(CharacterStatisticsData data, string fileName)
+	public static void SaveCharacter(CharacterData data, string fileName)
 	{
 		SaveDataToJson(data, directoryCharacters, fileName);
 	}
-	public static CharacterStatisticsData LoadCharacter()
-	{
-		return LoadDataFromJson<CharacterStatisticsData>(directorySaves, fileNamePlayerStatistics);
-	}
-
-
-	public static void SaveAsDefaultCharacter(CharacterStatisticsData data)
-	{
-		SaveDataToJson(data, directoryDefalutCharacters, "default");
-	}
-	public static CharacterStatisticsData LoadDefaultCharacter()
-	{
-		return LoadDataFromJson<CharacterStatisticsData>(directoryDefalutCharacters, "default");
-	}
-
-	
-	public static List<CharacterStatisticsData> LoadAllCharacters()
+	public static List<CharacterData> LoadAllCharacters()
 	{
 		DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + directoryCharacters);
 		List<FileInfo> filesInfo = new List<FileInfo>();
@@ -69,11 +53,11 @@ public class SaveLoaderManager
 			Debug.LogError("Empty characters folder");
 		}
 
-		List<CharacterStatisticsData> files = new List<CharacterStatisticsData>();
+		List<CharacterData> files = new List<CharacterData>();
 
 		for(int i = 0; i < filesInfo.Count; i++)
 		{
-			files.Add(LoadDataFromJson<CharacterStatisticsData>(filesInfo[i].FullName));
+			files.Add(LoadDataFromJson<CharacterData>(filesInfo[i].FullName));
 		}
 
 		return files;

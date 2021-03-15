@@ -36,14 +36,8 @@ public class EntityStatistics
 }
 public class CharacterStatistics : EntityStatistics
 {
-	public readonly CharacterInformation information;
-
-	public readonly CharacterModel model;
-
 	public CharacterStatistics(CharacterStatisticsData data) : base(data)
 	{
-		information = new CharacterInformation(data.informationData);
-		model = new CharacterModel(data.modelData);
 	}
 
 	public new CharacterStatisticsData GetData()
