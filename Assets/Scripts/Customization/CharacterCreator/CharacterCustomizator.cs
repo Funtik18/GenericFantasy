@@ -69,18 +69,19 @@ public class CharacterCustomizator : MonoBehaviour
 
 	private void Awake()
 	{
-		FindObjectOfType<ButtonCreateNewCharacter>().onClicked = delegate { CreateNewMaleCharacter(); SetCharacter(character); };
+		FindObjectOfType<ButtonCreateNewCharacter>().onClicked = delegate { CreateNewFemaleCharacter(); SetCharacter(character); };
 
-		#region Main
+		#region Actions
 		firstName.onValueChanged = FirstNameChanged;
 		secondName.onValueChanged = SecondNameChanged;
 		nickName.onValueChanged = NickNameChanged;
 
 		race.onEnumChanged = RaceChanged;
 		gender.onEnumChanged = GenderChanged;
+		
+		isFacialhairs.onValueChanged.AddListener(IsFacialHairsChanged);
 		#endregion
 
-		isFacialhairs.onValueChanged.AddListener(IsFacialHairsChanged);
 
 		firstName.Initialization(new List<string>() { "Iron", "Mege" });
 		secondName.Initialization(new List<string>() { "DE", "asd" });
@@ -107,7 +108,6 @@ public class CharacterCustomizator : MonoBehaviour
 					CreateNewMaleCharacter();
 			}
 		}
-
 
 		character.SetCharacter(data);//update avatar from model
 		SetCharacter(character);

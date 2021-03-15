@@ -21,7 +21,7 @@ public class CharacterAvatar : MonoBehaviour
     }
     public void SaveModel()
     {
-        character.data.model = persona.GetData();
+        //character.data.model = persona.GetData();
     }
 
     [Button]
@@ -40,7 +40,6 @@ public class CharacterAvatar : MonoBehaviour
     private void UpdateData()
 	{
         SaveModel();
-        Debug.LogError("Data Updated!");
     }
 
 

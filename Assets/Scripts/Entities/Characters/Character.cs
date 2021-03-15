@@ -4,7 +4,7 @@ public class Character : Entity<CharacterStatistics>
 {
 	public CharacterAvatar avatar;
 
-	public readonly CharacterData data = new CharacterData();
+	public CharacterData data;
 
 	public CharacterInformationData Information => data.information;
 
@@ -22,17 +22,17 @@ public class Character : Entity<CharacterStatistics>
 
 	public void SetCharacter(CharacterData data)
 	{
-		//statistics = new CharacterStatistics(data.statistics);
+		//statistics = new CharacterStatistics(data.statistics);asdasdadsaasdфывфывadssa
+		//avatar.UpdateCharacter(data);sa
 
-		//avatar.UpdateCharacter(data);
 	}
 }
 [System.Serializable]
 public class CharacterData
 {
-	public CharacterInformationData information = new CharacterInformationData();
-	public CharacterStatisticsData statistics = new CharacterStatisticsData();
-	[HideInInspector] public CharacterModelData model = new CharacterModelData();
+	public CharacterInformationData information;
+	public CharacterStatisticsData statistics;
+	public CharacterModelData model;
 }
 [System.Serializable]
 public class CharacterInformationData
@@ -40,8 +40,9 @@ public class CharacterInformationData
 	public string firstName;
 	public string secondName;
 	public string nickName;
-	public CharacterGenders gender = CharacterGenders.Male;
-	public CharacterRaces race = CharacterRaces.Human;
+	public CharacterGenders gender;
+	public CharacterRaces race;
 }
+[System.Serializable]
 public enum CharacterGenders { Male, Female }
 public enum CharacterRaces { Human, Elf }
