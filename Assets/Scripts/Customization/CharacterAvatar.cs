@@ -17,11 +17,22 @@ public class CharacterAvatar : MonoBehaviour
         persona.UpdateLists();
     }
 
+    [Button]
+    private void SetMaterailOrigin()
+	{
+        persona.SetMaterial(characterMaterial);
+    }
+
+
     public void UpdateCharacter(CharacterStatisticsData data)
 	{
         persona.UpdatePersona(data.modelData);
+    }
 
+    public void UpdateMaterial()
+	{
         currentMaterial = new Material(characterMaterial);
+
         //currentMaterial.SetColor("_Color_Primary", new Color(0.2431373f, 0.4196079f, 0.6196079f, 1));
         //currentMaterial.SetColor("_Color_Secondary", new Color(0.8196079f, 0.6431373f, 0.2980392f, 1));
         //currentMaterial.SetColor("_Color_Leather_Primary",new Color(0.282353f, 0.2078432f, 0.1647059f, 1));
@@ -30,7 +41,6 @@ public class CharacterAvatar : MonoBehaviour
         //currentMaterial.SetColor("_Color_Metal_Dark", new Color(0.1764706f, 0.1960784f, 0.2156863f, 1));
         //currentMaterial.SetColor("_Color_Metal_Secondary", new Color(0.345098f, 0.3764706f, 0.3960785f, 1));
         //currentMaterial.SetColor("_Color_Hair", );
-
         persona.SetMaterial(currentMaterial);
     }
 }
@@ -38,8 +48,6 @@ public class CharacterAvatar : MonoBehaviour
 [System.Serializable]
 public class CharacterPersonaPiece
 {
-    private CharacterModelData modelData;
-
     [TabGroup("Head")]
     [HideLabel]
     public CharacterHeadPiece headPiece;
@@ -54,10 +62,8 @@ public class CharacterPersonaPiece
     }
     public void UpdatePersona(CharacterModelData data)
 	{
-        modelData = data;
-
-        headPiece.UpdatePersona(modelData.head);
-        bodyPiece.UpdatePersona(modelData.body);
+        headPiece.UpdatePersona(data.head);
+        bodyPiece.UpdatePersona(data.body);
     }
     public void SetMaterial(Material material)
 	{
@@ -79,31 +85,34 @@ public class CharacterPersonaPiece
 [System.Serializable]
 public class CharacterHeadPiece
 {
-    private CharacterModelHeadData headData;
-
+    private bool isCustomEars = false;
     public bool IsCustomEars
     {
         set 
         {
-            headData.isCustomEars = value;
+            isCustomEars = value;
             earsPiece.CurrentIndex = 0;
 
             if(value == false)
                 earsPiece.DisableAllObjects();
         }
-        get => headData.isCustomEars;
+        get => isCustomEars;
     }
+
+    private bool isHaveFacialHairs = false;
     public bool IsHaveFacialHairs
     {
         set
         {
-            headData.isHaveFacialHair = value;
+            isHaveFacialHairs = value;
             facialHairsPiece.CurrentIndex = 0;
 
             if(value == false)
+			{
                 facialHairsPiece.DisableAllObjects();
+            }
         }
-        get => headData.isHaveFacialHair;
+        get => isHaveFacialHairs;
     }
 
     public CharacterPiece headsPiece;
@@ -122,25 +131,20 @@ public class CharacterHeadPiece
     }
     public void UpdatePersona(CharacterModelHeadData data)
 	{
-        headData = data;
+        headsPiece.CurrentIndex = data.headIndex;
+		hairsPiece.CurrentIndex = data.hairIndex;
+		eyebrowsPiece.CurrentIndex = data.eyebrowIndex;
 
-        headsPiece.onIndexChanged += (x) => headData.headIndex = x;
-        hairsPiece.onIndexChanged += (x) => headData.hairIndex = x;
-        eyebrowsPiece.onIndexChanged += (x) => headData.eyebrowIndex = x;
-        facialHairsPiece.onIndexChanged += (x) => headData.facialhairIndex = x;
-        earsPiece.onIndexChanged += (x) => headData.earsIndex = x;
+        IsHaveFacialHairs = data.isHaveFacialHair;
+        IsCustomEars = data.isCustomEars;
 
-        headsPiece.EnableObjectByIndex(headData.headIndex);
-		hairsPiece.EnableObjectByIndex(headData.hairIndex);
-		eyebrowsPiece.EnableObjectByIndex(headData.eyebrowIndex);
-
-		if(headData.isHaveFacialHair)
-			facialHairsPiece.EnableObjectByIndex(headData.facialhairIndex);
+        if(IsHaveFacialHairs)
+			facialHairsPiece.CurrentIndex = data.facialhairIndex;
 		else
 			facialHairsPiece.DisableAllObjects();
 
-		if(headData.isCustomEars)
-			earsPiece.EnableObjectByIndex(headData.earsIndex);
+		if(IsCustomEars)
+			earsPiece.CurrentIndex = data.earsIndex;
 		else
 			earsPiece.DisableAllObjects();
 	}
@@ -155,15 +159,24 @@ public class CharacterHeadPiece
 
     public CharacterModelHeadData GetData()
 	{
-        return headData;
+        CharacterModelHeadData data = new CharacterModelHeadData()
+        {
+            headIndex = headsPiece.CurrentIndex,
+            hairIndex = hairsPiece.CurrentIndex,
+            eyebrowIndex = eyebrowsPiece.CurrentIndex,
+            isHaveFacialHair = IsHaveFacialHairs,
+            facialhairIndex = facialHairsPiece.CurrentIndex,
+            isCustomEars = IsCustomEars,
+            earsIndex = earsPiece.CurrentIndex,
+        };
+
+        return data;
     }
 }
 
 [System.Serializable]
 public class CharacterBodyPiece
 {
-    private CharacterModelBodyData bodyData;
-
     [TabGroup("Torso")]
     [HideLabel]
     public CharacterTorsoPiece torsoPiece;
@@ -178,10 +191,8 @@ public class CharacterBodyPiece
     }
     public void UpdatePersona(CharacterModelBodyData data)
     {
-        bodyData = data;
-
-        torsoPiece.UpdatePersona(bodyData.torso);
-        hipsPiece.UpdatePersona(bodyData.hips);
+        torsoPiece.UpdatePersona(data.torso);
+        hipsPiece.UpdatePersona(data.hips);
     }
     public void SetMaterial(Material material)
     {
@@ -204,8 +215,6 @@ public class CharacterBodyPiece
 [System.Serializable]
 public class CharacterTorsoPiece
 {
-    private CharacterModelTorsoData torsoData;
-
     public CharacterPiece torsoPiece;
 
     [TabGroup("LeftArm")]
@@ -222,16 +231,12 @@ public class CharacterTorsoPiece
         armLeftPiece.UpdateLists();
         armRightPiece.UpdateLists();
     }
-    public void UpdatePersona(CharacterModelTorsoData torso)
+    public void UpdatePersona(CharacterModelTorsoData data)
 	{
-        torsoData = torso;
+        torsoPiece.EnableObjectByIndex(data.torsoIndex);
 
-        torsoPiece.onIndexChanged += (x) => torsoData.torsoIndex = x;
-
-        torsoPiece.EnableObjectByIndex(torsoData.torsoIndex);
-
-        armLeftPiece.UpdatePersona(torsoData.leftArm);
-        armRightPiece.UpdatePersona(torsoData.rightArm);
+        armLeftPiece.UpdatePersona(data.leftArm);
+        armRightPiece.UpdatePersona(data.rightArm);
     }
     public void SetMaterial(Material material)
     {
@@ -244,7 +249,7 @@ public class CharacterTorsoPiece
     {
         CharacterModelTorsoData data = new CharacterModelTorsoData()
         {
-            torsoIndex = torsoData.torsoIndex,
+            torsoIndex = torsoPiece.CurrentIndex,
             leftArm= armLeftPiece.GetData(),
             rightArm = armRightPiece.GetData(),
         };
@@ -255,8 +260,6 @@ public class CharacterTorsoPiece
 [System.Serializable]
 public class CharacterArmPiece
 {
-    private CharacterModelArmData armData;
-
     public CharacterPiece armUpperPiece;
     public CharacterPiece armLowerPiece;
     public CharacterPiece handPiece;
@@ -273,32 +276,21 @@ public class CharacterArmPiece
         sholderAttachmentPiece.UpdateList();
         elbowAttachmentPiece.UpdateList();
     }
-    public void UpdatePersona(CharacterModelArmData arm)
+    public void UpdatePersona(CharacterModelArmData data)
 	{
-        armData = arm;
+        armUpperPiece.EnableObjectByIndex(data.armUpperIndex);
+        armLowerPiece.EnableObjectByIndex(data.armLowerIndex);
+        handPiece.EnableObjectByIndex(data.handIndex);
 
-        armUpperPiece.onIndexChanged += (x) => armData.armUpperIndex = x;
-        armLowerPiece.onIndexChanged += (x) => armData.armLowerIndex = x;
-        handPiece.onIndexChanged += (x) => armData.handIndex = x;
-
-        sholderAttachmentPiece.onIndexChanged += (x) => armData.sholderAttachmentIndex = x;
-        elbowAttachmentPiece.onIndexChanged += (x) => armData.elbowAttachmentIndex = x;
-
-
-        armUpperPiece.EnableObjectByIndex(armData.armUpperIndex);
-        armLowerPiece.EnableObjectByIndex(armData.armLowerIndex);
-        handPiece.EnableObjectByIndex(armData.handIndex);
-
-		if(armData.useExtra)
-		{
-            sholderAttachmentPiece.EnableObjectByIndex(armData.sholderAttachmentIndex);
-            elbowAttachmentPiece.EnableObjectByIndex(armData.elbowAttachmentIndex);
-		}
-		else
-		{
+        if(data.sholderAttachmentIndex == -1)
             sholderAttachmentPiece.DisableAllObjects();
+		else
+            sholderAttachmentPiece.EnableObjectByIndex(data.sholderAttachmentIndex);
+
+        if(data.elbowAttachmentIndex == -1)
             elbowAttachmentPiece.DisableAllObjects();
-        }
+		else
+            elbowAttachmentPiece.EnableObjectByIndex(data.elbowAttachmentIndex);
     }
     public void SetMaterial(Material material)
     {
@@ -312,15 +304,23 @@ public class CharacterArmPiece
 
     public CharacterModelArmData GetData()
     {
-        return armData;
+        CharacterModelArmData data = new CharacterModelArmData()
+        {
+            armUpperIndex = armUpperPiece.CurrentIndex,
+            armLowerIndex = armLowerPiece.CurrentIndex,
+            handIndex = handPiece.CurrentIndex,
+
+            sholderAttachmentIndex = sholderAttachmentPiece.CurrentIndex,
+            elbowAttachmentIndex = elbowAttachmentPiece.CurrentIndex,
+        };
+
+        return data;
     }
 }
 
 [System.Serializable]
 public class CharacterHipsPiece
 {
-    private CharacterModelHipsData hipsData;
-
     public CharacterPiece hipsPiece;
     public CharacterLegPiece legLeftPiece;
     public CharacterLegPiece legRightPiece;
@@ -331,14 +331,11 @@ public class CharacterHipsPiece
         legLeftPiece.UpdateLists();
         legRightPiece.UpdateLists();
     }
-    public void UpdatePersona(CharacterModelHipsData hips)
+    public void UpdatePersona(CharacterModelHipsData data)
 	{
-        hipsData = hips;
-        hipsPiece.onIndexChanged += (x) => hipsData.hipsIndex = x;
-
-        hipsPiece.EnableObjectByIndex(hipsData.hipsIndex);
-        legLeftPiece.UpdatePersona(hipsData.leftLeg);
-        legRightPiece.UpdatePersona(hipsData.rightLeg);
+        hipsPiece.EnableObjectByIndex(data.hipsIndex);
+        legLeftPiece.UpdatePersona(data.leftLeg);
+        legRightPiece.UpdatePersona(data.rightLeg);
     }
     public void SetMaterial(Material material)
     {
@@ -351,7 +348,7 @@ public class CharacterHipsPiece
     {
         CharacterModelHipsData data = new CharacterModelHipsData()
         {
-            hipsIndex = hipsData.hipsIndex,
+            hipsIndex = hipsPiece.CurrentIndex,
             leftLeg = legLeftPiece.GetData(),
             rightLeg = legRightPiece.GetData(),
         };
@@ -362,8 +359,6 @@ public class CharacterHipsPiece
 [System.Serializable]
 public class CharacterLegPiece
 {
-    private CharacterModelLegData legData;
-
     public CharacterPiece legPiece;
     public CharacterPiece kneeAttachementPiece;
 
@@ -372,19 +367,14 @@ public class CharacterLegPiece
         legPiece.UpdateList();
         kneeAttachementPiece.UpdateList();
     }
-    public void UpdatePersona(CharacterModelLegData leg)
+    public void UpdatePersona(CharacterModelLegData data)
 	{
-        legData = leg;
+        legPiece.EnableObjectByIndex(data.legIndex);
 
-        legPiece.onIndexChanged += (x) => legData.legIndex = x ;
-        kneeAttachementPiece.onIndexChanged += (x) => legData.kneeAttachementIndex = x;
-
-        legPiece.EnableObjectByIndex(legData.legIndex);
-
-		if(legData.useExtra)
-            kneeAttachementPiece.EnableObjectByIndex(legData.kneeAttachementIndex);
-		else
+        if(data.kneeAttachementIndex == -1)
             kneeAttachementPiece.DisableAllObjects();
+		else
+            kneeAttachementPiece.EnableObjectByIndex(data.kneeAttachementIndex);
     }
     public void SetMaterial(Material material)
     {
@@ -394,7 +384,13 @@ public class CharacterLegPiece
 
     public CharacterModelLegData GetData()
     {
-        return legData;
+        CharacterModelLegData data = new CharacterModelLegData()
+        {
+            legIndex = legPiece.CurrentIndex,
+            kneeAttachementIndex = kneeAttachementPiece.CurrentIndex,
+        };
+
+        return data;
     }
 }
 
@@ -406,26 +402,25 @@ public class CharacterPiece
     [ReadOnly][SerializeField] private int currentIndex = -1;
     public int CurrentIndex
     {
-		set
-		{
+        set
+        {
+            if(rootPices.Count == 0) return;
+
             if(value < 0) value += rootPices.Count;
 
             if(currentIndex != value)
-			{
+            {
                 currentIndex = value % rootPices.Count;
 
                 EnableObjectByIndex(currentIndex);
-
-                onIndexChanged?.Invoke(currentIndex);
             }
-		}
+        }
         get => currentIndex;
     }
 
     public List<GameObject> rootPices = new List<GameObject>();
 
     public UnityAction<int> onIndexChanged;
-
 
     public List<GameObject> GetGameObjects()
     {
@@ -450,8 +445,9 @@ public class CharacterPiece
                 currentIndex = index;
                 rootPices[currentIndex].SetActive(true);
 			}
-		}
-	}
+            onIndexChanged?.Invoke(currentIndex);
+        }
+    }
     public void DisableAllObjects()
 	{
 		for(int i = 0; i < rootPices.Count; i++)
@@ -459,6 +455,7 @@ public class CharacterPiece
             rootPices[i].SetActive(false);
 		}
         currentIndex = -1;
+        onIndexChanged?.Invoke(currentIndex);
     }
 
     public void SetMaterial(Material material)
@@ -488,7 +485,5 @@ public class CharacterPiece
     private void DisableAll()
 	{
         DisableAllObjects();
-        CurrentIndex = -1;
-        currentIndex = -1;
     }
 }

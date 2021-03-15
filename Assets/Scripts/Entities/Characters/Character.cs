@@ -1,4 +1,6 @@
-﻿public class Character : Entity<CharacterStatistics> 
+﻿using UnityEngine;
+
+public class Character : Entity<CharacterStatistics> 
 {
 	public CharacterAvatar avatar;
 
@@ -30,8 +32,9 @@
 	public CharacterStatisticsData GetData()
 	{
 		CharacterStatisticsData data = Statistics.GetData();
+
 		data.modelData = avatar.persona.GetData();
-		
+
 		return data;
 	}
 }

@@ -49,8 +49,6 @@ public struct CharacterModelArmData
     public int armLowerIndex;
     public int handIndex;
 
-    public bool useExtra;
-
     public int sholderAttachmentIndex;
     public int elbowAttachmentIndex;
 }
@@ -68,7 +66,7 @@ public struct CharacterModelHipsData
 public struct CharacterModelLegData
 {
     public int legIndex;
-    public bool useExtra;
+
     public int kneeAttachementIndex;
 }
 #endregion

@@ -195,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8352202653797724243
 Transform:
   m_ObjectHideFlags: 0
@@ -19397,7 +19397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356960261538902081
 Transform:
   m_ObjectHideFlags: 0
@@ -42011,7 +42011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8351719606418519649
 Transform:
   m_ObjectHideFlags: 0
@@ -42367,7 +42367,7 @@ MonoBehaviour:
         - {fileID: 8353308122762607341}
       eyebrowsPiece:
         root: {fileID: 8356578589854302097}
-        currentIndex: 5
+        currentIndex: 0
         rootPices:
         - {fileID: 8354152486990357213}
         - {fileID: 8353828319032972137}
