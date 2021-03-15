@@ -20,11 +20,24 @@ public class Character : Entity<CharacterStatistics>
 		}
 	}
 
-	public void SetCharacter(CharacterData data)
-	{
-		//statistics = new CharacterStatistics(data.statistics);asdasdadsaasdфывфывadssa
-		//avatar.UpdateCharacter(data);sa
 
+	public void Save()
+	{
+		avatar.SaveModel();
+		SaveLoaderManager.SaveCharacter(data, Statistics.ID);
+	}
+	public void Load()
+	{
+
+	}
+
+
+	public void SetCharacter(CharacterData characterData)
+	{
+		data = characterData;
+
+		avatar.LoadModel();
+		statistics = new CharacterStatistics(data.statistics);
 	}
 }
 [System.Serializable]
@@ -43,6 +56,5 @@ public class CharacterInformationData
 	public CharacterGenders gender;
 	public CharacterRaces race;
 }
-[System.Serializable]
 public enum CharacterGenders { Male, Female }
 public enum CharacterRaces { Human, Elf }

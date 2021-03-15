@@ -13,7 +13,7 @@ public class CharacterAvatar : MonoBehaviour
     [HideInInspector] private Material currentMaterial;
    
 
-    public CharacterPersonaPiece persona = new CharacterPersonaPiece();
+    public CharacterPersonaPiece persona;
 
     public void LoadModel()
     {
@@ -21,7 +21,7 @@ public class CharacterAvatar : MonoBehaviour
     }
     public void SaveModel()
     {
-        //character.data.model = persona.GetData();
+        character.data.model = persona.GetData();
     }
 
     [Button]

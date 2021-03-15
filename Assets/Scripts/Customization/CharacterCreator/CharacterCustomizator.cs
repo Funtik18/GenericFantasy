@@ -109,7 +109,8 @@ public class CharacterCustomizator : MonoBehaviour
 			}
 		}
 
-		character.SetCharacter(data);//update avatar from model
+		character.SetCharacter(data);
+
 		SetCharacter(character);
 	}
 
@@ -221,10 +222,10 @@ public class CharacterCustomizator : MonoBehaviour
 
 	private void RaceChanged(CharacterRaces race)
 	{
-		earsCarousel.GetComponent<CanvasGroup>().interactable = earsCarousel.IsEnable = race == CharacterRaces.Elf;
-
+		earsCarousel.GetComponent<CanvasGroup>().interactable = race == CharacterRaces.Elf;
 		if(race != Information.race)
 		{
+			earsCarousel.IsEnable = race == CharacterRaces.Elf;
 			Information.race = race;
 			Avatar.persona.headPiece.earsPiece.CurrentIndex = race == CharacterRaces.Human? -1 : Avatar.persona.headPiece.earsPiece.CurrentIndex;
 		}

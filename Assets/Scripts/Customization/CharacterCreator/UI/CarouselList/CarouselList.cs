@@ -44,7 +44,25 @@ public class CarouselList : MonoBehaviour
 
 	private void Awake()
 	{
-		buttonLeft.onClick.AddListener(delegate { piece.Left(); });
+		buttonLeft.onClick.AddListener(delegate {
+			if(!isCanBeMinus)
+			{
+				if(piece.CurrentIndex >= 1)
+				{
+					piece.Left();
+				}
+				else
+				{
+					piece.Left();
+					piece.Left();
+				}
+			}
+			else
+			{
+				piece.Left();
+			}
+
+		});
 		//inputField.onValueChanged.AddListener((x) => { piece.CurrentIndex = Convert.ToInt32(x); });
 		buttonRight.onClick.AddListener(delegate { piece.Right(); });
 	}

@@ -45,6 +45,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 8354155202580649166}
+  data:
+    information:
+      firstName: 
+      secondName: 
+      nickName: 
+      gender: 0
+      race: 0
+    statistics:
+      colorsData:
+        portraitColor: {r: 0, g: 0, b: 0, a: 0}
+        hairColor: {r: 0, g: 0, b: 0, a: 0}
+        eyesColor: {r: 0, g: 0, b: 0, a: 0}
+        skinColor: {r: 0, g: 0, b: 0, a: 0}
+        stubbleColor: {r: 0, g: 0, b: 0, a: 0}
+        scarColor: {r: 0, g: 0, b: 0, a: 0}
+        artColor: {r: 0, g: 0, b: 0, a: 0}
+      statsData:
+        level: 1
+        statsPrimary:
+          strength: 10
+          dexterity: 10
+          intelligence: 10
+          vitality: 10
+        currents:
+          currentExperience: 0
+          currentHealth: 0
+          currentMana: 0
+          currentFatigue: 0
+          currentWeight: 0
+      attributesData:
+        attributes: []
+    model:
+      head:
+        headIndex: 0
+        earsIndex: -1
+        hairIndex: 0
+        eyebrowIndex: 0
+        facialhairIndex: -1
+      body:
+        torso:
+          torsoIndex: 0
+          leftArm:
+            armUpperIndex: 0
+            armLowerIndex: 0
+            handIndex: 0
+            sholderAttachmentIndex: -1
+            elbowAttachmentIndex: -1
+          rightArm:
+            armUpperIndex: 0
+            armLowerIndex: 0
+            handIndex: 0
+            sholderAttachmentIndex: -1
+            elbowAttachmentIndex: -1
+        hips:
+          hipsIndex: 0
+          leftLeg:
+            legIndex: 0
+            kneeAttachementIndex: -1
+          rightLeg:
+            legIndex: 0
+            kneeAttachementIndex: -1
 --- !u!1 &8352202652711420570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5108,7 +5169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8356632573307965001
 Transform:
   m_ObjectHideFlags: 0
@@ -40249,7 +40310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356618387671587141
 Transform:
   m_ObjectHideFlags: 0
@@ -43873,7 +43934,7 @@ MonoBehaviour:
     headPiece:
       headsPiece:
         root: {fileID: 8351539186355288153}
-        currentIndex: 4
+        currentIndex: 0
         rootPices:
         - {fileID: 8352885411159090579}
         - {fileID: 8354168724120695367}
