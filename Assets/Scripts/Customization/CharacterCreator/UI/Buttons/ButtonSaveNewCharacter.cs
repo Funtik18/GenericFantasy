@@ -27,7 +27,7 @@ public class ButtonSaveNewCharacter : MonoBehaviour
 
     public void Save()
 	{
-		SaveLoaderManager.SaveCharacter(customizator.GetData(), toggle.isOn? customizator.character.Statistics.NewId() : customizator.character.Statistics.ID);
+		SaveLoaderManager.SaveCharacter(customizator.character.data, toggle.isOn? customizator.character.Statistics.NewId() : customizator.character.Statistics.ID);
 		onSaved?.Invoke();
 	}
 }

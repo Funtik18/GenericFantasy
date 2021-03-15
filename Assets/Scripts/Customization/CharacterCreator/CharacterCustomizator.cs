@@ -19,7 +19,7 @@ public class CharacterCustomizator : MonoBehaviour
 	public UnityAction onCharacterCreated;
 
 	private CharacterAvatar Avatar => character.avatar;
-	private CharacterInformation Information => character.Information;
+	private CharacterInformationData Information => character.Information;
 
 	#region Variables
 	[SerializeField] private CanvasGroup canvasGroup;
@@ -69,7 +69,7 @@ public class CharacterCustomizator : MonoBehaviour
 
 	private void Awake()
 	{
-		FindObjectOfType<ButtonCreateNewCharacter>().onClicked = delegate { CreateNewFemaleCharacter(); SetCharacter(character); };
+		FindObjectOfType<ButtonCreateNewCharacter>().onClicked = delegate { CreateNewMaleCharacter(); SetCharacter(character); };
 
 		#region Main
 		firstName.onValueChanged = FirstNameChanged;
@@ -88,60 +88,35 @@ public class CharacterCustomizator : MonoBehaviour
 	}
 
 	#region Create Character
-	public void LoadCharacter(CharacterStatisticsData data)
+	public void LoadCharacter(CharacterData data)
 	{
 		if(character == null)
 		{
-			if(data.informationData.gender == CharacterGenders.Female)
-				CreateFemaleCharacter();
+			if(data.information.gender == CharacterGenders.Female)
+				CreateNewFemaleCharacter();
 			else
-				CreateMaleCharacter();
+				CreateNewMaleCharacter();
 		}
 		else
 		{
-			if(Information.data.gender != data.informationData.gender)
+			if(Information.gender != data.information.gender)
 			{
-				if(data.informationData.gender == CharacterGenders.Female)
-					CreateFemaleCharacter();
+				if(data.information.gender == CharacterGenders.Female)
+					CreateNewFemaleCharacter();
 				else
-					CreateMaleCharacter();
+					CreateNewMaleCharacter();
 			}
 		}
 
 
-		character.SetStatistics(data);
+		character.SetCharacter(data);//update avatar from model
 		SetCharacter(character);
-	}
-
-	public void CreateFemaleCharacter()
-	{
-		CharacterRaces races = CharacterRaces.Human;
-		if(character != null)
-		{
-			races = Information.data.race;
-		}
-
-		CreateNewFemaleCharacter();
-		Information.data.race = races; 
-	}
-	public void CreateMaleCharacter()
-	{
-		CharacterRaces races = CharacterRaces.Human;
-		if(character != null)
-		{
-			races = Information.data.race;
-		}
-
-		CreateNewMaleCharacter();
-		Information.data.race = races;
 	}
 
 	//Болванка
 	private void CreateNewFemaleCharacter()
 	{
 		character = stand.ReplaceCharacter(characterFemaleBase);
-		//character.SetStatistics(characterFemaleBase.GetData());
-		Information.data.gender = CharacterGenders.Female;
 
 		onCharacterCreated?.Invoke();
 	}
@@ -149,7 +124,6 @@ public class CharacterCustomizator : MonoBehaviour
 	private void CreateNewMaleCharacter()
 	{
 		character = stand.ReplaceCharacter(characterMaleBase);
-		Information.data.gender = CharacterGenders.Male;
 
 		onCharacterCreated?.Invoke();
 	}
@@ -165,18 +139,19 @@ public class CharacterCustomizator : MonoBehaviour
 
 	private void Setup()
 	{
-		firstName.SetField(Information.data.firstName);
-		secondName.SetField(Information.data.secondName);
-		nickName.SetField(Information.data.nickName);
+		firstName.SetField(Information.firstName);
+		secondName.SetField(Information.secondName);
+		nickName.SetField(Information.nickName);
 
-		race.SetEnumOption(Information.data.race);
-		gender.SetEnumOption(Information.data.gender);
+		race.SetEnumOption(Information.race);
+		gender.SetEnumOption(Information.gender);
 
 		SetupObjects();
 	}
 
 	private void SetupObjects()
 	{
+		//берём все кусочки модели
 		CharacterHeadPiece headPiece = Avatar.persona.headPiece;
 		CharacterBodyPiece bodyPiece = Avatar.persona.bodyPiece;
 		CharacterTorsoPiece torsoPiece = bodyPiece.torsoPiece;
@@ -187,15 +162,15 @@ public class CharacterCustomizator : MonoBehaviour
 		eyebrowsCarousel.SetCarousel(headPiece.eyebrowsPiece);
 
 		earsCarousel.SetCarousel(headPiece.earsPiece);
-		earsCarousel.IsEnable = Information.data.race == CharacterRaces.Elf;
+		earsCarousel.IsEnable = Information.race == CharacterRaces.Elf;
 
 		hairsCarousel.SetCarousel(headPiece.hairsPiece);
 
 		//Facial
-		facialHairsCarousel.SetCarousel(headPiece.facialHairsPiece);
+		facialHairsCarousel.SetCarousel(headPiece.facialHairsPiece, true);
 		
-		isFacialhairs.interactable = Information.data.gender == CharacterGenders.Male;
-		isFacialhairs.isOn = headPiece.IsHaveFacialHairs && isFacialhairs.interactable;
+		isFacialhairs.interactable = Information.gender == CharacterGenders.Male;
+		isFacialhairs.isOn = headPiece.facialHairsPiece.CurrentIndex != -1 && isFacialhairs.interactable;
 
 		if(isFacialhairs.isOn == false)
 			facialHairsCarousel.IsEnable = false;
@@ -233,30 +208,30 @@ public class CharacterCustomizator : MonoBehaviour
 	#region Main
 	private void FirstNameChanged(string value)
 	{
-		Information.data.firstName = value;
+		Information.firstName = value;
 	}
 	private void SecondNameChanged(string value)
 	{
-		Information.data.secondName = value;
+		Information.secondName = value;
 	}
 	private void NickNameChanged(string value)
 	{
-		Information.data.nickName = value;
+		Information.nickName = value;
 	}
 
 	private void RaceChanged(CharacterRaces race)
 	{
 		earsCarousel.GetComponent<CanvasGroup>().interactable = earsCarousel.IsEnable = race == CharacterRaces.Elf;
 
-		if(race != Information.data.race)
+		if(race != Information.race)
 		{
-			Information.data.race = race;
-			Avatar.persona.headPiece.IsCustomEars = race != CharacterRaces.Human;
+			Information.race = race;
+			Avatar.persona.headPiece.earsPiece.CurrentIndex = race == CharacterRaces.Human? -1 : Avatar.persona.headPiece.earsPiece.CurrentIndex;
 		}
 	}
 	private void GenderChanged(CharacterGenders gender)
 	{
-		if(gender != Information.data.gender)
+		if(gender != Information.gender)
 		{
 			if(gender == CharacterGenders.Female)
 				CreateNewFemaleCharacter();
@@ -270,12 +245,14 @@ public class CharacterCustomizator : MonoBehaviour
 
 	private void IsFacialHairsChanged(bool trigger)
 	{
-		if(Avatar.persona.headPiece.IsHaveFacialHairs != trigger)
-			facialHairsCarousel.IsEnable = Avatar.persona.headPiece.IsHaveFacialHairs = trigger;
-	}
-
-	public CharacterStatisticsData GetData()
-	{
-		return character.GetData();
+		if(trigger)
+		{
+		}
+		else
+		{
+			Avatar.persona.headPiece.facialHairsPiece.DisableAll();
+		}
+		//if(Avatar.persona.headPiece.IsHaveFacialHairs != trigger)
+		//	facialHairsCarousel.IsEnable = Avatar.persona.headPiece.IsHaveFacialHairs = trigger;
 	}
 }

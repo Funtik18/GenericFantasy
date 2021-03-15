@@ -36616,7 +36616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351465105695951521
 Transform:
   m_ObjectHideFlags: 0
@@ -42294,8 +42294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf0d2e0ef5269d4e8726cd4d0acda15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test:
-    b: 10
+  character: {fileID: 8352202652528538975}
   characterMaterial: {fileID: 2100000, guid: ea128b040f8b0af4c9d2de400aaff30a, type: 2}
   persona:
     headPiece:
@@ -42603,7 +42602,7 @@ MonoBehaviour:
             - {fileID: 8353663415623451709}
           sholderAttachmentPiece:
             root: {fileID: 8356526712342578399}
-            currentIndex: 3
+            currentIndex: -1
             rootPices:
             - {fileID: 8353726767402272195}
             - {fileID: 8353391196738727893}

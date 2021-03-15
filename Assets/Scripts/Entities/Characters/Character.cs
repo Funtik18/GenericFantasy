@@ -4,9 +4,9 @@ public class Character : Entity<CharacterStatistics>
 {
 	public CharacterAvatar avatar;
 
-	public CharacterInformation Information => Statistics.information;
-	public CharacterModel Model => Statistics.model;
+	public readonly CharacterData data = new CharacterData();
 
+	public CharacterInformationData Information => data.information;
 
 	public override CharacterStatistics Statistics
 	{
@@ -14,41 +14,34 @@ public class Character : Entity<CharacterStatistics>
 		{
 			if(statistics == null)
 			{
-				CharacterStatisticsData data = new CharacterStatisticsData();
-
-				SetStatistics(data);
+				statistics = new CharacterStatistics(data.statistics);
 			}
 			return statistics;
 		}
 	}
 
-
-	private void Start()
+	public void SetCharacter(CharacterData data)
 	{
-		Debug.LogError(Statistics.stats.Dexterity.StatValue);
+		//statistics = new CharacterStatistics(data.statistics);
 
-	}
-
-
-	public void SetStatistics(CharacterStatisticsData data)
-	{
-		statistics = new CharacterStatistics(data);
-		avatar.UpdateCharacter(data);
-	}
-
-	public CharacterStatisticsData GetData()
-	{
-		Debug.LogError(avatar.persona.bodyPiece.torsoPiece.armRightPiece.sholderAttachmentPiece.currentIndex);
-		CharacterStatisticsData data = Statistics.GetData();
-		data.modelData = avatar.persona.GetData();
-		Debug.LogError(data.modelData.body.torso.rightArm.sholderAttachmentIndex);
-
-		return data;
+		//avatar.UpdateCharacter(data);
 	}
 }
-
 [System.Serializable]
-public struct test
+public class CharacterData
 {
-	public int b;
+	public CharacterInformationData information = new CharacterInformationData();
+	public CharacterStatisticsData statistics = new CharacterStatisticsData();
+	[HideInInspector] public CharacterModelData model = new CharacterModelData();
 }
+[System.Serializable]
+public class CharacterInformationData
+{
+	public string firstName;
+	public string secondName;
+	public string nickName;
+	public CharacterGenders gender = CharacterGenders.Male;
+	public CharacterRaces race = CharacterRaces.Human;
+}
+public enum CharacterGenders { Male, Female }
+public enum CharacterRaces { Human, Elf }

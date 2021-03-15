@@ -5108,7 +5108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8356632573307965001
 Transform:
   m_ObjectHideFlags: 0
@@ -40249,7 +40249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8356618387671587141
 Transform:
   m_ObjectHideFlags: 0
@@ -43846,7 +43846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8354155202580649165}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 8356930579581271645}
@@ -43867,12 +43867,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf0d2e0ef5269d4e8726cd4d0acda15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 8352202652528538975}
   characterMaterial: {fileID: 2100000, guid: ea128b040f8b0af4c9d2de400aaff30a, type: 2}
   persona:
     headPiece:
       headsPiece:
         root: {fileID: 8351539186355288153}
-        currentIndex: 0
+        currentIndex: 4
         rootPices:
         - {fileID: 8352885411159090579}
         - {fileID: 8354168724120695367}

@@ -67,27 +67,15 @@ public class EntityStatisticsData
 [System.Serializable]
 public class CharacterStatisticsData : EntityStatisticsData
 {
-	public CharacterInformationData informationData;
-
-	public CharacterModelData modelData;
-
 	public CharacterStatisticsData() : base()
 	{
-
 	}
 
 	public CharacterStatisticsData(CharacterStatisticsData data) : base(data)
 	{
-		informationData = new CharacterInformationData();
-		informationData = data.informationData;
-
-		modelData = new CharacterModelData();
-		modelData = data.modelData;
 	}
 
 	public CharacterStatisticsData(CharacterStatistics statistics) : base(statistics)
 	{
-		informationData = statistics.information.data;
-		modelData = statistics.model.data;
 	}
 }

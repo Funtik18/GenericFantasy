@@ -35,7 +35,7 @@ public class SaveLoaderManager
 		}
 	}
 
-	public static void SaveCharacter(CharacterStatisticsData data, string fileName)
+	public static void SaveCharacter(CharacterData data, string fileName)
 	{
 		SaveDataToJson(data, directoryCharacters, fileName);
 	}

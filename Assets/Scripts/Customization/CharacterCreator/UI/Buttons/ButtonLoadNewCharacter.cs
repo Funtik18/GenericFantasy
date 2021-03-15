@@ -33,7 +33,7 @@ public class ButtonLoadNewCharacter : MonoBehaviour
 
 			for(int i = 0; i < allCharacters.Count; i++)
 			{
-				options.Add(allCharacters[i].informationData.firstName + "_" + allCharacters[i].informationData.secondName);
+				//options.Add(allCharacters[i].informationData.firstName + "_" + allCharacters[i].informationData.secondName);
 			}
 
 			if(dropdown.options.Count > 0)
@@ -51,6 +51,6 @@ public class ButtonLoadNewCharacter : MonoBehaviour
 	}
 	public void SelectCharacter()
 	{
-		customizator.LoadCharacter(allCharacters[dropdown.value]);
+		//customizator.LoadCharacter(allCharacters[dropdown.value]);
 	}
 }
