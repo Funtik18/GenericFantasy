@@ -23,7 +23,6 @@ public class CharacterAvatar : MonoBehaviour
         persona.SetMaterial(characterMaterial);
     }
 
-
     public void UpdateCharacter(CharacterStatisticsData data)
 	{
         persona.UpdatePersona(data.modelData);
@@ -399,7 +398,7 @@ public class CharacterPiece
 {
     [SerializeField] private Transform root;
 
-    [ReadOnly][SerializeField] private int currentIndex = -1;
+    public int currentIndex = -1;
     public int CurrentIndex
     {
         set

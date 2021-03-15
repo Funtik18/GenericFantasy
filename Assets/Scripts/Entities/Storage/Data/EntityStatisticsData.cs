@@ -58,9 +58,9 @@ public class EntityStatisticsData
 	/// <param name="statistics"></param>
 	public EntityStatisticsData(EntityStatistics statistics)
 	{
-		colorsData = statistics.colors.GetCurrentData();
+		//colorsData = statistics.colors.GetCurrentData();
 		statsData = statistics.stats.GetCurrentData();
-		attributesData = statistics.attributes.GetCurrentData();
+		//attributesData = statistics.attributes.GetCurrentData();
 	}
 }
 

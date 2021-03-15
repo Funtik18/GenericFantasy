@@ -9,11 +9,11 @@ public class CharacterStand : MonoBehaviour
     public Character ReplaceCharacter(Character character)
 	{
 		DisposeAll();
+
 		if(character != null)
 		{
 			this.character = Instantiate(character, transform);
 		}
-
 		return this.character;
 	}
 	private void DisposeAll()

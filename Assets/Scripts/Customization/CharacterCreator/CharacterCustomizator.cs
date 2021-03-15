@@ -139,11 +139,8 @@ public class CharacterCustomizator : MonoBehaviour
 	//Болванка
 	private void CreateNewFemaleCharacter()
 	{
-		Debug.LogError(characterFemaleBase.avatar.persona.bodyPiece.torsoPiece.armLeftPiece.sholderAttachmentPiece.CurrentIndex);
-
 		character = stand.ReplaceCharacter(characterFemaleBase);
-		Debug.LogError(character.avatar.persona.bodyPiece.torsoPiece.armLeftPiece.sholderAttachmentPiece.CurrentIndex);
-
+		//character.SetStatistics(characterFemaleBase.GetData());
 		Information.data.gender = CharacterGenders.Female;
 
 		onCharacterCreated?.Invoke();
