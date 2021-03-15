@@ -23,6 +23,13 @@ public class Character : Entity<CharacterStatistics>
 	}
 
 
+	private void Start()
+	{
+		Debug.LogError(Statistics.stats.Dexterity.StatValue);
+
+	}
+
+
 	public void SetStatistics(CharacterStatisticsData data)
 	{
 		statistics = new CharacterStatistics(data);
@@ -31,10 +38,17 @@ public class Character : Entity<CharacterStatistics>
 
 	public CharacterStatisticsData GetData()
 	{
+		Debug.LogError(avatar.persona.bodyPiece.torsoPiece.armRightPiece.sholderAttachmentPiece.currentIndex);
 		CharacterStatisticsData data = Statistics.GetData();
-
 		data.modelData = avatar.persona.GetData();
+		Debug.LogError(data.modelData.body.torso.rightArm.sholderAttachmentIndex);
 
 		return data;
 	}
+}
+
+[System.Serializable]
+public struct test
+{
+	public int b;
 }

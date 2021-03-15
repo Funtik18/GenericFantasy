@@ -59,7 +59,7 @@ public class EntityStatisticsData
 	public EntityStatisticsData(EntityStatistics statistics)
 	{
 		//colorsData = statistics.colors.GetCurrentData();
-		//statsData = statistics.stats.GetCurrentData();
+		statsData = statistics.stats.GetCurrentData();
 		//attributesData = statistics.attributes.GetCurrentData();
 	}
 }
