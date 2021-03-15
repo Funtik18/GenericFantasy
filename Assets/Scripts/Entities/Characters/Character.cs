@@ -7,8 +7,21 @@ public class Character : Entity<CharacterStatistics>
 	public CharacterInformation Information => Statistics.information;
 	public CharacterModel Model => Statistics.model;
 
+    [Header("Basic attributes")]
+    public float myStrength;
+    public float myDexterity;
+    public float myIntelligence;
+    public float myHealth;
+    [Header("Second attributes")]
+    public float myHP;
+    public float myMove;
+    public float mySpeed;
+    public float myWill;
+    public float myPerception;
+    public float myFatiguePoints;
+    public float myDodge;
 
-	public override CharacterStatistics Statistics
+    public override CharacterStatistics Statistics
 	{
 		get
 		{
@@ -17,18 +30,28 @@ public class Character : Entity<CharacterStatistics>
 				CharacterStatisticsData data = new CharacterStatisticsData();
 
 				SetStatistics(data);
+                SetStats();
 			}
 			return statistics;
 		}
 	}
 
+    void SetStats()
+    {
+        myStrength = statistics.stats.Strength.StatValue;
+        myDexterity = statistics.stats.Dexterity.StatValue;
+        myIntelligence = statistics.stats.Intelligence.StatValue;
+        myHealth = statistics.stats.Vitality.StatValue;
 
-	private void Start()
-	{
-		Debug.LogError(Statistics.stats.Dexterity.StatValue);
+        myHP = statistics.stats.Health.StatValue;
+        myMove = statistics.stats.Move.StatValue;
+        mySpeed = statistics.stats.Speed.StatValue;
+        myWill = statistics.stats.Will.StatValue;
+        myPerception = statistics.stats.Perception.StatValue;
+        myFatiguePoints = statistics.stats.Fatigue.StatValue;
 
-	}
-
+        myDodge=statistics.stats.Dodge.StatValue;
+    }
 
 	public void SetStatistics(CharacterStatisticsData data)
 	{

@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class TacticAttack : MonoBehaviour
 {
+
+
     public int range = 1;
     public int hp = 10;
+    [HideInInspector]
+    public Character myStats;
+    public bool dodgedThisTurn = false;
 
     bool show = false;
 
@@ -17,13 +22,14 @@ public class TacticAttack : MonoBehaviour
 
     public void CheckAttack()
     {
+        unitsToAttack.Clear();
         //temp = TurnManager.Instance.tiles.Where(t => t.GetComponent<Tile>().distance > 0 && t.GetComponent<Tile>().distance <= range && t.GetComponent<Tile>().haveCharOnIt).ToArray();
         temp = TurnManager.Instance.tiles.Where(t => t.GetComponent<Tile>().haveCharOnIt).ToArray();
         if (temp.Length > 0)
         {
             foreach (var item in temp)
             {
-                if ( item.GetComponent<Tile>().distance>0 && item.GetComponent<Tile>().distance<=range)
+                if (item.GetComponent<Tile>().distance > 0 && item.GetComponent<Tile>().distance <= range)
                 {
                     if (!unitsToAttack.Contains(item.GetComponent<Tile>().character))
                     {
@@ -34,7 +40,8 @@ public class TacticAttack : MonoBehaviour
                 }
 
             }
-            TurnManager.Instance.selectedEnemy = temp[0];
+            if (unitsToAttack.Count > 0)
+                TurnManager.Instance.selectedEnemy = unitsToAttack[0].gameObject;
         }
     }
 
@@ -69,37 +76,65 @@ public class TacticAttack : MonoBehaviour
 
     }
 
+    public bool Dodge()
+    {
+        if (dodgedThisTurn)
+            return false;
+        DiceFormule d = new DiceFormule(3, DiceType.Cube, 0);
+        int t = d.Roll();
+        if (t < myStats.myDodge)
+        {
+            dodgedThisTurn = true;
+            return true;
+        }
+        else
+        {
+            Debug.Log("dodge failed");
+            return false;
+        }
+
+    }
+
     public void Attack()
     {
-        TacticMove unitToAttack = TurnManager.Instance.selectedEnemy.GetComponent<TacticMove>();
-        Debug.Log(unitToAttack);
-        if (unitToAttack != null)
+        TacticMove unitToAttack = null;
+        if (TurnManager.Instance.selectedEnemy)
         {
-            Debug.Log("Attack");
-
+             unitToAttack = TurnManager.Instance.selectedEnemy.GetComponent<TacticMove>();
+        }
+        if (unitToAttack != null && unitToAttack.tag!=tag)
+        {
             DiceFormule d = new DiceFormule(3, DiceType.Cube, -2);
+            
             int t = d.Roll();
-            Debug.Log("Dices");
-            foreach (var item in d.dices)
+            d = null;
+            if (t < myStats.myDexterity)
             {
-                Debug.Log(item.LastValue);
-            }
-            if (t < 8)
-            {
-                Debug.Log("Hit");
-                d = null;
-                d = new DiceFormule(1, DiceType.Cube, -2);
-                unitToAttack.myAttack.hp -= d.Roll();
-                Debug.Log("damage done " + (d.dices[0].LastValue - 2) + " by " + gameObject.name + " hp remain " + unitToAttack.myAttack.hp);
-                d = null;
+                if (!unitToAttack.myAttack.Dodge())
+                {
+                    Debug.Log("Hit");
+                    d = new DiceFormule(1, DiceType.Cube, -2);
+                    int damage = d.Roll();
+                    if (damage <= 0)
+                    {
+                        damage = 1;
+                    }
+                    unitToAttack.myAttack.hp -= damage;
+                    Debug.Log("damage done " + (damage) + " by " + gameObject.name + " hp remain " + unitToAttack.myAttack.hp);
+                    d = null;
+                }
+                else
+                {
+                    Debug.Log("Foe dodged");
+                }
+
             }
             else
             {
                 Debug.Log("Miss");
             }
-            Debug.Log("------------------------------------------");
             TurnManager.Instance.EndTurn();
         }
-        unitToAttack = null;
+        
     }
 }

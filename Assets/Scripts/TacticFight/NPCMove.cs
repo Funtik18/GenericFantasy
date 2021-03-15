@@ -6,11 +6,9 @@ public class NPCMove : TacticMove
 {
     GameObject target;
 
-    private Character myStats;
     // Start is called before the first frame update
     void Start()
     {
-        myStats = GetComponent<PlayerStats>();
         Init();
     }
 
@@ -26,7 +24,7 @@ public class NPCMove : TacticMove
         {
 
         }
-        else
+        else if(actualTargetTile!=currentTile)
         {
             Move();
         }
@@ -63,9 +61,14 @@ public class NPCMove : TacticMove
     public override void Think()
     {
         FindNearestTarget();
+        myAttack.dodgedThisTurn = false;
         CalculatePath();
         FindSelectableTiles();
         actualTargetTile.target = true;
+
+        myAttack.CheckAttack();
+        myAttack.Attack();
+        //TurnManager.Instance.EndTurn();
     }
 
     public override void EndThink()

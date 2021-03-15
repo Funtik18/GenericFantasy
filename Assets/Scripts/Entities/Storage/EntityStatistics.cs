@@ -20,7 +20,7 @@ public class EntityStatistics
 
 		stats = new EntityStats(data.statsData);
 
-		attributes = new EntityAttributes(this, data.attributesData);
+		//attributes = new EntityAttributes(this, data.attributesData);
 	}
 
 	public string NewId()
