@@ -15,6 +15,6 @@ public class CharacterUI : MonoBehaviour
 		statsUI.Initialization(entity.Statistics.stats);
 		barsUI.Initialization(entity.Statistics.stats);
 
-		advantagesUI.Initialization(entity.Statistics.attributes);
+		//advantagesUI.Initialization(entity.Statistics.attributes);
 	}
 }

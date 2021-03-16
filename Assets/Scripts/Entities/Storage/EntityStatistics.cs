@@ -10,7 +10,7 @@ public class EntityStatistics
 
 	public readonly EntityStats stats;
 
-	public readonly EntityAttributes attributes;
+	//public readonly EntityAttributes attributes;
 
 	public EntityStatistics(EntityStatisticsData data)
 	{

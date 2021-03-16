@@ -2,7 +2,6 @@
 using UnityEngine;
 
 using Sirenix.OdinInspector;
-using System;
 
 public class EntityStats
 {
