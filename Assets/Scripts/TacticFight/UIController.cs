@@ -36,6 +36,7 @@ public class UIController : MonoBehaviour
             TurnManager.Instance.selectedEnemy = null;
             
         }
+        AttackInfo.SetActive(false);
     }
 
     public void Select(EnemySigns enemy)

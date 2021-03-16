@@ -10,6 +10,7 @@ public class PlayerMov : TacticMove
     {
         Init();
         cam = Camera.main;
+
     }
 
     // Update is called once per frame
@@ -27,7 +28,6 @@ public class PlayerMov : TacticMove
         else
         {
             Move();
-            
         }
         
         
@@ -59,6 +59,7 @@ public class PlayerMov : TacticMove
     public override void Think()
     {
         UIController.Instance.DisableSelections();
+        myAttack.dodgedThisTurn=false;
         myAttack.CheckAttack();
         myAttack.ShowUnitsToAttack();
     }

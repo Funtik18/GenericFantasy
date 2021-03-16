@@ -27,6 +27,8 @@ public class TurnManager : MonoBehaviour
     static Queue<string> turnKey = new Queue<string>();
     static Queue<TacticMove> turnTeam = new Queue<TacticMove>();
 
+    bool firstTurn = true;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,7 +46,16 @@ public class TurnManager : MonoBehaviour
 
     public void InitTeamTurnQueue()
     {
+        if (firstTurn)
+        {
+            if (turnKey.Peek() != "Player")
+            {
+                turnKey.Enqueue(turnKey.Dequeue());
+            }
+            firstTurn = false;
+        }
         List<TacticMove> teamList = units[turnKey.Peek()];
+        
         foreach (TacticMove item in teamList)
         {
             turnTeam.Enqueue(item);
@@ -63,6 +74,9 @@ public class TurnManager : MonoBehaviour
     public void EndTurn()//////Если скипаит ходы бот тупит
     {
         TacticMove unit = turnTeam.Dequeue();
+
+        UIController.Instance.DisableSelections();
+
         unit.EndTurn();
         if (turnTeam.Count > 0)
         {
@@ -74,8 +88,6 @@ public class TurnManager : MonoBehaviour
             turnKey.Enqueue(team);
             InitTeamTurnQueue();
         }
-
-
     }
 
     public void AddUnit(TacticMove unit)

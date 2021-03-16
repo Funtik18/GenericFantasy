@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Character))]
 public class TacticMove : MonoBehaviour
 {
     public bool turn = false;
@@ -10,7 +11,7 @@ public class TacticMove : MonoBehaviour
     GameObject[] tiles;
 
     Stack<Tile> path = new Stack<Tile>();
-    Tile currentTile;
+    protected Tile currentTile;
 
     public GameObject canBeAttacked;
 
@@ -21,6 +22,7 @@ public class TacticMove : MonoBehaviour
     public float moveSpeed = 2;
     public float jumpVelocity = 4.5f;
     public TacticAttack myAttack;
+    Character myStats;
 
     [Header("JumpState")]
     bool fallingDown = false;
@@ -37,6 +39,8 @@ public class TacticMove : MonoBehaviour
 
     protected void Init()
     {
+
+        SetStats();
         canBeAttacked.SetActive(false);
 
         tiles = TurnManager.Instance.tiles;
@@ -46,6 +50,14 @@ public class TacticMove : MonoBehaviour
         TurnManager.Instance.AddUnit(this);
 
         GetCurrentTile();
+    }
+
+    void SetStats()
+    {
+        myStats = GetComponent<Character>();
+        move = (int)myStats.myMove;
+        myAttack.hp = (int)myStats.myHP;
+        myAttack.myStats = myStats;
     }
 
     public void GetCurrentTile()
@@ -62,7 +74,7 @@ public class TacticMove : MonoBehaviour
         RaycastHit hit;
         Tile tile = null;
 
-        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 1))
+        if (Physics.Raycast(target.transform.position, Vector3.down, out hit, 10))
         {
             tile = hit.collider.GetComponent<Tile>();
         }
@@ -188,6 +200,7 @@ public class TacticMove : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
             GetCurrentTile();
+
             TurnManager.Instance.EndTurn();
         }
     }

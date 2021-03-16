@@ -6,29 +6,60 @@ public class Character : Entity<CharacterStatistics>
 
 	public CharacterData data;
 
+    [Header("Basic attributes")]
+    public float myStrength;
+    public float myDexterity;
+    public float myIntelligence;
+    public float myHealth;
+    [Header("Second attributes")]
+    public float myHP;
+    public float myMove;
+    public float mySpeed;
+    public float myWill;
+    public float myPerception;
+    public float myFatiguePoints;
+    public float myDodge;
+
 	public CharacterInformationData Information => data.information;
 
-	public override CharacterStatistics Statistics
+    public override CharacterStatistics Statistics
 	{
 		get
 		{
 			if(statistics == null)
 			{
-				statistics = new CharacterStatistics(data.statistics);
+
+                statistics = new CharacterStatistics(data.statistics);
+
+                SetStats();
+
 			}
 			return statistics;
 		}
 	}
 
+    void SetStats()
+    {
+        myStrength = statistics.stats.Strength.StatValue;
+        myDexterity = statistics.stats.Dexterity.StatValue;
+        myIntelligence = statistics.stats.Intelligence.StatValue;
+        myHealth = statistics.stats.Vitality.StatValue;
+
+
+        myHP = statistics.stats.Health.StatValue;
+        myMove = statistics.stats.Move.StatValue;
+        mySpeed = statistics.stats.Speed.StatValue;
+        myWill = statistics.stats.Will.StatValue;
+        myPerception = statistics.stats.Perception.StatValue;
+        myFatiguePoints = statistics.stats.Fatigue.StatValue;
+
+        myDodge=statistics.stats.Dodge.StatValue;
+    }
 
 	public void Save()
 	{
 		avatar.SaveModel();
 		SaveLoaderManager.SaveCharacter(data, Statistics.ID);
-	}
-	public void Load()
-	{
-
 	}
 
 

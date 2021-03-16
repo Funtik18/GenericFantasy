@@ -16,7 +16,7 @@ public class EntityStatistics
 	{
 		NewId();
 
-		//colors = new EntityCustomColors(data.colorsData);
+		colors = new EntityCustomColors(data.colorsData);
 
 		stats = new EntityStats(data.statsData);
 
